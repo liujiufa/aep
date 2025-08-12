@@ -1,0 +1,191 @@
+@import "assets/style/_theme_colors_scheme.scss";
+@import "assets/style/_variables.scss";
+
+html {
+  font-size: 450px * 12px / 375px;
+  @media (max-width: 450px) {
+    font-size: 100vw * 12px / 375px;
+  }
+}
+
+html[data-theme="light"] {
+  --primary-color: #fff;
+  --primary-card-color: #f0f0f0;
+  --primary-card-light-color: #f9fafc;
+  --primary-card-heavy-color: #fff;
+  --primary-input-light-color: #f9fafc;
+  --primary-drow-down-bg-color: #fff;
+  --primary-drow-down-border-color: #d9d9d9;
+  --primary-home-tag-bg-color: #d9d9d9;
+  --primary-home-tag-border-color: #d9d9d9;
+  --primary-card-font-color: #000;
+  --primary-card-title-font-color: rgba(0, 0, 0, 0.6);
+  --primary-nav-go-bg-color: #000;
+}
+
+html[data-theme="dark"] {
+  --primary-color: #121627;
+  --primary-card-color: #222337;
+  --primary-card-light-color: #222337;
+  --primary-card-heavy-color: #121627;
+  --primary-input-light-color: #121627;
+
+  --primary-drow-down-bg-color: #222337;
+  --primary-drow-down-border-color: #3684d8;
+  --primary-home-tag-bg-color: #222337;
+  --primary-card-font-color: #fff;
+  --primary-home-tag-border-color: #4b4c65;
+
+  --primary-card-title-font-color: rgba(255, 255, 255, 0.6);
+  --primary-nav-go-bg-color: linear-gradient(
+    91deg,
+    #04efb5 1.56%,
+    #06eab6 15.03%,
+    #0cddba 29.45%,
+    #16c8c1 44.84%,
+    #24abcb 60.22%,
+    #3684d8 75.61%,
+    #4b56e7 90.99%,
+    #573ff0 97.73%
+  );
+}
+
+.Mask {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  max-width: 450px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2) !important;
+  top: 0;
+  z-index: 98;
+}
+
+.NoData {
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 100%;
+      max-width: 80px;
+    }
+
+    .title1 {
+      margin-top: 2rem;
+      text-transform: uppercase;
+
+      color: var(--primary-card-font-color);
+      text-align: center;
+      font-family: "Alibaba PuHuiTi 3.0";
+      font-size: 1.33333rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      /* 20.793px */
+    }
+  }
+}
+
+.valueBox {
+  .iconBox {
+    @media (max-width: 425px) {
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+.marquee-container {
+  width: 100%;
+
+  .marquee-wrapper {
+    height: 17px;
+    overflow: hidden;
+
+    .marquee-content {
+      transform: translateY(0);
+      transition: transform 1s;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .marquee-content-itm {
+        line-height: 17px;
+        font-size: 12px;
+        color: #5e1400;
+      }
+    }
+  }
+}
+
+// 下拉菜单图标旋转
+.rotetaClose {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transition: transform 0.5s;
+}
+
+.rotetaOpen {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transition: transform 0.5s;
+}
+
+.ant-dropdown-menu {
+  // background: #261E00 !important;
+
+  .coinItem {
+    display: flex;
+    align-items: center;
+    font-family: "PingFang SC";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    color: #ffffff;
+
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.ant-dropdown-menu-item-divider,
+.ant-dropdown-menu-submenu-title-divider {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.ant-table-tbody > tr.ant-table-placeholder:hover > td {
+  background: transparent !important;
+}
+
+.ant-dropdown-menu-item.ant-dropdown-menu-item-active,
+.ant-dropdown-menu-item.ant-dropdown-menu-submenu-title-active,
+.ant-dropdown-menu-item:hover,
+.ant-dropdown-menu-submenu-title.ant-dropdown-menu-item-active,
+.ant-dropdown-menu-submenu-title.ant-dropdown-menu-submenu-title-active,
+.ant-dropdown-menu-submenu-title:hover {
+  background-color: transparent !important;
+}
+
+.adm-popup-body {
+  transform: translate(-50%, 0%) !important;
+  left: 50% !important;
+  max-width: 450px;
+}
+
+.all_page_conttainer {
+  padding: 64px 0px 3.67rem;
+  position: relative;
+  min-height: 100vh;
+  background-image: url(./assets/image/layout/main_bg.png);
+  background-repeat: no-repeat;
+  background-position: top;
+}
