@@ -34,19 +34,19 @@ module.exports = function override(config) {
   });
 
   // 添加 TerserPlugin 配置
-  config.optimization = {
-    ...config.optimization,
-    minimize: true, // 启用压缩
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          compress: {
-            drop_console: true, // 移除所有 console 语句
-          },
-        },
-      }),
-    ],
-  };
+  // config.optimization = {
+  //   ...config.optimization,
+  //   minimize: true, // 启用压缩
+  //   minimizer: [
+  //     new TerserPlugin({
+  //       terserOptions: {
+  //         compress: {
+  //           drop_console: true, // 移除所有 console 语句
+  //         },
+  //       },
+  //     }),
+  //   ],
+  // };
 
   return config;
 };

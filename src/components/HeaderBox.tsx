@@ -51,10 +51,8 @@ import { useViewport } from "./viewportContext";
 import Web3 from "web3";
 import styled from "styled-components";
 import { FlexBox, FlexCCBox, FlexSBCBox } from "./FlexBox";
-import CodeInputBox from "./CodeInputBox";
 import { useSign } from "../hooks/useSign";
 import { useNoGas } from "../hooks/useNoGas";
-import useTipLoding from "./ModalContent";
 import {
   useAppKit,
   useAppKitAccount,
@@ -69,16 +67,6 @@ import c_img2 from "../assets/image/layout/c_img2.png";
 import c_img3 from "../assets/image/layout/c_img3.png";
 import c_img4 from "../assets/image/layout/c_img4.png";
 import c_img5 from "../assets/image/layout/c_img5.png";
-import menuIcon1 from "../assets/image/layout/menuIcon1.png";
-import menuIcon2 from "../assets/image/layout/menuIcon2.png";
-import menuIcon3 from "../assets/image/layout/menuIcon3.png";
-import menuIcon3_1 from "../assets/image/layout/menuIcon3_1.png";
-import menuIcon4 from "../assets/image/layout/menuIcon4.png";
-import menuIcon5 from "../assets/image/layout/menuIcon5.png";
-import menuIcon6 from "../assets/image/layout/menuIcon6.png";
-import menuIcon7 from "../assets/image/layout/menuIcon7.png";
-import menuIcon8 from "../assets/image/layout/menuIcon8.png";
-import menuIcon9 from "../assets/image/layout/menuIcon9.png";
 
 import chain_img1 from "../assets/image/layout/chain_img1.png";
 import chain_img2 from "../assets/image/layout/chain_img2.png";
@@ -87,12 +75,6 @@ import chain_img3 from "../assets/image/layout/chain_img3.png";
 import chain_img4 from "../assets/image/layout/chain_img4.png";
 import chain_img_not3 from "../assets/image/layout/chain_img_not3.png";
 import chain_img_not4 from "../assets/image/layout/chain_img_not4.png";
-import slider_logo from "../assets/image/layout/slider_logo.png";
-import slider_logo_dark from "../assets/image/layout/slider_logo_dark.png";
-import dropDownIcon from "../assets/image/layout/dropDownIcon.png";
-import dropDownIcon_dark from "../assets/image/layout/dropDownIcon_dark.png";
-import menu_fill from "../assets/image/layout/menu_fill.png";
-import menu_fill_dark from "../assets/image/layout/menu_fill_dark.png";
 import languageIcon from "../assets/image/layout/languageIcon.png";
 import languageIcon_dark from "../assets/image/layout/languageIcon_dark.png";
 import light from "../assets/image/layout/light.png";
@@ -454,33 +436,6 @@ const MobileSlider_Menu = styled.div`
     }
   }
 `;
-export let communityObj = [
-  {
-    key: "c_item1",
-    img: c_img1,
-    link: "soon",
-  },
-  {
-    key: "c_item2",
-    img: c_img2,
-    link: "soon",
-  },
-  {
-    key: "c_item3",
-    img: c_img3,
-    link: "https://www.youtube.com/ORA_Web3",
-  },
-  {
-    key: "c_item4",
-    img: c_img4,
-    link: "https://x.com/ORA_Web3",
-  },
-  {
-    key: "c_item5",
-    img: c_img5,
-    link: "https://t.me/ORA_Global",
-  },
-];
 
 declare let window: any;
 const MainLayout: any = () => {
@@ -573,11 +528,6 @@ const MainLayout: any = () => {
     { value: "繁体中文", key: "zh-TW" },
     { value: "日本語", key: "ja" },
     { value: "한국인", key: "kr" },
-    // { value: "Nederlands", key: "lang1" },
-    // { value: "Polski", key: "lang2" },
-    // { value: "Português (Brazil)", key: "lang3" },
-    // { value: "Italiano", key: "lang4" },
-    // { value: "Bahasa Indonesia", key: "lang5" },
   ];
 
   const menu2 = (
@@ -626,103 +576,11 @@ const MainLayout: any = () => {
     />
   );
 
-  const headerNavObj: any = [
-    {
-      name: "首页",
-      pathname: "/",
-      icon: menuIcon1,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-    },
-    {
-      name: "使用AI",
-      pathname: "/AI",
-      icon: menuIcon2,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-      // isSoon: true,
-    },
-    {
-      name: "ORA发射",
-      pathname: "/ORA",
-      icon: menuIcon3,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-      // isSoon: true,
-    },
-    {
-      name: "NFT",
-      pathname: "/NFT",
-      icon: menuIcon4,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-      // isSoon: true,
-    },
-    {
-      name: "邀请好友",
-      pathname: "/Invite",
-      icon: menuIcon3_1,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-    },
-    {
-      name: "交易市场",
-      pathname: "/NFTTrade",
-      icon: menuIcon5,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-      // isSoon: true,
-    },
-    {
-      name: "盲盒抽奖",
-      pathname: "/Lottery",
-      icon: menuIcon6,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-      // isSoon: true,
-    },
-    {
-      name: "收益赚取",
-      pathname: "/EarnReward",
-      icon: menuIcon7,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-      // isSoon: true,
-    },
-    {
-      name: "奖励中心",
-      pathname: "/RewardCenter",
-      icon: menuIcon8,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-      // isSoon: true,
-    },
-    {
-      name: "个人中心",
-      pathname: "/PersonCenter",
-      icon: menuIcon9,
-      menu: "menu pointer",
-      menuActive: "menu pointer active",
-      // isSoon: true,
-    },
-  ];
-
   // 导航
   const navigateFun = (path: string) => {
     Navigate("/View" + path);
   };
 
-  function menuActive(path: string) {
-    if (ItemActive === path) {
-      return headerNavObj?.find(
-        (item: any) => String(item?.pathname) === String(path)
-      )?.menuActive;
-    } else {
-      return headerNavObj?.find(
-        (item: any) => String(item?.pathname) === String(path)
-      )?.menu;
-    }
-  }
   const getInitData = () => {};
 
   useEffect(() => {
@@ -774,25 +632,6 @@ const MainLayout: any = () => {
           </LogoContainer>
 
           <SetBox>
-            <Dropdown
-              overlay={menu2}
-              placement="bottom"
-              overlayClassName="LangDropDown ChainDropDown"
-              trigger={["click"]}
-              arrow={false}
-              getPopupContainer={(triggerNode: any) => triggerNode}
-            >
-              <div className="ChainDropBox  pointer">
-                <img src={CurrentChain?.img} alt="" className="chainIcon" />
-                <div className="chainName">{CurrentChain?.value}</div>
-                <img
-                  src={theme === "light" ? dropDownIcon : dropDownIcon_dark}
-                  alt=""
-                  className="dropDownIcon"
-                />
-              </div>
-            </Dropdown>
-
             {!!token ? (
               <div
                 className="Connect  pointer "
@@ -829,96 +668,13 @@ const MainLayout: any = () => {
                 />
               </div>
             </Dropdown>
-
-            {!!token && (
-              <img
-                src={theme === "light" ? menu_fill : menu_fill_dark}
-                alt=""
-                onClick={() => {
-                  setShowMask(!showMask);
-                }}
-                className="menuBox"
-              />
-            )}
           </SetBox>
         </div>
       </HeaderContainer>
 
       <MobileSlider isOpen={showMask}>
         <div className="menus">
-          <MobileSlider_Menu>
-            <div className="logo_box">
-              <img
-                src={theme === "light" ? slider_logo : slider_logo_dark}
-                alt=""
-              />
-              <div className="switch pointer">
-                {theme === "light" ? (
-                  <img
-                    src={light}
-                    alt=""
-                    onClick={() => {
-                      setTheme(Themes.dark);
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={dark}
-                    alt=""
-                    onClick={() => {
-                      setTheme(Themes.light);
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-            {headerNavObj?.map((item: any, index: any) => (
-              <div
-                key={index}
-                className={menuActive(item?.pathname)}
-                onClick={() => {
-                  if (!item?.isSoon) {
-                    navigateFun(item?.pathname);
-                    setShowMask(false);
-                  } else {
-                    return addMessage(t("敬请期待"));
-                  }
-                }}
-              >
-                <div>
-                  <img src={item?.icon} alt="" />
-                  {t(item?.name)}
-                </div>
-                {/* <img src={go_to_icon} alt="" /> */}
-              </div>
-            ))}
-            <div className="about">
-              <div className="about_us_title">
-                <div>About us</div>{" "}
-                <div
-                  style={{
-                    background: theme === "light" ? "#d9d9d9" : "#222337",
-                  }}
-                ></div>
-              </div>
-              <div className="box">
-                {communityObj?.map((item: any, indx: any) => (
-                  <img
-                    src={item?.img}
-                    alt=""
-                    key={indx}
-                    onClick={() => {
-                      if (String(item?.link) !== "soon") {
-                        window.open(item?.link);
-                      } else {
-                        return addMessage(t("敬请期待"));
-                      }
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </MobileSlider_Menu>
+          <MobileSlider_Menu></MobileSlider_Menu>
         </div>
         {!!showMask && (
           <div
