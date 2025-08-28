@@ -2,7 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import { addMessage, showLoding } from "../utils/tool";
 import { Contracts } from "../web3";
 import { useEffect } from "react";
-import useConnectWallet from "./useConnectWallet";
+    
 import { useTranslation } from "react-i18next";
 import { useAppKitAccount } from "@reown/appkit/react";
 export const useNoGas = () => {

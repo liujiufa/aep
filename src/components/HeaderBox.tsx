@@ -18,14 +18,6 @@ import {
   getFullNum,
   startWord,
 } from "../utils/tool";
-import {
-  Login,
-  checkAddressLogin,
-  getUserInfo,
-  isNewUser,
-  isRefereeAddress,
-  signBindReferee,
-} from "../API/index";
 import { useWeb3React } from "@web3-react/core";
 import { useSelector, useDispatch } from "react-redux";
 import { stateType } from "../store/reducer";
@@ -60,25 +52,20 @@ import {
   useAppKitProvider,
   useDisconnect,
 } from "@reown/appkit/react";
-import logo from "../assets/image/layout/logo.png";
-import logo_dark from "../assets/image/layout/logo_dark.png";
-import c_img1 from "../assets/image/layout/c_img1.png";
-import c_img2 from "../assets/image/layout/c_img2.png";
-import c_img3 from "../assets/image/layout/c_img3.png";
-import c_img4 from "../assets/image/layout/c_img4.png";
-import c_img5 from "../assets/image/layout/c_img5.png";
+import logo from "../assets/image/Layout/logo.png";
+import logo_dark from "../assets/image/logo.png";
 
-import chain_img1 from "../assets/image/layout/chain_img1.png";
-import chain_img2 from "../assets/image/layout/chain_img2.png";
-import chain_img2_dark from "../assets/image/layout/chain_img2_dark.png";
-import chain_img3 from "../assets/image/layout/chain_img3.png";
-import chain_img4 from "../assets/image/layout/chain_img4.png";
-import chain_img_not3 from "../assets/image/layout/chain_img_not3.png";
-import chain_img_not4 from "../assets/image/layout/chain_img_not4.png";
-import languageIcon from "../assets/image/layout/languageIcon.png";
-import languageIcon_dark from "../assets/image/layout/languageIcon_dark.png";
-import light from "../assets/image/layout/light.png";
-import dark from "../assets/image/layout/dark.png";
+import chain_img1 from "../assets/image/Layout/chain_img1.png";
+import chain_img2 from "../assets/image/Layout/chain_img2.png";
+import chain_img2_dark from "../assets/image/Layout/chain_img2_dark.png";
+import chain_img3 from "../assets/image/Layout/chain_img3.png";
+import chain_img4 from "../assets/image/Layout/chain_img4.png";
+import chain_img_not3 from "../assets/image/Layout/chain_img_not3.png";
+import chain_img_not4 from "../assets/image/Layout/chain_img_not4.png";
+import languageIcon from "../assets/image/Layout/languageIcon.png";
+import languageIcon_dark from "../assets/image/Layout/languageIcon_dark.png";
+import light from "../assets/image/Layout/light.png";
+import dark from "../assets/image/Layout/dark.png";
 import { bscTestnet, bsc, mainnet, holesky } from "@reown/appkit/networks";
 import ThemeContext, { Themes } from "./ThemeContext";
 const { Header, Content } = Layout;
@@ -96,8 +83,8 @@ const LogoContainer = styled(FlexCCBox)`
   color: #ffffff;
 
   > img {
-    width: 6.33333rem;
-    height: 2rem;
+    width: 9.69rem;
+    height: 2.34rem;
   }
 `;
 
@@ -118,7 +105,7 @@ const HeaderContainer = styled(Header)`
 
   background: transparent;
   .HeaderNav {
-    padding: 1.08rem 1.33rem;
+    padding: 1.08rem 1.5rem;
   }
 `;
 
@@ -182,7 +169,7 @@ const SetBox = styled.div`
     opacity: 1;
     background: var(--primary-card-color);
     color: var(--primary-card-font-color);
-    font-family: "Alibaba PuHuiTi 3.0";
+    font-family: "Clash Display";
     font-size: 1rem;
     font-style: normal;
     font-weight: 500;
@@ -199,7 +186,7 @@ const SetBox = styled.div`
     }
     .chainName {
       color: var(--primary-card-font-color);
-      font-family: "Alibaba PuHuiTi 3.0";
+      font-family: "Clash Display";
       font-size: 1rem;
       font-style: normal;
       font-weight: 500;
@@ -212,21 +199,20 @@ const SetBox = styled.div`
     display: flex;
     align-items: center;
     text-align: center;
-    border-radius: 124px;
-    opacity: 1;
-    background: var(--primary-card-color);
-    color: var(--primary-card-font-color);
-    font-family: "Alibaba PuHuiTi 3.0";
+    border: 0.8px solid #9aa8d9;
+    padding: 0.75rem 2.17rem;
+    border-radius: 0.83rem;
+    color: #fff;
+    font-family: "Clash Display";
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
     line-height: 1rem; /* 100% */
-    padding: 0.58rem 1rem;
   }
   .LangDropDown {
     .ant-dropdown-menu {
       color: var(--primary-card-font-color);
-      font-family: "Alibaba PuHuiTi 3.0";
+      font-family: "Clash Display";
       font-size: 1rem;
       font-style: normal;
       font-weight: 600;
@@ -240,8 +226,8 @@ const SetBox = styled.div`
         padding: 0;
         .LangItem {
           cursor: pointer;
-          margin-bottom: 1.17rem;
-          padding: 0 0.83rem;
+          margin-bottom: 0.67rem;
+          padding: 0 1.5rem;
         }
         /* 语言切换下拉 */
 
@@ -255,18 +241,28 @@ const SetBox = styled.div`
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          color: var(--primary-card-font-color);
-          font-family: "Alibaba PuHuiTi 3.0";
-          font-size: 1rem;
+          color: #000;
+          text-align: center;
+          font-family: "Clash Display";
+          font-size: 1.16667rem;
           font-style: normal;
-          font-weight: 500;
-          line-height: 1rem; /* 100% */
+          font-weight: 600;
+          line-height: normal;
           img {
             width: 1.16667rem;
             height: 1.16667rem;
             flex-shrink: 0;
             margin-right: 0.33rem;
           }
+        }
+        .active {
+          color: #6b72ff;
+          text-align: center;
+          font-family: "Clash Display";
+          font-size: 1.16667rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
         }
       }
     }
@@ -383,7 +379,7 @@ const MobileSlider_Menu = styled.div`
       display: flex;
       align-items: center;
       color: var(--primary-card-font-color);
-      font-family: "Alibaba PuHuiTi 3.0";
+      font-family: "Clash Display";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 400;
@@ -410,7 +406,7 @@ const MobileSlider_Menu = styled.div`
       align-items: center;
       div {
         color: var(--primary-card-font-color);
-        font-family: "Alibaba PuHuiTi 3.0";
+        font-family: "Clash Display";
         font-size: 1rem;
         font-style: normal;
         font-weight: 400;
@@ -523,53 +519,26 @@ const MainLayout: any = () => {
   ];
 
   let langObj = [
-    { value: "English", key: "en" },
-    { value: "简体中文", key: "zh-CN" },
-    { value: "繁体中文", key: "zh-TW" },
-    { value: "日本語", key: "ja" },
-    { value: "한국인", key: "kr" },
+    { value: "EN", key: "en" },
+    { value: "CN", key: "zh-CN" },
   ];
 
-  const menu2 = (
-    <Menu
-      onClick={() => {}}
-      items={[
-        ...ChainObj.map((item: any) => {
-          return {
-            label: (
-              <span
-                className="LangItem"
-                onClick={() => {
-                  new Contracts(walletProvider);
-                  if (item?.chainId === curentBSCChainId) {
-                    showLoding(true);
-                    switchNetwork(
-                      isMain ? customNetwork_BSC : customNetwork_BSC_TEST
-                    );
-                  } else if (item?.chainId === curentETHChainId) {
-                    showLoding(true);
-                    switchNetwork(isMain ? mainnet : holesky);
-                  } else {
-                    return addMessage(t("Coming soon"));
-                  }
-                }}
-              >
-                <img className="img" src={item?.imgNot ?? item?.img} alt="" />
-                {item.value}
-              </span>
-            ),
-            key: item?.key,
-          };
-        }),
-      ]}
-    />
-  );
   const menu3 = (
     <Menu
       onClick={changeLanguage}
       items={langObj.map((item: any) => {
         return {
-          label: <span className="LangItem ReallyLangItem">{item.value}</span>,
+          label: (
+            <span
+              className={
+                i18n.language === item?.key
+                  ? "LangItem ReallyLangItem active"
+                  : "LangItem ReallyLangItem"
+              }
+            >
+              {item.value}
+            </span>
+          ),
           key: item?.key,
         };
       })}
@@ -627,7 +596,7 @@ const MainLayout: any = () => {
                 setShowMask(false);
                 Navigate("/View/");
               }}
-              src={theme === "light" ? logo : logo_dark}
+              src={logo_dark}
             />
           </LogoContainer>
 
@@ -640,7 +609,7 @@ const MainLayout: any = () => {
                 }}
               >
                 {/* <img src={walletIcon} alt="" />{" "} */}
-                {AddrHandle(web3ModalAccount as string, 2, 4)}{" "}
+                {AddrHandle(web3ModalAccount as string, 4, 4)}{" "}
               </div>
             ) : (
               <div
@@ -662,10 +631,7 @@ const MainLayout: any = () => {
               getPopupContainer={(triggerNode: any) => triggerNode}
             >
               <div className="langDrowDrop pointer">
-                <img
-                  src={theme === "light" ? languageIcon : languageIcon_dark}
-                  alt=""
-                />
+                <img src={languageIcon_dark} alt="" />
               </div>
             </Dropdown>
           </SetBox>

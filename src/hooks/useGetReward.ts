@@ -1,6 +1,6 @@
 import { useWeb3React } from "@web3-react/core";
 import { t } from "i18next";
-import { draw, drawAward, drawPledge } from "../API";
+import { drawStakeReward } from "../API";
 import { addMessage, showLoding } from "../utils/tool";
 import { Contracts } from "../web3";
 import { useSelector } from "react-redux";
@@ -16,9 +16,8 @@ export const useGetReward = () => {
     onDoing: any,
     onFailed: any
   ) {
-    if (!web3ModalAccount) return addMessage(t("Please Connect wallet"));
     if (!token) return addMessage(t("请先登录"));
-    drawPledge(data).then(async (res: any) => {
+    drawStakeReward(data).then(async (res: any) => {
       onDoing();
       if (res?.code === 200) {
         let value: any = null;
@@ -30,17 +29,15 @@ export const useGetReward = () => {
           );
         } catch (error: any) {
           onFailed();
-          if (error?.code === 4001) {
-            return addMessage(t("failed"));
-          }
+          return addMessage(t("failed"));
         }
-        onFailed();
+
         if (!!value?.status) {
           // addMessage(t("Received successfully"));
           await callbackFun();
         } else if (value?.status === false) {
           onFailed();
-          // addMessage(t("failed"));
+          addMessage(t("failed"));
         }
       } else {
         onFailed();

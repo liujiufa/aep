@@ -3,7 +3,7 @@ import { t } from "i18next";
 import { addMessage, showLoding } from "../utils/tool";
 import { Contracts } from "../web3";
 import { useEffect } from "react";
-import useConnectWallet from "./useConnectWallet";
+    
 import { useAppKitAccount, useDisconnect } from "@reown/appkit/react";
 export const useSign = () => {
   const { account } = useWeb3React();

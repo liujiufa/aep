@@ -22,17 +22,17 @@ export const ThemeContextProvider = ({ children }: IProps): JSX.Element => {
 
   // 使用 useEffect 来设置 data-theme 属性
   useEffect(() => {
-    const currentTheme =
-      (localStorage.getItem("theme") as Themes) || Themes.light;
-    setTheme(currentTheme);
-    document.getElementsByTagName("html")[0].dataset.theme = currentTheme;
+    // const currentTheme =
+    //   (localStorage.getItem("theme") as Themes) || Themes.light;
+    // setTheme(currentTheme);
+    document.getElementsByTagName("html")[0].dataset.theme = Themes.light;
   }, []);
 
   // 更新主题并保存到 localStorage
   const updateTheme = (currentTheme: Themes) => {
-    setTheme(currentTheme);
-    localStorage.setItem("theme", currentTheme);
-    document.getElementsByTagName("html")[0].dataset.theme = currentTheme;
+    // setTheme(currentTheme);
+    // localStorage.setItem("theme", currentTheme);
+    document.getElementsByTagName("html")[0].dataset.theme = Themes.light;
   };
 
   return (

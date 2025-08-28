@@ -41,11 +41,11 @@ const projectId = "1204ba6c7be49f6e59d5b46099b77487";
 
 // 3. Create a metadata object
 const metadata = {
-  name: "ORA",
-  description: "ORA",
-  url: "https://oraai.io/",
+  name: "Depin",
+  description: "Depin",
+  url: "",
   // url: "https://kf-panda.com/",
-  icons: ["https://oraai.io/logo.png"],
+  icons: [""],
   // icons: ["http://yhhyn.com/vtb.png"],
 };
 
@@ -80,10 +80,10 @@ const metadata = {
 
 createAppKit({
   adapters: [new EthersAdapter()],
-  networks: [customNetwork_BSC, customNetwork_BSC_TEST, mainnet, holesky],
+  networks: isMain ? [customNetwork_BSC] : [customNetwork_BSC_TEST],
   metadata,
   projectId,
-  themeMode: "light",
+  themeMode: "dark",
   enableCoinbase: false,
   featuredWalletIds: [
     "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96",
@@ -95,7 +95,7 @@ createAppKit({
     analytics: true, // Optional - defaults to your Cloud configuration
     connectMethodsOrder: ["wallet"],
   },
-  defaultNetwork: isMain ? customNetwork_BSC : customNetwork_BSC_TEST,
+  defaultNetwork: isMain ? customNetwork_BSC : bscTestnet,
 });
 
 const root = ReactDOM.createRoot(

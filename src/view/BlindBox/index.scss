@@ -1,0 +1,217 @@
+.blind_box {
+  .blind_box_content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0.83rem 0rem 0rem;
+    .blind_box_name {
+      color: #fff;
+      text-align: center;
+      font-family: "Clash Display";
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.5rem; /* 100% */
+      margin: 1rem 0px 2.5rem;
+    }
+    .swiper_box {
+      height: 25.91667rem;
+      width: 100%;
+      position: relative;
+      .swiper {
+        // overflow: unset;
+        padding-top: 10px;
+      }
+      .manage_icon {
+        padding: 0px 3rem;
+        position: absolute;
+        top: 26%;
+        transform: translateY(-50%);
+        z-index: 100;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .swiper_box_bg {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 100%;
+      }
+      .swiper_item {
+        width: 100%;
+
+        transition: transform 300ms ease-in-out;
+        // transition-transform duration-300 ease-in-out relative
+        @keyframes float {
+          0% {
+            transform: translateY(0); /* 初始位置 */
+          }
+          50% {
+            transform: translateY(-10px); /* 上移 */
+          }
+          100% {
+            transform: translateY(0); /* 结束位置 */
+          }
+        }
+        .anim {
+          animation: float 2s ease-in-out infinite;
+        }
+        img {
+          display: block;
+          width: 100%;
+        }
+        .mt60 {
+          margin-top: 60px;
+        }
+        .opacity06 {
+          opacity: 0.6;
+        }
+        .scale06 {
+          scale: 0.6;
+        }
+      }
+    }
+    .current_box {
+      color: #fff;
+      text-align: center;
+      font-family: "Clash Display";
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.5rem; /* 100% */
+      margin: 1.67rem 0px 2.5rem;
+    }
+    .manage_box {
+      width: 100%;
+      padding: 0px 1.33rem;
+      .price_box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .title {
+          color: #7685bc;
+          font-family: "Clash Display";
+          font-size: 1.16667rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1.5rem; /* 128.571% */
+        }
+        .value {
+          color: #fff;
+          font-family: "Clash Display";
+          font-size: 1.33333rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 1.5rem; /* 112.5% */
+        }
+      }
+      .price_box1 {
+        margin: 1.67rem 0px 2.5rem;
+      }
+      .input_box {
+        margin: 0.83rem 0px 2.5rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .title {
+          white-space: nowrap;
+          color: #7685bc;
+          font-family: "Clash Display";
+          font-size: 1.16667rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1.5rem; /* 128.571% */
+        }
+        .input {
+          width: 100%;
+          padding: 1.33rem 0.92rem;
+          margin-left: 3.17rem;
+          border-radius: 1.66667rem;
+          border: 1px solid #9aa8d9;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          input {
+            width: 100%;
+
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: "Clash Display";
+            font-size: 1.33333rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 1.5rem; /* 112.5% */
+          }
+          .coin_info {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            img {
+              width: 1.33333rem;
+              height: 1.33333rem;
+              margin: 0px 0.13rem;
+            }
+            div {
+              color: #fff;
+              font-family: "Clash Display";
+              font-size: 1.16667rem;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 1.5rem; /* 128.571% */
+            }
+          }
+        }
+      }
+    }
+    .buy_btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      width: 100%;
+      height: 4.16667rem;
+      padding: 1.41667rem 0;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      color: #fff;
+      font-family: "Clash Display";
+      font-size: 1.33333rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.33333rem; /* 100% */
+      padding: 1.42rem 0px;
+      border-radius: 1.66667rem;
+      background: #6b72ff;
+    }
+    .buy_btn_no_work {
+      opacity: 0.5;
+    }
+    .record_items {
+      margin: 1.25rem 0px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      .record_item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4a5682;
+        font-family: "Clash Display";
+        font-size: 1.16667rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1rem; /* 85.714% */
+      }
+    }
+  }
+}

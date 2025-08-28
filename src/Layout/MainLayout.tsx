@@ -18,15 +18,7 @@ import {
   getFullNum,
   startWord,
 } from "../utils/tool";
-import {
-  Login,
-  checkAddressLogin,
-  checkAddress,
-  getUserInfo,
-  isNewUser,
-  isRefereeAddress,
-  signBindReferee,
-} from "../API/index";
+import { Login } from "../API/index";
 import { useWeb3React } from "@web3-react/core";
 import { useSelector, useDispatch } from "react-redux";
 import { stateType } from "../store/reducer";
@@ -79,7 +71,7 @@ export const ModalContainer_Title = styled(FlexSBCBox)`
   width: 100%;
   color: var(--primary-card-font-color);
 
-  font-family: "Alibaba PuHuiTi 3.0";
+  font-family: "Clash Display";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
@@ -127,7 +119,7 @@ const InputBox = styled(FlexCCBox)`
   margin: 2rem 0px;
   color: var(--primary-card-font-color);
   text-align: center;
-  font-family: "Alibaba PuHuiTi 3.0";
+  font-family: "Clash Display";
   font-size: 1.16667rem;
   font-style: normal;
   font-weight: 600;
@@ -155,7 +147,7 @@ const Btn = styled(FlexCCBox)`
   );
   cursor: pointer;
   color: #fff;
-  font-family: "Alibaba PuHuiTi 3.0";
+  font-family: "Clash Display";
   font-size: 1.16667rem;
   font-style: normal;
   font-weight: 700;
@@ -176,7 +168,7 @@ const InputBox_Top = styled(FlexBox)`
     width: 100%;
     flex: 1;
     color: var(--primary-card-font-color);
-    font-family: "Alibaba PuHuiTi 3.0";
+    font-family: "Clash Display";
     font-size: 1.16667rem;
     font-style: normal;
     font-weight: 400;
@@ -189,7 +181,7 @@ const InputBox_Top = styled(FlexBox)`
     &::placeholder {
       color: var(--primary-card-title-font-color);
 
-      font-family: "Alibaba PuHuiTi 3.0";
+      font-family: "Clash Display";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 400;
@@ -200,7 +192,7 @@ const InputBox_Top = styled(FlexBox)`
   div {
     color: #000;
     text-align: center;
-    font-family: "Alibaba PuHuiTi 3.0";
+    font-family: "Clash Display";
     font-size: 1.16667rem;
     font-style: normal;
     font-weight: 600;
@@ -236,32 +228,23 @@ const MainLayout: any = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   const LoginFun = useCallback(
-    async (refereeAddress = "", isShowTip = false) => {
+    async (refereeAddress = "") => {
       if (web3ModalAccount) {
-        // debugger;
         await signFun(
           (res: any) => {
             Login({
               ...res,
               userAddress: web3ModalAccount as string,
-              // chainName: loginNetworkId.find(
-              //   (item: any) => Number(item?.id) === Number(chainId)
-              // )?.name,
               refereeAddress: refereeAddress,
             }).then((res: any) => {
               if (res.code === 200) {
                 showLoding(false);
-                // debugger;
                 dispatch(
                   createLoginSuccessAction(
                     web3ModalAccount as string,
                     res.data.token
                   )
                 );
-                getInitData();
-                if (!!isShowTip) {
-                  return addMessage(t("绑定成功"));
-                }
               } else {
                 disconnect();
                 showLoding(false);
@@ -279,167 +262,23 @@ const MainLayout: any = () => {
     [web3ModalAccount, chainId]
   );
 
-  const SelectBindFun = async () => {
-    if (!web3ModalAccount) return;
-    new Contracts(walletProvider);
-
-    checkAddressLogin(web3ModalAccount as string)
-      .then((res: any) => {
-        if (res?.code === 200) {
-          dispatch(createLoginSuccessAction(web3ModalAccount as string, ""));
-          if (!!res.data) {
-            LoginFun();
-            setBindModal(false);
-          } else {
-            setBindModal(true);
-            dispatch(createLoginSuccessAction(web3ModalAccount as string, ""));
-          }
-        } else {
-          disconnect();
-        }
-      })
-      .catch((e: any) => {
-        disconnect();
-      });
-  };
-
   const getInitData = () => {};
 
   const getInviteFun = async () => {
     let tag = await web3.utils.isAddress(window.location.pathname.slice(1));
     if (tag) {
       refereeUserAddress = window.location.pathname.slice(1);
-      setIsUpLevel(true);
-      setInputValue(refereeUserAddress);
     } else {
       refereeUserAddress = "";
     }
+    LoginFun(refereeUserAddress);
   };
-
-  const toBindFun = useCallback(
-    async (refereeAddress = "") => {
-      if (web3ModalAccount) {
-        showLoding(true);
-        let price: any = await Contracts.example.bindingFee(web3ModalAccount);
-        let bnbBalance: any =
-          await Contracts.example.getBalance(web3ModalAccount);
-        if (Number(price) > Number(bnbBalance)) {
-          showLoding(false);
-          return addMessage(t("余额不足"));
-        }
-        if (!!(await isNoGasFun())) return showLoding(false);
-        let res: any = null;
-        showLoding(true);
-        try {
-          res = await Contracts.example.bind(
-            web3ModalAccount,
-            refereeAddress,
-            price
-          );
-        } catch (error: any) {
-          showLoding(false);
-        }
-
-        if (res?.status) {
-          let tag = true;
-          isBindInterval = setInterval(() => {
-            checkAddressLogin(web3ModalAccount as string).then((res: any) => {
-              if (res?.code === 200) {
-                if (!!res.data && tag) {
-                  LoginFun("", true);
-                  tag = false;
-                  clearInterval(isBindInterval);
-                  setBindModal(false);
-                  // return addMessage(t("绑定成功"));
-                }
-              } else {
-                showLoding(false);
-                return addMessage(res?.msg);
-              }
-            });
-          }, 1000);
-        }
-        // await signFun((res: any) => {
-        //   signBindReferee({
-        //     ...res,
-        //     userAddress: web3ModalAccount as string,
-        //     chainName: loginNetworkId.find(
-        //       (item: any) => Number(item?.id) === Number(chainId)
-        //     )?.name,
-        //     refereeAddress: refereeAddress,
-        //   }).then((res: any) => {
-        //     if (res.code === 200) {
-        //       showLoding(false);
-        //       setBindModal(false);
-        //       getInitData();
-        //       return addMessage(t("帐号已绑定"));
-        //     } else {
-        //       showLoding(false);
-        //       addMessage(res.msg);
-        //     }
-        //   });
-        // }, `userAddress=${web3ModalAccount as string}`);
-      }
-    },
-    [web3ModalAccount, chainId]
-  );
-
-  const BindFun = useCallback(async () => {
-    if (web3ModalAccount) {
-      if (!InputValue) return addMessage(t("请输入上级邀请地址"));
-      let res: any = await checkAddress(InputValue);
-      // debugger;
-      if (!res?.data) return addMessage(t("无效邀请地址"));
-      await toBindFun(InputValue);
-    } else {
-      addMessage("Please Connect wallet");
-    }
-  }, [web3ModalAccount, InputValue]);
-
-  const handlePaste = async (event: any) => {
-    try {
-      // 从剪切板读取文本
-      const text = await window.navigator.clipboard.readText();
-      // 将剪切板的文本设置为输入框的值
-      setInputValue(text);
-    } catch (err) {
-      // debugger;
-      console.error("Failed to read clipboard contents: ", err);
-      // navigator.permissions.query({ name: "clipboard-read" });
-      return addMessage("读取剪贴板内容失败");
-    }
-    // inputsRef?.focus();
-  };
-
-  const hiddenInputRef = useRef(null);
-
-  // const handleClick = () => {
-  //   // 创建一个隐藏的输入元素
-  //   const hiddenInput = document.createElement("input");
-  //   hiddenInput.style.position = "absolute";
-  //   hiddenInput.style.left = "-9999px";
-  //   document.body.appendChild(hiddenInput);
-  //   hiddenInput.focus();
-
-  //   // 使用 setTimeout 确保粘贴操作完成
-  //   setTimeout(() => {
-  //     // 读取隐藏输入元素的值
-  //     const text = hiddenInput.value;
-  //     setInputValue(text);
-
-  //     // 移除隐藏的输入元素
-  //     document.body.removeChild(hiddenInput);
-  //   }, 0);
-
-  //   // 触发粘贴事件
-  //   document.execCommand("paste");
-  // };
 
   useEffect(() => {
-    if (web3ModalAccount) {
+    if (!!web3ModalAccount) {
       new Contracts(walletProvider);
       getInviteFun();
-      SelectBindFun();
+      // SelectBindFun();
     }
   }, [web3ModalAccount]);
   useEffect(() => {
@@ -459,7 +298,7 @@ const MainLayout: any = () => {
 
   return (
     <MyLayout>
-      <Content className="MainContent">
+      <Content>
         <Outlet />
         {!!showMask && (
           <div
@@ -532,7 +371,7 @@ const MainLayout: any = () => {
               <Btn
                 onClick={() => {
                   if (Number(chainId) === curentBSCChainId) {
-                    BindFun();
+                    // BindFun();
                   } else {
                     setBindModal(false);
                     return setBackBscModalState(true);

@@ -16,9 +16,69 @@ export function Login(data: any) {
     },
   });
 }
-export function signBindReferee(data: any) {
+export function getUserInfo() {
   return axois.request({
-    url: "/user/signBindReferee",
+    url: `/user/getUserInfo`,
+    method: "get",
+  });
+}
+export function getNodeData() {
+  return axois.request({
+    url: `/user/getNodeData`,
+    method: "get",
+  });
+}
+export function getUserNodeData() {
+  return axois.request({
+    url: `/user/getUserNodeData`,
+    method: "get",
+  });
+}
+export function getMineData() {
+  return axois.request({
+    url: `/home/getMineData`,
+    method: "get",
+  });
+}
+export function getEarnData() {
+  return axois.request({
+    url: `/home/getEarnData`,
+    method: "get",
+  });
+}
+export function getNodeUserList(address: any) {
+  return axois.request({
+    url: `/home/getNodeUserList/${address}`,
+    method: "get",
+  });
+}
+export function getPledgeData() {
+  return axois.request({
+    url: `/pledge/getPledgeData`,
+    method: "get",
+  });
+}
+export function getUserPledgeData() {
+  return axois.request({
+    url: `/user/getUserPledgeData`,
+    method: "get",
+  });
+}
+export function getBoxList() {
+  return axois.request({
+    url: `/box/getBoxList`,
+    method: "get",
+  });
+}
+export function getBoxUserInfo() {
+  return axois.request({
+    url: `/box/getBoxUserInfo`,
+    method: "get",
+  });
+}
+export function updateNickName(data: any) {
+  return axois.request({
+    url: "/user/updateNickName",
     method: "post",
     data: {
       ...data,
@@ -26,387 +86,143 @@ export function signBindReferee(data: any) {
     },
   });
 }
-/* 判断上级地址是否有效 */
-export function isRefereeAddress(data: any) {
+export function getPledgeOrder(data: any) {
   return axois.request({
-    url: `/user/isRefereeAddress`,
+    url: "/pledge/getPledgeOrder",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-
-export function receive(data: LoginData) {
+export function mountNode(data: any) {
   return axois.request({
-    url: "/user/isRefereeAddress/{address}",
+    url: "/home/mountNode",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function checkAddress(inviteCode: string) {
+export function cancelMountNode(data: any) {
   return axois.request({
-    url: `/user/checkAddress/${inviteCode}`,
-    method: "get",
-  });
-}
-export function isNewUser(userAddress: string) {
-  return axois.request({
-    url: `/user/isNewUser/${userAddress}`,
-    method: "get",
-  });
-}
-export function getProductOff() {
-  return axois.request({
-    url: `/product/getProductOff`,
-    method: "get",
-  });
-}
-export function getNftBase() {
-  return axois.request({
-    url: `/nft/getNftBase`,
-    method: "get",
-  });
-}
-export function drawAward(data: any) {
-  return axois.request({
-    url: `/mine/draw`,
+    url: "/home/cancelMountNode",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function getDrawData() {
+export function getMountRecord(data: any) {
   return axois.request({
-    url: `/user/getDrawData`,
-    method: "get",
-  });
-}
-export function getUserInfo() {
-  return axois.request({
-    url: `/user/getUserInfo`,
-    method: "get",
-  });
-}
-export function getRefereeInfo() {
-  return axois.request({
-    url: `/user/getRefereeInfo`,
-    method: "get",
-  });
-}
-export function getRefereeList(data: any) {
-  return axois.request({
-    url: `/user/getRefereeList`,
+    url: "/home/getMountRecord",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function draw(data: any) {
+export function getMountUserList(data: any) {
   return axois.request({
-    url: `/pledge/draw`,
+    url: "/home/getMountUserList",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function checkAddressLogin(address: any) {
+export function getFriends(data: any) {
   return axois.request({
-    url: `/user/checkAddressLogin/${address}`,
-    method: "get",
-  });
-}
-export function getUserAccountList() {
-  return axois.request({
-    url: `/user/getUserAccountList`,
-    method: "get",
-  });
-}
-export function getPriceInfo() {
-  return axois.request({
-    url: `/user/getPriceInfo`,
-    method: "get",
-  });
-}
-export function getAllLuckRecord() {
-  return axois.request({
-    url: `/luck/getAllLuckRecord`,
-    method: "get",
-  });
-}
-export function getLuckNum() {
-  return axois.request({
-    url: `/luck/getLuckNum`,
-    method: "get",
-  });
-}
-export function getLuckResult() {
-  return axois.request({
-    url: `/luck/getLuckResult`,
-    method: "get",
-  });
-}
-export function cleanUseRecord(dataId: any) {
-  return axois.request({
-    url: `/ai/cleanUseRecord/${dataId}`,
-    method: "get",
-  });
-}
-
-export function exchangeLuck(data: any) {
-  return axois.request({
-    url: `/luck/exchangeLuck`,
+    url: "/user/getFriends",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function luck(data: any) {
+export function drawStakeReward(data: any) {
   return axois.request({
-    url: `/luck/luck`,
+    url: "/user/draw",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function getUserLuckRecord(data: any) {
+export function getDrawRecord(data: any) {
   return axois.request({
-    url: `/luck/getUserLuckRecord`,
+    url: "/user/getDrawRecord",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function getScoreUseRecord(data: any) {
+export function getNodeRecord(data: any) {
   return axois.request({
-    url: `/luck/getScoreUseRecord`,
+    url: "/user/getNodeRecord",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function FunAi(data: any) {
+export function getNodeMountUserOrder(data: any) {
   return axois.request({
-    url: `/ai/useAi`,
+    url: "/user/getNodeMountUserOrder",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function drawPledge(data: any) {
+export function getUserNodeRecord(data: any) {
   return axois.request({
-    url: `/pledge/drawPledge`,
+    url: "/user/getUserNodeRecord",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function getHistoryPledgeOrder(data: any) {
+export function getBoxOrderList(data: any) {
   return axois.request({
-    url: `/pledge/getHistoryPledgeOrder`,
+    url: "/box/getBoxOrderList",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function getPledgeEarnRecord(data: any) {
+export function getBoxUserDetail(data: any) {
   return axois.request({
-    url: `/pledge/getPledgeEarnRecord`,
+    url: "/box/getBoxUserDetail",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
   });
 }
-export function joinIdo(data: any) {
+export function getBoxUserDrawDetail(data: any) {
   return axois.request({
-    url: `/ido/joinIdo`,
+    url: "/box/getBoxUserDrawDetail",
     method: "post",
     data: {
       ...data,
+      // Encrypt: true,
     },
-  });
-}
-export function drawIdoAward(data: any) {
-  return axois.request({
-    url: `/ido/drawIdoAward`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function drawRefereeAward(data: any) {
-  return axois.request({
-    url: `/ido/drawRefereeAward`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function getRefereeUserAccountDetail(data: any) {
-  return axois.request({
-    url: `/ido/getRefereeUserAccountDetail`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function mintNft(data: any) {
-  return axois.request({
-    url: `/nft/mintNft`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function getTradeList(data: any) {
-  return axois.request({
-    url: `/nft/getTradeList`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function getTradeRecord(data: any) {
-  return axois.request({
-    url: `/nft/getTradeRecord`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function aiRecharge(data: any) {
-  return axois.request({
-    url: `/ai/aiRecharge`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function getAiRechargeRecord(data: any) {
-  return axois.request({
-    url: `/ai/getAiRechargeRecord`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function drawNftAward(data: any) {
-  return axois.request({
-    url: `/nft/drawNftAward`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function getNftAwardRecord(data: any) {
-  return axois.request({
-    url: `/nft/getNftAwardRecord`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function getRefereeBuyRecord(data: any) {
-  return axois.request({
-    url: `/user/getRefereeBuyRecord`,
-    method: "post",
-    data: {
-      ...data,
-    },
-  });
-}
-export function getAiList() {
-  return axois.request({
-    url: `/ai/getAiList`,
-    method: "get",
-  });
-}
-export function getPledgeBaseList() {
-  return axois.request({
-    url: `/pledge/getPledgeBaseList`,
-    method: "get",
-  });
-}
-export function getAiUseRecord(dataId: any) {
-  return axois.request({
-    url: `/ai/getAiUseRecord/${dataId}`,
-    method: "get",
-  });
-}
-export function getIdoBase() {
-  return axois.request({
-    url: `/ido/getIdoBase`,
-    method: "get",
-  });
-}
-export function getIdoAccount() {
-  return axois.request({
-    url: `/ido/getIdoAccount`,
-    method: "get",
-  });
-}
-export function getIdoUserAccountDetail() {
-  return axois.request({
-    url: `/ido/getIdoUserAccountDetail`,
-    method: "get",
-  });
-}
-export function getRefereeAccount() {
-  return axois.request({
-    url: `/ido/getRefereeAccount`,
-    method: "get",
-  });
-}
-export function getMintInfo() {
-  return axois.request({
-    url: `/nft/getMintInfo`,
-    method: "get",
-  });
-}
-export function getMyNft() {
-  return axois.request({
-    url: `/nft/getMyNft`,
-    method: "get",
-  });
-}
-export function getNftHoldAward() {
-  return axois.request({
-    url: `/nft/getNftHoldAward`,
-    method: "get",
-  });
-}
-export function getBannerList() {
-  return axois.request({
-    url: `/home/getBannerList`,
-    method: "get",
-  });
-}
-export function getServerTime() {
-  return axois.request({
-    url: `/home/getServerTime`,
-    method: "get",
   });
 }

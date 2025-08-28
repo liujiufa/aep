@@ -1,23 +1,20 @@
 import Token from "./ABI/ERC20Token.json";
-import Bind from "./ABI/Bind.json";
-import PrizePool from "./ABI/PrizePool.json";
-import Pledge from "./ABI/YieldAggregator.json";
-import PrivateSaleToken from "./ABI/PrivateSaleToken.json";
-import ORA_NFT from "./ABI/ORA_NFT.json";
-import RechargeCredits from "./ABI/RechargeCredits.json";
-import NFTTrade from "./ABI/ExchangeNFT.json";
+import T_SToken from "./ABI/T_SToken.json";
+import T_RToken from "./ABI/T_RToken.json";
+import Stake from "./ABI/Stake.json";
+import Box from "./ABI/Box.json";
+import RewardDistribute from "./ABI/RewardDistribute.json";
 import { defineChain } from "@reown/appkit/networks";
 // 正式
-export const isMain = true;
+export const isMain = false;
 export const isAllOpen = true;
 export const curentBSCChainId: number = isMain ? 56 : 97;
 export const curentETHChainId: number = isMain ? 1 : 17000;
 
 export const LOCAL_KEY = "ORA_LANG";
-export let baseUrl: string = isMain
-  ? "https://oraai.io/api/"
-  : // window.location.origin + "/api/"
-    window.location.origin + "/api/";
+export let baseUrl: string = isMain ? "" : "http://52.74.247.74:28885/";
+
+// "https://test.datadao.top/api/";
 
 export let ContractUrl: string = isMain
   ? "https://bscscan.com/address/"
@@ -25,7 +22,6 @@ export let ContractUrl: string = isMain
 export let BlockUrl: string = isMain
   ? "https://bscscan.com/tx/"
   : "https://testnet.bscscan.com/tx/";
-export const BitNumber = 8;
 export const GoTo = "https://node.pijswap.com/";
 // Documentation
 export const Documentation = "https://pijswap.gitbook.io/pijswap";
@@ -108,13 +104,11 @@ interface contractAddressType {
 
 export const abiObj: abiObjType = {
   USDT: Token,
-  Bind: Bind,
-  PrizePool: PrizePool,
-  Pledge: Pledge,
-  PrivateSale: PrivateSaleToken,
-  NFT: ORA_NFT,
-  NFTTrade: NFTTrade,
-  ORATopUp: RechargeCredits,
+  T_SToken: T_SToken,
+  Stake: Stake,
+  RewardDistribute: RewardDistribute,
+  T_RToken: T_RToken,
+  Box: Box,
 };
 
 export const Main: contractAddressType = {
@@ -136,20 +130,11 @@ export const Main: contractAddressType = {
 };
 
 const Test = {
-  USDT: "0x2b11640f31b84dc727841FE6B5a905D366A00e78",
-  ORA: "0x9c5fE08A64047d70887a85495AFdd9a4Bd86B36E",
-  Bind: "0x9CeC777eDfE8381175B5287C64EC0FebB0bA5272",
-  PrizePool_BSC: "0x93f980aE092D96A0c66838AC31284dDB89770b96",
-  PrizePool_ETH: "0x8D94DAEffFe34Ab5427A69B058260A97423BD2e1",
-  // 机关枪池合约
-  Pledge: "0xdD351fE20A9eAA8AF27e3605246b451E6B989B23",
-  PrivateSale_BSC: "0x6B6f8685aD6277c69fFC3a8d6ab11253CCaf8Cd5",
-  PrivateSale_ETH: "0x71B0b6b67766848E9624cf20537df8bE6D28F573",
-  PrivateSale_ReferReward_BSC: "0xDe06D31e5fA06dd68dA42Bca3f7A28468a6386E8",
-  PrivateSale_ReferReward_ETH: "0xB1a5FD37eDb9063A4eD96b2633FaF27F32254680",
-  NFT: "0x1EeE94fdEEf7621d6D2cC603EDE369f2d5E40038",
-  NFTTrade: "0xbabea77fF1F51c2537C1c455d21730fE1c0E8022",
-  ORATopUp: "0xECA5D5029A24fa1524D3678dBAA8B69EEe5E6FEA",
-  NFTHoldDevide: "0x7c057423dD32D2F6380F9a66FFc63f88621a7f39",
+  USDT: "0x38CF198E94ccc9561488869EF38fDd91D7FF62d7",
+  T_SToken: "0x4c1C698A48A1645B1b96db1A2D5F7BE456Ee1207",
+  Stake: "0xB23539367274eA1e18e4c2a4aa3bb7B07EB33281",
+  RewardDistribute: "0xb78afc88427e3a4128F4AD919FF00687490b12Ff",
+  T_RToken: "0x2AC82AD9a1302af804d43C4d9286f92a415A9421",
+  Box: "0xb9061E78BD246B8f7e1a43d5c686Bea366801Cd8",
 };
 export const contractAddress: contractAddressType = isMain ? Main : Test;

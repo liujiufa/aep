@@ -70,7 +70,6 @@ export class Contracts {
   //查询余额
   balanceOf(addr: string, tokenAddress: string) {
     let obj = new this.web3.eth.Contract(abiObj["USDT"], tokenAddress);
-    // debugger;
     return obj?.methods.balanceOf(addr).call({ from: addr });
   }
   //查询授权
@@ -89,7 +88,7 @@ export class Contracts {
     console.log(toaddr, amount, "########", obj, "*******");
     return obj?.methods
       .approve(toaddr, amount)
-      .send({ from: addr, gasPrice: "1200000000" });
+      .send({ from: addr, gasPrice: isMain ? "100000000" : "1200000000" });
   }
 
   //授权所有NFT
@@ -97,7 +96,7 @@ export class Contracts {
     this.verification("NFT");
     return this.contract.NFT?.methods
       .setApprovalForAll(toAddr, isApprova)
-      .send({ from: addr, gasPrice: "1200000000" });
+      .send({ from: addr, gasPrice: isMain ? "100000000" : "1200000000" });
   }
 
   //判断NFT授权
@@ -116,133 +115,79 @@ export class Contracts {
       "123"
     );
   }
-  //奖励领取
   withdrawReward(addr: string, data: string, contractAddress: string) {
-    // this.verification("Distribute");
-    let obj = new this.web3.eth.Contract(abiObj.PrizePool, contractAddress);
-    const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
-    const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    console.log(data, "data");
-    return obj?.methods
-      .withdrawReward(data)
-      .send({ from: addr, gasPrice: "1200000000", value: valued });
-  }
-  //盲盒奖励领取
-  withdrawReward1(addr: string, data: string, contractAddress: string) {
-    // this.verification("Distribute");
-    let obj = new this.web3.eth.Contract(abiObj.PrizePool, contractAddress);
-    const mathRandom = (Math.random() * (0.000139 - 0.00012) + 0.00012).toFixed(
-      8
+    let obj = new this.web3.eth.Contract(
+      abiObj.RewardDistribute,
+      contractAddress
     );
-    const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    console.log(data, "data");
-    return obj?.methods
-      .withdrawReward(data)
-      .send({ from: addr, gasPrice: "1200000000", value: valued });
-  }
-  //奖励ido领取
-  withdraw(addr: string, data: string, contractAddress: string) {
-    // this.verification("Distribute");
-    let obj = new this.web3.eth.Contract(abiObj.PrivateSale, contractAddress);
     const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
     const valued = Web3.utils.toWei(mathRandom + "", "ether");
     console.log(data, "data");
-    return obj?.methods
-      .withdraw(data)
-      .send({ from: addr, gasPrice: "1200000000", value: valued });
+    return obj?.methods.withdrawReward(data).send(
+      isMain
+        ? {
+            from: addr,
+            gasPrice: isMain ? "100000000" : "1200000000",
+            value: valued,
+          }
+        : {
+            from: addr,
+            gasPrice: isMain ? "100000000" : "1200000000",
+          }
+    );
   }
-  //查询绑定
-  userBindInfo(addr: string) {
-    this.verification("Referrer");
-    return this.contract.Referrer?.methods
-      .userBindInfo(addr)
-      .call({ from: addr });
-  }
-
-  bind(addr: string, inviteAddress: string, amount: any) {
-    this.verification("Bind");
-    console.log(this.contract.Bind, "this.contract.Bind");
-    return this.contract.Bind?.methods
-      .bind(inviteAddress)
-      .send({ from: addr, gasPrice: "1200000000", value: amount });
-  }
-  stake(addr: string, type: string, amount: any) {
-    this.verification("Pledge");
+  stake(addr: string, amount: any, time: number) {
+    this.verification("Stake");
     var amounted = Web3.utils.toWei(amount + "", "ether");
     const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
     const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    return this.contract.Pledge?.methods
-      .stake(amounted, type)
-      .send({ from: addr, gasPrice: "1200000000", value: valued });
+    const timeed = isMain ? time * 24 * 60 * 60 : time * 60;
+    return this.contract.Stake?.methods.stake(amounted, timeed).send(
+      isMain
+        ? {
+            from: addr,
+            gasPrice: isMain ? "100000000" : "1200000000",
+            value: valued,
+          }
+        : {
+            from: addr,
+            gasPrice: isMain ? "100000000" : "1200000000",
+          }
+    );
   }
-  mint(addr: string, data: any) {
-    this.verification("NFT");
-    // var amounted = Web3.utils.toWei(amount + "", "ether");
+  mintBox(addr: string, amount: any) {
+    this.verification("Box");
+    var amounted = Web3.utils.toWei(amount + "", "ether");
     const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
     const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    return this.contract.NFT?.methods
-      .mint(data)
-      .send({ from: addr, gasPrice: "1200000000", value: valued });
+    return this.contract.Box?.methods.mintBox(amounted).send(
+      isMain
+        ? {
+            from: addr,
+            gasPrice: isMain ? "100000000" : "1200000000",
+            value: valued,
+          }
+        : {
+            from: addr,
+            gasPrice: isMain ? "100000000" : "1200000000",
+          }
+    );
   }
-  recharege(addr: string, data: any) {
-    this.verification("ORATopUp");
-    // var amounted = Web3.utils.toWei(amount + "", "ether");
+  unstake(addr: string, id: any) {
+    this.verification("Stake");
     const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
     const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    return this.contract.ORATopUp?.methods
-      .recharege(data)
-      .send({ from: addr, gasPrice: "1200000000", value: valued });
-  }
-  createOrder(
-    addr: string,
-    tokenId: any,
-    price: any,
-    tokenAddress: any,
-    nftAddr: any
-  ) {
-    this.verification("NFTTrade");
-    var priceed = Web3.utils.toWei(price + "", "ether");
-    const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
-    const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    return this.contract.NFTTrade?.methods
-      .createOrder(tokenId, priceed, tokenAddress, nftAddr)
-      .send({ from: addr, gasPrice: "1200000000", value: valued });
-  }
-  cancelOrder(addr: string, orderId: any) {
-    this.verification("NFTTrade");
-    // var priceed = Web3.utils.toWei(price + "", "ether");
-    // debugger;
-    const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
-    const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    console.log(this.contract.NFTTrade?.methods, orderId, "111");
-    return this.contract.NFTTrade?.methods
-      .cancelOrder(orderId)
-      .send({ from: addr, gasPrice: "1200000000", value: valued });
-  }
-  takeOrder(addr: string, orderId: any) {
-    this.verification("NFTTrade");
-    // var priceed = Web3.utils.toWei(price + "", "ether");
-    // debugger;
-    const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
-    const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    return this.contract.NFTTrade?.methods
-      .takeOrder(orderId)
-      .send({ from: addr, gasPrice: "1200000000", value: valued });
-  }
-  privateSale(addr: string, data: any, contractAddress: any, amount: any) {
-    let obj = new this.web3.eth.Contract(abiObj.PrivateSale, contractAddress);
-    console.log(data, contractAddress, "ido");
-    // var amounted = Web3.utils.toWei(amount + "", "ether");
-    // const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
-    // const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    // var amounted = getFullNum(amount);
-
-    return obj?.methods
-      .privateSale(data)
-      .send({ from: addr, gasPrice: "1200000000", value: amount });
-  }
-  bindingFee(addr: string) {
-    this.verification("Bind");
-    return this.contract.Bind?.methods.bindingFee().call({ from: addr });
+    return this.contract.Stake?.methods.unstake(id).send(
+      isMain
+        ? {
+            from: addr,
+            gasPrice: isMain ? "100000000" : "1200000000",
+            value: valued,
+          }
+        : {
+            from: addr,
+            gasPrice: isMain ? "100000000" : "1200000000",
+          }
+    );
   }
 }

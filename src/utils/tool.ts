@@ -28,6 +28,9 @@ export function AddrHandle(
   if (!addr) {
     return;
   }
+  if (addr?.length <= start + end) {
+    return addr;
+  }
   let r = new RegExp("(.{" + start + "}).*(.{" + end + "})");
   let addrArr: RegExpMatchArray | null = addr.match(r);
   return addrArr![1] + replace + addrArr![2];
@@ -109,7 +112,7 @@ export function NumSplic(val: any, len: number = 6) {
 export function NumSplic1(val: any, len: number = 6) {
   var f = parseFloat(val);
   if (isNaN(f)) {
-    return "-";
+    return "0";
   }
   var s = val.toString();
   if (s.indexOf(".") > 0) {
@@ -220,18 +223,6 @@ export function getUTCTime() {
     d1.getUTCSeconds()
   );
   return Date.parse(d1);
-}
-export function getFullNum(num: any) {
-  //处理非数字
-  if (isNaN(num)) {
-    return num;
-  }
-  //处理不需要转换的数字
-  var str = "" + num;
-  if (!/e/i.test(str)) {
-    return num;
-  }
-  return num.toFixed(18).replace(/\.?0+$/, "");
 }
 
 //订阅数据send模式
@@ -449,3 +440,56 @@ export const convert1 = (n: any) =>
       }
       return b; // 如果没有单位，则只返回 b
     });
+
+export function formatBytes(bytes: any, decimals = 2) {
+  if (bytes === 0) return "0 Bytes/s";
+
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = [" Kb/s", " Mb/s", " Gb/s"];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+}
+
+export function getFullNum(num: any) {
+  //处理非数字
+  if (isNaN(num)) {
+    return num;
+  }
+  //处理不需要转换的数字
+  var str = "" + num;
+  if (!/e/i.test(str)) {
+    return num;
+  }
+  return num.toFixed(18).replace(/\.?0+$/, "");
+}
+
+export function formatDecimal(num: number): string {
+  // 将数字转换为字符串
+  const numStr = num.toString();
+
+  // 查找小数点的位置
+  const decimalIndex = numStr.indexOf(".");
+
+  if (decimalIndex === -1) {
+    // 如果没有小数点，直接返回原数字
+    return numStr;
+  }
+
+  // 获取小数部分
+  const decimalPart = numStr.slice(decimalIndex + 1);
+
+  // 检查小数部分的前6位是否是 "000000"
+  if (decimalPart.slice(0, 4) === "0000") {
+    // 如果是，替换为 0.0{6}，并保留后面的部分
+    const remainingDigits = decimalPart.slice(4, 8); // 取第7位及以后
+    if (String(remainingDigits) === "0000") return "0";
+    return `${numStr.slice(0, decimalIndex)}.0{4}${remainingDigits}`;
+  } else {
+    // 如果不是，直接截取到6位
+    const truncatedDecimal = decimalPart.slice(0, 4);
+    return `${numStr.slice(0, decimalIndex)}.${truncatedDecimal}`;
+  }
+}

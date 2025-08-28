@@ -5,7 +5,6 @@ import { addMessage, showLoding, decimalNum } from "../utils/tool";
 import { t } from "i18next";
 import { Contracts } from "../web3";
 import { useNoGas } from "./useNoGas";
-import useTipLoding from "../components/ModalContent";
 import {
   useAppKitAccount,
   useAppKitNetwork,
@@ -20,7 +19,6 @@ export default function useUSDTGroup(
   tokenAddress: CoinAddressType
 ) {
   const { walletProvider } = useAppKitProvider("eip155");
-  console.log(contractAddress, tokenAddress, "-----");
   // debugger;
   const { address: web3ModalAccount, isConnected } = useAppKitAccount();
 
@@ -45,7 +43,7 @@ export default function useUSDTGroup(
       console.log(balance, "balance");
 
       setTOKENBalance(
-        decimalNum(Web3.utils.fromWei(!!balance ? balance.toString() : "0"), 2)
+        decimalNum(Web3.utils.fromWei(!!balance ? balance.toString() : "0"), 4)
       );
     }
   }, [web3ModalAccount, contractAddress, tokenAddress]);
@@ -136,7 +134,14 @@ export default function useUSDTGroup(
       onDoingFun: () => void,
       failFun: () => void
     ) => {
-      if (Number(TOKENBalance) >= Number(price)) {
+      const balance = await Contracts.example?.balanceOf(
+        web3ModalAccount as string,
+        tokenAddress
+      );
+      if (
+        Number(Web3.utils.fromWei(!!balance ? balance.toString() : "0")) >=
+        Number(price)
+      ) {
         if (Number(TOKENAllowance) >= Number(price)) {
           await transactionCallBack(handleUSDTRefresh);
         } else {

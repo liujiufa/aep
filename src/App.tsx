@@ -26,7 +26,6 @@ import prohibit from "./assets/image/prohibit.png";
 import info from "./assets/image/info.svg";
 
 import { t } from "i18next";
-import useConnectWallet, { connector } from "./hooks/useConnectWallet";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Web3 from "web3";
@@ -54,7 +53,7 @@ const MessageBox = styled.div`
     border-radius: 8px;
     opacity: 1;
     border-radius: 0.83333rem;
-    border: 1px solid #04efb5;
+    border: none;
     background: #fff;
     backdrop-filter: blur(5px);
     width: 28.25rem;
@@ -62,12 +61,11 @@ const MessageBox = styled.div`
       word-break: break-all;
       flex: 1;
       color: #000;
-      font-family: "Alibaba PuHuiTi 3.0";
-      font-size: 1.16667rem;
+      font-family: "PingFang SC";
+      font-size: 1.33333rem;
       font-style: normal;
-      font-weight: 400;
-      line-height: 1.16667rem; /* 100% */
-      text-transform: capitalize;
+      font-weight: 600;
+      line-height: normal;
     }
     padding: 2rem 1.67rem;
     > svg {
@@ -82,7 +80,6 @@ function App() {
   // useTitle(t("Uni"));
 
   const web3React = useWeb3React();
-  const { connectWallet } = useConnectWallet();
   const { signFun } = useSign();
   const navigate = useNavigate();
 
