@@ -1,278 +1,250 @@
-.ai {
-  .ai_content {
+.consume {
+  position: relative;
+  .star3 {
+    position: absolute;
+    top: 23rem;
+    left: 1.5rem;
+    z-index: -1;
+  }
+  .consume_content {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 0.83rem 1.5rem 3.5rem;
-    .net_work_box {
+    padding: 1.17rem 1.5rem 3.5rem;
+    .consume_title {
       width: 100%;
-      border-radius: 2.5rem;
-      border: 1px solid #9aa8d9;
-      padding: 1.67rem 1.33rem;
-      .ip {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: #7685bc;
-        font-family: "Clash Display";
-        font-size: 1.16667rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        div {
-          padding: 1rem 3.33rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 2.16667rem;
-          border: 0.5px solid #9aa8d9;
-          color: #7685bc;
-          text-align: center;
-          font-family: "Clash Display";
-          font-size: 1.33333rem;
-          font-style: normal;
-          font-weight: 600;
-          line-height: normal;
-        }
-      }
-      .net_quilty {
+      padding: 0rem 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      .consume_title1 {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 2rem 0px;
-        .connected {
-          flex: 1;
-          margin-left: 2rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 1rem 4.8rem;
-          border-radius: 2.16667rem;
-          border: 1px solid #fff;
-          font-weight: 600;
-          font-size: 1.16667rem;
-          background: #fff;
-          div {
-            width: 1.16667rem;
-            height: 1.16667rem;
-            border-radius: 50%;
-            background: #11e24c;
-            border: 1px solid #fff;
-            margin-right: 0.83rem;
-          }
+        div {
+          font-family: "Inter";
+          font-size: 1.66667rem;
+          font-style: normal;
+          font-weight: 900;
+          line-height: normal;
+           
+          background: linear-gradient(
+            90deg,
+            #00ff38 0%,
+            #05fce9 50%,
+            #191aff 100%
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          padding: 0px 0.83rem;
         }
-        .disconnected {
-          flex: 1;
-          margin-left: 2rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 1rem 4.8rem;
-          border-radius: 2.16667rem;
-          border: 1px solid #fff;
-          background: #fff;
-          div {
-            width: 1.16667rem;
-            height: 1.16667rem;
-            border-radius: 50%;
-            background: #e21111;
-            border: 1px solid #fff;
-            margin-right: 0.83rem;
-          }
+        img {
+          width: 1.66667rem;
+          height: 1.54892rem;
         }
       }
-      .tip1 {
-        color: #fff;
-        text-align: center;
-        font-family: "Clash Display";
-        font-size: 1.33333rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+      .star1 {
+        position: absolute;
+        bottom: 2.58rem;
+        left: 4.92rem;
       }
-      .tip2 {
-        margin-top: 0.33rem;
-        color: #7685bc;
-        text-align: center;
-        font-family: "Clash Display";
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+      .star2 {
+        position: absolute;
+        bottom: 1.42rem;
+        right: 3.92rem;
       }
     }
-    .stake_box {
+    .buy_item {
+      width: 100%;
+      border-radius: 1.33333rem;
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 7px 18px 0 rgba(0, 0, 0, 0.05),
+        -8px 0 14.9px 0 rgba(205, 229, 253, 0.7) inset;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-radius: 0.83333rem;
-      background: rgba(255, 255, 255, 0.08);
-      width: 100%;
-      margin: 1.67rem 0px;
-      padding: 0px 1.58rem;
-      .stake_box_left {
+      padding: 1.33rem 1.17rem 0.83rem;
+      margin-bottom: 1.17rem;
+      .buy_item_left {
+        width: 10.5rem;
+
         img {
-          width: 13.75rem;
-          height: 11.08333rem;
+          width: 100%;
+          height: 9.5rem;
         }
       }
-      .stake_box_right {
+      .buy_item_right {
         flex: 1;
         margin-left: 1.25rem;
-        padding: 1.33rem 0px;
         display: flex;
-        align-items: center;
         flex-direction: column;
-        .btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0.71rem 0px;
+        align-items: center;
+        .value {
+          font-family: Inter;
+          font-size: 1.5rem;
+          font-style: normal;
+          font-weight: 800;
+          line-height: normal;
+           
+          background: linear-gradient(
+            90deg,
+            #00d558 0%,
+            #05fce9 50%,
+            #0140e7 100%
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .price {
           width: 100%;
-          color: #fff;
-          font-family: "Clash Display";
-          font-size: 1.16667rem;
-          font-style: normal;
-          font-weight: 600;
-          line-height: normal;
-          border-radius: 83.25rem;
-          background: #6b72ff;
-          margin-bottom: 0.83rem;
-        }
-        .record {
+          margin: 1.33rem 0px 0.75rem;
           display: flex;
           align-items: center;
-          justify-content: center;
-          color: #7685bc;
-          font-family: "Clash Display";
-          font-size: 1rem;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-        }
-      }
-    }
-    .earn_box {
-      width: 100%;
-      margin: 0px 0px 1.67rem;
-      border-radius: 2.5rem;
-      border: 1px solid #9aa8d9;
-      padding: 1.67rem 1.33rem;
-      .title {
-        color: #fff;
-        font-family: "Clash Display";
-        font-size: 1.5rem;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-        margin-bottom: 1rem;
-      }
-      .earn_box_item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: #7685bc;
-        font-family: "Clash Display";
-        font-size: 1.16667rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin-bottom: 0.67rem;
-        div {
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          color: #fff;
-          text-align: right;
-          font-family: "Clash Display";
+          justify-content: space-between;
+          color: #000;
+          font-family: Inter;
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
-          .ant-tooltip-inner {
-            border-radius: 0.83333rem;
-            background: #f4f4f4;
-            .tip {
-              color: #000;
-              font-family: "Clash Display";
-              font-size: 1rem;
-              font-style: normal;
-              font-weight: 400;
-              line-height: normal;
-            }
-          }
-          .ant-tooltip-arrow::before {
-            background-color: #fff;
-          }
-        }
-      }
-      .data_box {
-        margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-radius: 1.33333rem;
-        background: #0d1a4e;
-        padding: 2.4rem 0;
-        .data_item {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          flex-direction: column;
-          .data_item_top {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-align: center;
-            font-family: "Clash Display";
-            font-size: 1.66667rem;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-
-            div {
-              width: 1.66667rem;
-              height: 1.66667rem;
-              border-radius: 1rem;
-              background: #989898;
-              margin-right: 0.33rem;
-            }
+           
+          span {
             img {
               width: 1.66667rem;
               height: 1.66667rem;
-              border-radius: 1rem;
               margin-right: 0.33rem;
             }
-          }
-          .data_item_bottom {
-            margin-top: 0.83rem;
-            color: #0d1a4e;
-            font-family: "Clash Display";
-            font-size: 1rem;
+            color: #000;
+            font-family: Inter;
+            font-size: 1.16667rem;
             font-style: normal;
             font-weight: 600;
             line-height: normal;
+             
+          }
+        }
+        .btns {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 0.66667rem;
-            background: #d5daff;
-            padding: 0.5rem;
+            padding: 1.5rem 4.33rem;
+            color: #000;
+            text-align: center;
+            font-family: Inter;
+            font-size: 1.16667rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+             
+            background: url("../../assets/image/Home/btn_bg.png") no-repeat
+              center / 100% 100%;
           }
-        }
-        .line {
-          width: 0.04167rem;
-          height: 3.5rem;
-          background: #9aa8d9;
+          .view {
+            color: #000;
+            text-align: center;
+            font-family: Inter;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+             
+            margin-right: 0.83rem;
+          }
         }
       }
     }
-    .link_box {
+    .history {
+      margin-top: 0.7rem;
       width: 100%;
-      border-radius: 0.83333rem;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 1.67rem 0px 0px;
+      border-radius: 1.33333rem;
+      border: 0.3px solid rgba(255, 255, 255, 0.2);
+      background: #e7eef5;
+      box-shadow: -9px -9px 16px 0 rgba(255, 255, 255, 0.6),
+        9px 9px 16px 0 rgba(163, 177, 198, 0.6);
+      padding: 1.33rem 0px;
+      .record_title {
+        width: fit-content;
+        font-family: "Inter";
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+         
+        padding: 0px 1.17rem 1.17rem 1.17rem;
+        background: linear-gradient(
+          90deg,
+          #00ff38 0%,
+          #05fce9 50%,
+          #191aff 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .devider {
+        background: linear-gradient(
+          90deg,
+          rgba(0, 213, 88, 0) 0%,
+          #05fce9 50%,
+          rgba(1, 64, 231, 0) 100%
+        );
+        height: 0.083rem;
+        width: 100%;
+      }
+      .record_content {
+        padding: 1.17rem 1.17rem 0px;
+        .items {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1.17rem;
+          .item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(0, 0, 0, 0.5);
+            font-family: Inter;
+            font-size: 1.16667rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+             
+            &:first-child {
+              // flex: auto;
+              // max-width: 6.67rem;
+              justify-content: flex-start;
+            }
+            &:last-child {
+              flex: auto;
+              max-width: 2rem;
+              justify-content: flex-end;
+            }
+          }
+        }
+        .content_items {
+          margin-top: 1rem;
+          margin-bottom: 0px;
+          .item {
+            color: #000;
+
+            &:first-child {
+            }
+            &:last-child {
+            }
+          }
+        }
+        .content_items_end {
+          opacity: 0.5;
+        }
+      }
     }
   }
 }

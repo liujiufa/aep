@@ -16,7 +16,7 @@ export const useGetReward = () => {
     onDoing: any,
     onFailed: any
   ) {
-    if (!token) return addMessage(t("请先登录"));
+    if (!token) return addMessage(t("Please log in first"));
     drawStakeReward(data).then(async (res: any) => {
       onDoing();
       if (res?.code === 200) {

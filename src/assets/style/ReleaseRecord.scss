@@ -1,0 +1,83 @@
+.produce_detail {
+  .produce {
+    border-radius: 1.33333rem;
+    border: 0.3px solid rgba(255, 255, 255, 0.2);
+    background: #e7eef5;
+    box-shadow: -9px -9px 16px 0 rgba(255, 255, 255, 0.6),
+      9px 9px 16px 0 rgba(163, 177, 198, 0.6);
+      margin-bottom: 1.33rem;
+    .title {
+      width: fit-content;
+      padding: 1.33rem 1.17rem;
+      font-family: Inter;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 900;
+      line-height: normal;
+       
+      background: linear-gradient(90deg, #00ff38 0%, #05fce9 50%, #191aff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .devider {
+      width: 100%;
+      height: 0.08333rem;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 213, 88, 0) 0%,
+        #05fce9 50%,
+        rgba(1, 64, 231, 0) 100%
+      );
+    }
+    .items {
+      padding: 1.17rem;
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: rgba(0, 0, 0, 0.5);
+        text-align: center;
+        font-family: Inter;
+        font-size: 1.16667rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+         
+        margin-bottom: 0.5rem;
+        span {
+          color: #000;
+          text-align: right;
+          font-family: Inter;
+          font-size: 1.16667rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          svg {
+            margin-left: 0.1rem;
+          }
+        }
+      }
+      .last_item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .info,
+        .address {
+          color: #000;
+          font-family: Inter;
+          font-size: 1.16667rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          text-align: left;
+        }
+        .address {
+        }
+      }
+    }
+  }
+}

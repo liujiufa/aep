@@ -8,7 +8,7 @@ export default function NoData() {
     <div className="NoData flexCenter" style={{ width: "100%" }}>
       <div className="box">
         <img src={noDataImg} alt="" />
-        <div className="title1">{t("没有数据")}</div>
+        <div className="title1">{t("4")}</div>
       </div>
     </div>
   );

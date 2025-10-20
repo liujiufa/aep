@@ -52,7 +52,6 @@ import {
   useAppKitProvider,
   useDisconnect,
 } from "@reown/appkit/react";
-import logo from "../assets/image/Layout/logo.png";
 import logo_dark from "../assets/image/logo.png";
 
 import chain_img1 from "../assets/image/Layout/chain_img1.png";
@@ -62,7 +61,7 @@ import chain_img3 from "../assets/image/Layout/chain_img3.png";
 import chain_img4 from "../assets/image/Layout/chain_img4.png";
 import chain_img_not3 from "../assets/image/Layout/chain_img_not3.png";
 import chain_img_not4 from "../assets/image/Layout/chain_img_not4.png";
-import languageIcon from "../assets/image/Layout/languageIcon.png";
+import walletIcon from "../assets/image/Layout/walletIcon.png";
 import languageIcon_dark from "../assets/image/Layout/languageIcon_dark.png";
 import light from "../assets/image/Layout/light.png";
 import dark from "../assets/image/Layout/dark.png";
@@ -83,8 +82,9 @@ const LogoContainer = styled(FlexCCBox)`
   color: #ffffff;
 
   > img {
-    width: 9.69rem;
-    height: 2.34rem;
+    width: 2.83333rem;
+    height: 3.25rem;
+    flex-shrink: 0;
   }
 `;
 
@@ -105,7 +105,7 @@ const HeaderContainer = styled(Header)`
 
   background: transparent;
   .HeaderNav {
-    padding: 1.08rem 1.5rem;
+    padding: 0.37rem 1.5rem;
   }
 `;
 
@@ -199,15 +199,21 @@ const SetBox = styled.div`
     display: flex;
     align-items: center;
     text-align: center;
-    border: 0.8px solid #9aa8d9;
-    padding: 0.75rem 2.17rem;
-    border-radius: 0.83rem;
-    color: #fff;
-    font-family: "Clash Display";
+    border-radius: 1.91667rem;
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0.45rem 0.667rem;
+    color: #5b5d5e;
+    font-family: Inter;
     font-size: 1rem;
     font-style: normal;
-    font-weight: 600;
-    line-height: 1rem; /* 100% */
+    font-weight: 500;
+    line-height: normal;
+    img {
+      width: 1.66667rem;
+      height: 1.66667rem;
+      margin-right: 0.17rem;
+    }
   }
   .LangDropDown {
     .ant-dropdown-menu {
@@ -242,8 +248,8 @@ const SetBox = styled.div`
           align-items: center;
           justify-content: flex-start;
           color: #000;
-          text-align: center;
-          font-family: "Clash Display";
+          text-align: right;
+          font-family: Inter;
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 600;
@@ -256,9 +262,9 @@ const SetBox = styled.div`
           }
         }
         .active {
-          color: #6b72ff;
-          text-align: center;
-          font-family: "Clash Display";
+          color: #00d558;
+          text-align: right;
+          font-family: Inter;
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 600;
@@ -567,25 +573,6 @@ const MainLayout: any = () => {
     }
   }, [token]);
 
-  useEffect(() => {
-    if (chainId) {
-      if (
-        Object.keys(
-          ChainObj?.find(
-            (item: any) => Number(item?.chainId) === Number(chainId)
-          ) ?? {}
-        ).length !== 0
-      ) {
-        showLoding(false);
-        setCurrentChain(
-          ChainObj?.find(
-            (item: any) => Number(item?.chainId) === Number(chainId)
-          ) || {}
-        );
-      }
-    }
-  }, [web3ModalAccount, chainId]);
-
   return (
     <MyLayout>
       <HeaderContainer>
@@ -601,27 +588,6 @@ const MainLayout: any = () => {
           </LogoContainer>
 
           <SetBox>
-            {!!token ? (
-              <div
-                className="Connect  pointer "
-                onClick={() => {
-                  // open();
-                }}
-              >
-                {/* <img src={walletIcon} alt="" />{" "} */}
-                {AddrHandle(web3ModalAccount as string, 4, 4)}{" "}
-              </div>
-            ) : (
-              <div
-                className="Connect  pointer "
-                onClick={() => {
-                  open();
-                }}
-              >
-                {t("连接钱包")}
-              </div>
-            )}
-
             <Dropdown
               overlay={menu3}
               placement="bottom"
@@ -634,6 +600,27 @@ const MainLayout: any = () => {
                 <img src={languageIcon_dark} alt="" />
               </div>
             </Dropdown>
+
+            {!!token ? (
+              <div
+                className="Connect  pointer "
+                onClick={() => {
+                  // open();
+                }}
+              >
+                <img src={walletIcon} alt="" />{" "}
+                {AddrHandle(web3ModalAccount as string, 4, 4)}{" "}
+              </div>
+            ) : (
+              <div
+                className="Connect  pointer "
+                onClick={() => {
+                  open();
+                }}
+              >
+                <img src={walletIcon} alt="" /> {t("Connect wallet")}
+              </div>
+            )}
           </SetBox>
         </div>
       </HeaderContainer>

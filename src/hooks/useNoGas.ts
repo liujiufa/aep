@@ -2,7 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import { addMessage, showLoding } from "../utils/tool";
 import { Contracts } from "../web3";
 import { useEffect } from "react";
-    
+
 import { useTranslation } from "react-i18next";
 import { useAppKitAccount } from "@reown/appkit/react";
 export const useNoGas = () => {
@@ -14,7 +14,7 @@ export const useNoGas = () => {
     let BNBBalance = await Contracts?.example?.getBalance(web3ModalAccount);
     let gasPrice = await Contracts?.example?.getGasPrice(web3ModalAccount);
     if (Number(BNBBalance) < Number(gasPrice)) {
-      addMessage(t("GAS不足"));
+      addMessage(t("Insufficient GAS"));
       showLoding(false);
 
       return true;

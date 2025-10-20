@@ -33,6 +33,18 @@ import blind_box from "../assets/image/Layout/blind_box.png";
 import blind_box_active from "../assets/image/Layout/blind_box_active.png";
 import person from "../assets/image/Layout/person.png";
 import person_active from "../assets/image/Layout/person_active.png";
+
+import item1 from "../assets/image/Layout/item1.png";
+import item1_active from "../assets/image/Layout/item1_active.png";
+import item2 from "../assets/image/Layout/item2.png";
+import item2_active from "../assets/image/Layout/item2_active.png";
+import item3 from "../assets/image/Layout/item3.png";
+import item3_active from "../assets/image/Layout/item3_active.png";
+import item4 from "../assets/image/Layout/item4.png";
+import item4_active from "../assets/image/Layout/item4_active.png";
+import item5 from "../assets/image/Layout/item5.png";
+import item5_active from "../assets/image/Layout/item5_active.png";
+
 import { bscTestnet, bsc, mainnet, holesky } from "@reown/appkit/networks";
 import ThemeContext, { Themes } from "./ThemeContext";
 const { Header, Content } = Layout;
@@ -52,43 +64,33 @@ const FooterContainer = styled(Header)`
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 1;
-  background: #101936;
-  box-shadow: 0 -6px 17px 0 rgba(0, 0, 0, 0.08),
-    0 4px 17px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 3.33333rem;
+  border: 2px solid #fff;
+  background: #f3f7fc;
+  backdrop-filter: blur(2px);
+  padding: 1.67rem 2.5rem 1.17rem;
   .navs {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.83rem 1.5rem 1.08rem;
     .nav_item {
       display: flex;
       align-items: center;
       flex-direction: column;
+      justify-content: center;
+      width: 4.33333rem;
+      height: 4.33333rem;
       img {
-        width: 2rem;
-        height: 2rem;
-        aspect-ratio: 1/1;
-      }
-      div {
-        margin-top: 0.33rem;
-        color: #7685bc;
-        font-family: "Clash Display";
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 1rem; /* 100% */
+        width: 1.66667rem;
+        height: 1.66667rem;
       }
     }
     .nav_item_active {
-      div {
-        color: #fff;
-        font-family: "Clash Display";
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 1rem; /* 100% */
+      img {
+        width: 4.33333rem;
+        height: 4.33333rem;
+        flex-shrink: 0;
       }
     }
   }
@@ -129,19 +131,26 @@ const MainLayout: any = () => {
     <FooterContainer>
       <div className="navs">
         {[
-          { path: "/", img: home, active_img: home_active, name: "首页" },
-          { path: "/node", img: node, active_img: node_active, name: "节点池" },
+          { path: "/", img: item1, active_img: item1_active },
           {
-            path: "/blind_box",
-            img: blind_box,
-            active_img: blind_box_active,
-            name: "购买",
+            path: "/invite",
+            img: item2,
+            active_img: item2_active,
           },
           {
-            path: "/person",
-            img: person,
-            active_img: person_active,
-            name: "个人中心",
+            path: "/swap",
+            img: item3,
+            active_img: item3_active,
+          },
+          {
+            path: "/earn",
+            img: item4,
+            active_img: item4_active,
+          },
+          {
+            path: "/asset",
+            img: item5,
+            active_img: item5_active,
           },
         ]?.map((item: any, index: any) => (
           <div
@@ -153,7 +162,7 @@ const MainLayout: any = () => {
             }
             onClick={() => {
               // if (item?.path === "/blind_box") {
-              //   return addMessage(t("敬请期待"));
+              //   return addMessage(t("Coming soon"));
               // } else {
               navigateFun(item?.path);
               // }
@@ -163,7 +172,7 @@ const MainLayout: any = () => {
               src={ItemActive === item?.path ? item?.active_img : item?.img}
               alt=""
             />
-            <div>{t(item?.name)}</div>
+            {/* <div>{t(item?.name)}</div> */}
           </div>
         ))}
       </div>

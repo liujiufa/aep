@@ -1,0 +1,181 @@
+.product_produce {
+  .product_top {
+    margin: 0.58rem 3.5rem 1.92rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > img {
+      width: 12.16667rem;
+      height: 12.16667rem;
+    }
+    .right_box {
+      flex: 1;
+      margin-left: 1.08rem;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .value {
+        font-family: Inter;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+         
+        background: linear-gradient(
+          90deg,
+          #00d558 0%,
+          #05fce9 50%,
+          #0140e7 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .price {
+        color: #000;
+        font-family: Inter;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+         
+        display: flex;
+        align-items: center;
+        margin: 1.25rem 0px;
+        img {
+          width: 1.6665rem;
+          height: 1.66667rem;
+          flex-shrink: 0;
+          margin-right: 0.33rem;
+        }
+      }
+      .btn {
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 1.16667rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+         
+        width: 11rem;
+        height: 4.41667rem;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url("../../assets/image/Home/btn_bg.png") no-repeat center /
+          100% 100%;
+      }
+    }
+  }
+  .devider {
+    position: relative;
+    width: 100%;
+    height: 0.08333rem;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 213, 88, 0) 0%,
+      #05fce9 50%,
+      rgba(1, 64, 231, 0) 100%
+    );
+    z-index: 10;
+    .title {
+      color: #73777b;
+      text-align: center;
+      font-family: "PingFang SC";
+      font-size: 0.83333rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      background: #eef3fa;
+      padding: 0.33333rem;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .product_bottom {
+    width: 100%;
+    height: 100%;
+    margin-top: 1.75rem;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+.scrolled-deep {
+  > div {
+    &:first-child {
+      position: fixed;
+      top: 0px;
+      z-index: 11;
+      max-width: 450px;
+      background: #eef3fa;
+    }
+    &:nth-child(2) {
+      position: fixed;
+      top: 4rem;
+      z-index: 11;
+      max-width: 450px;
+      width: 100%;
+      background: #eef3fa;
+      margin: 0px;
+      padding: 0.42rem 1.5rem;
+      img {
+        width: 6.41667rem;
+        height: 6.41667rem;
+      }
+      .right_box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .value {
+          font-family: Inter;
+          font-size: 1.5rem;
+          font-style: normal;
+          font-weight: 800;
+          line-height: normal;
+           
+        }
+        .price {
+          margin: 0.58rem 0px;
+          img {
+            width: 1.66667rem;
+            height: 1.66667rem;
+            margin-right: 0.1rem;
+          }
+          color: #000;
+          font-family: Inter;
+          font-size: 1.5rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+           
+        }
+      }
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 1.16667rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+         
+        width: 11rem;
+        height: 4.41667rem;
+        background: url("../../assets/image/Home/btn_bg.png") no-repeat center /
+          100% 100%;
+      }
+    }
+    &:nth-child(3) {
+      margin-top: 9.25667rem;
+    }
+  }
+}

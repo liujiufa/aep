@@ -1,0 +1,70 @@
+.chart_container {
+  width: 100%;
+
+  .swap_enter {
+    margin-bottom: 1.17rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .swap_coin {
+      color: #000;
+      font-family: Inter;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+    .btn {
+      color: #000;
+      text-align: center;
+      font-family: Inter;
+      font-size: 1.16667rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+       
+      padding: 1.5rem 4.33rem;
+      background: url("../../../assets/image/Home/btn_bg.png") no-repeat center /
+        100% 100%;
+    }
+  }
+
+  .data_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.83rem;
+    .item {
+      flex: 1;
+      color: #73777b;
+      font-family: Inter;
+      font-size: 1.16667rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      div {
+        margin-top: 0.17rem;
+        color: #000;
+        font-family: Inter;
+        font-size: 1.16667rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+      }
+    }
+  }
+  .TVChartContainer {
+    width: 100%;
+    @media (max-width: 1300px) {
+      height: 500px;
+      padding: 0px;
+    }
+    @media (max-width: 650px) {
+      height: 400px;
+      padding: 0px;
+    }
+  }
+}

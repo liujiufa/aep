@@ -2,7 +2,7 @@ import { useCallback, useMemo } from "react";
 import { Contract } from "web3-eth-contract";
 import { provider } from "web3-core";
 import Web3 from "web3";
-import { abiObj, contractAddress, isMain } from "./config";
+import { abiObj, contractAddress, isMain, mathRandom } from "./config";
 import BigNumber from "big.js";
 import { log } from "console";
 import { getFullNum } from "./utils/tool";
@@ -120,7 +120,6 @@ export class Contracts {
       abiObj.RewardDistribute,
       contractAddress
     );
-    const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
     const valued = Web3.utils.toWei(mathRandom + "", "ether");
     console.log(data, "data");
     return obj?.methods.withdrawReward(data).send(
@@ -136,13 +135,10 @@ export class Contracts {
           }
     );
   }
-  stake(addr: string, amount: any, time: number) {
-    this.verification("Stake");
-    var amounted = Web3.utils.toWei(amount + "", "ether");
-    const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
+  buy(addr: string, data: string) {
+    this.verification("Market");
     const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    const timeed = isMain ? time * 24 * 60 * 60 : time * 60;
-    return this.contract.Stake?.methods.stake(amounted, timeed).send(
+    return this.contract.Market?.methods.buy(data).send(
       isMain
         ? {
             from: addr,
@@ -155,29 +151,10 @@ export class Contracts {
           }
     );
   }
-  mintBox(addr: string, amount: any) {
-    this.verification("Box");
-    var amounted = Web3.utils.toWei(amount + "", "ether");
-    const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
+  withdrawReward1(addr: string, data: string) {
+    this.verification("AEPWithdraw");
     const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    return this.contract.Box?.methods.mintBox(amounted).send(
-      isMain
-        ? {
-            from: addr,
-            gasPrice: isMain ? "100000000" : "1200000000",
-            value: valued,
-          }
-        : {
-            from: addr,
-            gasPrice: isMain ? "100000000" : "1200000000",
-          }
-    );
-  }
-  unstake(addr: string, id: any) {
-    this.verification("Stake");
-    const mathRandom = (Math.random() * (0.0009 - 0.0005) + 0.0005).toFixed(8);
-    const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    return this.contract.Stake?.methods.unstake(id).send(
+    return this.contract.AEPWithdraw?.methods.withdrawReward(data).send(
       isMain
         ? {
             from: addr,

@@ -17,7 +17,7 @@ import {
   showLoding,
 } from "../../utils/tool";
 import { useDispatch, useSelector } from "react-redux";
-import { getEarnData, getUserInfo } from "../../API";
+import { aepList, aepPay, aepPayInfo, aepPayList } from "../../API";
 import { contractAddress } from "../../config";
 import { createLoginSuccessAction } from "../../store/actions";
 import { useSign } from "../../hooks/useSign";
@@ -29,222 +29,306 @@ import { useNoGas } from "../../hooks/useNoGas";
 import FooterBox from "../../components/FooterBox";
 import "./Home.scss";
 import home_stake from "../../assets/image/Home/home_stake.png";
-import coin_logo from "../../assets/image/coin_logo.png";
+import title_logo from "../../assets/image/title_logo.png";
+import USDT from "../../assets/image/USDT.png";
 import go_to from "../../assets/image/Home/go_to.svg";
 import info from "../../assets/image/Home/info.svg";
 import LinkChart from "../../components/linkChart";
-import SetUsername from "./components/SetUsername";
+import buy_item1 from "../../assets/image/Home/buy_item1.png";
+import buy_item2 from "../../assets/image/Home/buy_item2.png";
+import buy_item3 from "../../assets/image/Home/buy_item3.png";
+import banner_item1 from "../../assets/image/Home/banner_item1.png";
+import banner_item2 from "../../assets/image/Home/banner_item2.png";
+import banner_item3 from "../../assets/image/Home/banner_item3.png";
+
+import BuyModal from "./components/BuyModal";
 import copy from "copy-to-clipboard";
 //@ts-ignore
 import ThreeSixty from "react-360-view";
+import NoData from "../../components/NoData";
+import BuySuccessModal from "./components/BuySuccessModal";
+import AddressModal from "./components/AddressModal";
 const Home = () => {
   const { t } = useTranslation();
   const token = useSelector((state: any) => state?.token);
   const Navigate = useNavigate();
-  const [UsernameState, setUsernameState] = useState(false);
+  const [BuyModalState, setBuyModalState] = useState(false);
+  const [BuySuccessModalState, setBuySuccessModalState] = useState(false);
+  const [AddressModalState, setAddressModalState] = useState(false);
+  const [AepList, setAepList] = useState<any>([]);
   const [UserInfo, setUserInfo] = useState<any>({});
-  const [AllData, setAllData] = useState<any>({});
+  const [AepPayList, setAepPayList] = useState<any>({});
   const { address: web3ModalAccount, isConnected } = useAppKitAccount();
+  const [AepPayInfo, setAepPayInfo] = useState<any>({});
+  const [CurrentId, setCurrentId] = useState<any>();
+
+  const goodsObj = [
+    { img: buy_item1, id: 1, banner: banner_item1 },
+    { img: buy_item2, id: 2, banner: banner_item2 },
+    { img: buy_item3, id: 3, banner: banner_item3 },
+  ];
 
   const getInitDate = () => {
-    getUserInfo().then((res: any) => {
-      setUserInfo(res?.data || {});
+    aepList({}).then((res: any) => {
+      const result = goodsObj.map((good) => {
+        const target = res?.data?.find((item: any) => item.id === good.id);
+        return target ? { ...target, ...good } : good;
+      });
+      setAepList(result || []);
     });
-    getEarnData().then((res: any) => {
-      setAllData(res?.data || {});
+    aepPayList({
+      pageNum: 1,
+      pageSize: 999,
+    }).then((res: any) => {
+      setAepPayList(res?.data || {});
+    });
+  };
+  // 获取当前商品详情
+  const getInitData = () => {
+    aepPayInfo({
+      id: CurrentId,
+    }).then((res: any) => {
+      setAepPayInfo(res?.data || {});
+    });
+  };
+  const getRecordData = () => {
+    aepPayInfo({
+      id: CurrentId,
+    }).then((res: any) => {
+      setAepPayInfo(res?.data || {});
     });
   };
 
-  useEffect(() => {}, [web3ModalAccount]);
+  useEffect(() => {
+    if (!!token && !!CurrentId) {
+      getInitData();
+    }
+  }, [token, CurrentId]);
   useEffect(() => {
     if (!!token) {
       getInitDate();
     } else {
     }
   }, [token]);
+
   useEffect(() => {
     setUserInfo({});
-    setAllData({});
+    setAepPayList({});
   }, [isConnected]);
 
   return (
-    <div className="ai all_page_conttainer">
+    <div className="consume all_page_conttainer">
       <HeaderBox></HeaderBox>
-      <div className="ai_content">
-        <div className="net_work_box">
-          <div className="ip">
-            {t("IP Address")}{" "}
-            <div> {UserInfo?.ipAddress ?? "--.--.--.---"}</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        className="star3"
+      >
+        <path
+          d="M8 0L8.48335 3.27248C8.80766 5.46818 10.5318 7.19234 12.7275 7.51665L16 8L12.7275 8.48335C10.5318 8.80766 8.80766 10.5318 8.48335 12.7275L8 16L7.51665 12.7275C7.19234 10.5318 5.46818 8.80766 3.27247 8.48335L0 8L3.27248 7.51665C5.46818 7.19234 7.19234 5.46818 7.51665 3.27247L8 0Z"
+          fill="black"
+          fill-opacity="0.31"
+        />
+      </svg>
+      <div className="consume_content">
+        <div className="consume_title">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            className="star1"
+          >
+            <path
+              d="M7 0L7.35466 2.40117C7.67897 4.59687 9.40313 6.32103 11.5988 6.64534L14 7L11.5988 7.35466C9.40313 7.67897 7.67897 9.40313 7.35466 11.5988L7 14L6.64534 11.5988C6.32103 9.40313 4.59687 7.67897 2.40117 7.35466L0 7L2.40117 6.64534C4.59687 6.32103 6.32103 4.59687 6.64534 2.40117L7 0Z"
+              fill="black"
+              fill-opacity="0.31"
+            />
+          </svg>
+          <div className="consume_title1">
+            <img src={title_logo} alt="" />
+            <div>{t("74")}</div>
+            <img src={title_logo} alt="" />
           </div>
-          <div className="net_quilty">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="31"
-              viewBox="0 0 30 31"
-              fill="none"
-            >
-              <path
-                d="M18.75 24.25C18.75 23.2554 18.3549 22.3016 17.6517 21.5984C16.9484 20.8951 15.9946 20.5 15 20.5C14.0054 20.5 13.0516 20.8951 12.3483 21.5984C11.6451 22.3016 11.25 23.2554 11.25 24.25C11.25 25.2446 11.6451 26.1984 12.3483 26.9017C13.0516 27.6049 14.0054 28 15 28C15.9946 28 16.9484 27.6049 17.6517 26.9017C18.3549 26.1984 18.75 25.2446 18.75 24.25ZM13.75 24.25C13.75 23.9185 13.8817 23.6005 14.1161 23.3661C14.3505 23.1317 14.6685 23 15 23C15.3315 23 15.6495 23.1317 15.8839 23.3661C16.1183 23.6005 16.25 23.9185 16.25 24.25C16.25 24.5815 16.1183 24.8995 15.8839 25.1339C15.6495 25.3683 15.3315 25.5 15 25.5C14.6685 25.5 14.3505 25.3683 14.1161 25.1339C13.8817 24.8995 13.75 24.5815 13.75 24.25ZM29.3775 8.46251C29.5907 8.71662 29.6942 9.04501 29.6652 9.37542C29.6363 9.70584 29.4772 10.0112 29.2231 10.2244C29.0973 10.3299 28.9519 10.4097 28.7953 10.459C28.6386 10.5084 28.4738 10.5264 28.3102 10.5121C27.9798 10.4831 27.6744 10.3241 27.4613 10.07C25.9379 8.24569 24.0319 6.77868 21.8785 5.77292C19.725 4.76716 17.3767 4.24724 15 4.25001C10.1475 4.25001 5.645 6.38751 2.575 10.0263C2.36117 10.2799 2.05535 10.4382 1.72482 10.4663C1.39428 10.4944 1.06611 10.3901 0.8125 10.1763C0.558887 9.96243 0.400605 9.65661 0.372474 9.32608C0.344344 8.99555 0.448669 8.66738 0.6625 8.41376C2.42101 6.32376 4.61582 4.64415 7.09274 3.49294C9.56966 2.34172 12.2686 1.74681 15 1.75001C20.62 1.75001 25.8375 4.23876 29.3775 8.46251ZM24.7075 12.5388C24.9124 12.7936 25.0092 13.1186 24.9772 13.4441C24.9452 13.7695 24.787 14.0694 24.5365 14.2796C24.286 14.4897 23.9631 14.5933 23.637 14.5681C23.311 14.543 23.0078 14.3911 22.7925 14.145C21.8384 13.0023 20.6446 12.0835 19.2958 11.4536C17.947 10.8237 16.4761 10.4981 14.9875 10.5C13.5048 10.498 12.0397 10.8208 10.6951 11.4458C9.35056 12.0707 8.15926 12.9827 7.205 14.1175C6.98932 14.3645 6.68522 14.5168 6.35826 14.5417C6.0313 14.5666 5.70766 14.462 5.45711 14.2504C5.20655 14.0389 5.04915 13.7374 5.01883 13.4109C4.9885 13.0844 5.08769 12.7591 5.295 12.505C6.48389 11.0922 7.96765 9.95683 9.64209 9.17856C11.3165 8.4003 13.141 7.99803 14.9875 8.00001C16.8413 7.99814 18.6728 8.40371 20.3524 9.18803C22.0321 9.97235 23.5189 11.1162 24.7075 12.5388ZM20.9575 17.035C21.1624 17.2899 21.2592 17.6149 21.2272 17.9403C21.1952 18.2657 21.037 18.5657 20.7865 18.7758C20.536 18.9859 20.2131 19.0895 19.887 19.0644C19.561 19.0392 19.2578 18.8873 19.0425 18.6413C18.5475 18.0482 17.9281 17.5714 17.2282 17.2445C16.5282 16.9177 15.765 16.7488 14.9925 16.75C14.2232 16.749 13.4631 16.9166 12.7655 17.2409C12.068 17.5653 11.45 18.0386 10.955 18.6275C10.7393 18.8745 10.4352 19.0268 10.1083 19.0517C9.7813 19.0766 9.45766 18.972 9.20711 18.7604C8.95655 18.5489 8.79915 18.2474 8.76883 17.9209C8.7385 17.5944 8.83769 17.2691 9.045 17.015C9.77458 16.1481 10.685 15.4514 11.7125 14.9737C12.7399 14.4961 13.8595 14.2491 14.9925 14.25C17.3237 14.25 19.49 15.2838 20.9575 17.035Z"
-                fill="#D5DAFF"
-              />
-            </svg>
-            {token ? (
-              <div className="connected">
-                <div></div> {t("Connected")}
-              </div>
-            ) : (
-              <div className="disconnected">
-                <div></div> {t("Disconnected")}
-              </div>
-            )}
-          </div>
-          <div className="tip1">{t("Connect more devices to earn more.")}</div>
-          {/* <div className="tip2">
-            {t("You can always disconnect device in the profile tab.")}
-          </div> */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+            fill="none"
+            className="star2"
+          >
+            <path
+              d="M5 0L5.09727 0.658553C5.42158 2.85426 7.14574 4.57842 9.34144 4.90273L10 5L9.34144 5.09727C7.14574 5.42158 5.42158 7.14574 5.09727 9.34144L5 10L4.90273 9.34144C4.57842 7.14574 2.85426 5.42158 0.658553 5.09727L0 5L0.658553 4.90273C2.85426 4.57842 4.57842 2.85426 4.90273 0.658554L5 0Z"
+              fill="black"
+              fill-opacity="0.31"
+            />
+          </svg>
         </div>
-
-        <div className="stake_box">
-          <div className="stake_box_left">
-            <img src={home_stake} alt="" />
-          </div>
-          <div className="stake_box_right">
-            <div
-              className="btn"
-              onClick={() => {
-                Navigate("/View/stake");
-              }}
-            >
-              {t("Stake")}
+        {AepList?.map((item: any, index: any) => (
+          <div className="buy_item" key={index}>
+            <div className="buy_item_left">
+              <img src={item?.img} alt="" />
             </div>
-            <div
-              className="btn"
-              onClick={() => {
-                Navigate("/View/node");
-              }}
-            >
-              {t("Node Pool")}
-            </div>
-            <div
-              className="record"
-              onClick={() => {
-                Navigate("/View/stakingrecord");
-              }}
-            >
-              {t("Staking Records")}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-              >
-                <path
-                  d="M10.8538 7.36678L6.21475 4.16336C6.0842 4.07322 5.9284 4.01791 5.76493 4.00367C5.60146 3.98943 5.43686 4.01683 5.2897 4.08278C5.14254 4.14873 5.0187 4.2506 4.93216 4.37688C4.84563 4.50316 4.79984 4.64882 4.79999 4.79741L4.79999 11.2033C4.79998 11.3518 4.84586 11.4974 4.93245 11.6235C5.01904 11.7497 5.14289 11.8515 5.29003 11.9174C5.43716 11.9832 5.60171 12.0106 5.76511 11.9963C5.92851 11.9821 6.08425 11.9267 6.21475 11.8366L10.8538 8.63322C10.9615 8.55886 11.0487 8.46304 11.1087 8.35322C11.1688 8.2434 11.2 8.12252 11.2 8C11.2 7.87748 11.1688 7.7566 11.1087 7.64678C11.0487 7.53696 10.9615 7.44114 10.8538 7.36678Z"
-                  fill="#7685BC"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <div className="earn_box">
-          <div className="title">{t("My Earning Data")}</div>
-          <div className="earn_box_item">
-            {t("我的昵称")}：{" "}
-            <div
-              onClick={() => {
-                if (!!token) {
-                  setUsernameState(true);
-                }
-              }}
-            >
-              {UserInfo?.nickName ?? t("Set Username")}{" "}
-              <img src={go_to} alt="" />
-            </div>
-          </div>
-          <div className="earn_box_item">
-            {t("我的身份")}：{" "}
-            <div>
-              {!!UserInfo?.isNode ? t("节点用户") : t("普通用户")}{" "}
-              <Tooltip
-                title={
-                  <div className="tip">
-                    {t("Total amount of Token staked in all statuses")}
-                  </div>
-                }
-                trigger={["click"]}
-                showArrow={false}
-                getPopupContainer={(triggerNode) => triggerNode}
-              >
-                <div style={{ cursor: "pointer" }}>
-                  <img src={info} alt="" />
+            <div className="buy_item_right">
+              <div className="value">AKG</div>
+              <div className="price">
+                {t("75")}：
+                <span>
+                  <img src={USDT} alt="" />
+                  {item?.amount} USDT
+                </span>
+              </div>
+              <div className="btns">
+                <div
+                  className="btn"
+                  onClick={() => {
+                    setCurrentId(item?.id);
+                    setBuyModalState(true);
+                  }}
+                >
+                  {t("76")}
                 </div>
-              </Tooltip>
+                <div
+                  className="view"
+                  onClick={() => {
+                    Navigate("/View/producedetail", {
+                      state: {
+                        id: item?.id,
+                        amount: item?.amount,
+                        outAmount: item?.outAmount,
+                        img: item?.img,
+                        banner: item?.banner,
+                      },
+                    });
+                  }}
+                >
+                  {t("77")}
+                </div>
+              </div>
             </div>
           </div>
-          {!!UserInfo?.isNode ? (
-            <div className="earn_box_item">
-              {t("已挂载用户")}：{" "}
-              <div
-                onClick={() => {
-                  Navigate("/View/userlist");
-                }}
-              >
-                {t("用户列表")} <img src={go_to} alt="" />
+        ))}
+        <div className="history">
+          <div className="record_title">{t("78")}</div>
+          <div className="devider"></div>
+          {AepPayList?.total > 0 ? (
+            <div className="record_content">
+              <div className=" items title_items">
+                <div className="item">{t("79")}(U)</div>
+                <div className="item">SAEP{t("29")}</div>
+                <div className="item">{t("80")}</div>
+                <div className="item">{t("81")}</div>
+                <div className="item"></div>
               </div>
+              {AepPayList?.list?.map((item: any, index: any) => (
+                <div
+                  className={
+                    item?.logisticsStatus === 2 && item?.status === 2
+                      ? "items content_items content_items_end"
+                      : "items content_items"
+                  }
+                  key={index}
+                >
+                  <div className="item">{item?.amount}</div>
+                  <div className="item">{item?.outAmount}</div>
+                  <div
+                    className="item"
+                    style={{
+                      color:
+                        item?.logisticsStatus === 1 ? "#0140E7" : "#00D558",
+                    }}
+                  >
+                    {item?.logisticsStatus === 1 ? t("82") : t("83")}
+                  </div>
+                  <div className="item">
+                    {item?.status === 1 ? t("84") : t("85")}
+                  </div>
+                  <div className="item">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="13"
+                      height="13"
+                      viewBox="0 0 13 13"
+                      fill="none"
+                      onClick={() => {
+                        Navigate("/View/ReleaseRecord", {
+                          state: { item: item },
+                        });
+                      }}
+                    >
+                      <path
+                        d="M0.132687 0.0933985C0.0123441 0.195967 -0.031417 0.35887 0.0232843 0.505181L2.2676 6.4798L0.0295358 12.4951C-0.0251655 12.6415 0.0185957 12.8044 0.140501 12.9069C0.262407 13.0095 0.435889 13.0291 0.578112 12.9567L12.7906 6.80862C12.9203 6.74376 13 6.61404 13 6.47377C13 6.33349 12.9187 6.20377 12.789 6.13891L0.568735 0.0421142C0.426511 -0.0287788 0.25303 -0.00917004 0.132687 0.0933985Z"
+                        fill="url(#paint0_linear_102_8653)"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_102_8653"
+                          x1="0"
+                          y1="6.88235"
+                          x2="13"
+                          y2="6.88235"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="#00FF38" />
+                          <stop offset="0.5" stop-color="#05FCE9" />
+                          <stop offset="1" stop-color="#191AFF" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                </div>
+              ))}
             </div>
           ) : (
-            <div className="earn_box_item">
-              {t("已挂载节点")}：{" "}
-              <div
-                style={{ textDecoration: "underline" }}
-                onClick={() => {
-                  if (!!UserInfo?.mountNodeAddress) {
-                    copy(UserInfo?.mountNodeAddress);
-                    addMessage(t("Copied successfully"));
-                  }
-                }}
-              >
-                {!!UserInfo?.mountNodeAddress
-                  ? AddrHandle(UserInfo?.mountNodeAddress, 6, 6)
-                  : "-"}
-              </div>
-            </div>
+            <NoData></NoData>
           )}
-
-          <div className="data_box">
-            <div className="data_item">
-              <div className="data_item_top">
-                <img src={coin_logo} alt="" />
-                {NumSplic1(AllData?.totalNodeData, 4) ?? "0"}
-              </div>
-              <div className="data_item_bottom">{t("总节点数据")}</div>
-            </div>
-            <div className="line"></div>
-            <div className="data_item">
-              <div className="data_item_top">
-                <img src={coin_logo} alt="" />
-                {NumSplic1(AllData?.totalMineData, 4) ?? "0"}
-              </div>
-              <div className="data_item_bottom">{t("总挖矿数据")}</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="link_box">
-          <LinkChart />
         </div>
       </div>
       <FooterBox></FooterBox>
 
-      <SetUsername
-        name={UserInfo?.nickName ?? ""}
-        fun={getInitDate}
-        ShowTipModal={UsernameState}
+      <BuyModal
+        // fun={getInitDate}
+        data={{ ...AepPayInfo, id: CurrentId }}
+        addaddressfun={() => {
+          setBuyModalState(false);
+          setAddressModalState(true);
+        }}
+        getInitData={() => {
+          getInitData();
+          // 获取购买记录
+          getInitDate();
+        }}
+        showSuccessModal={() => {
+          setBuySuccessModalState(true);
+        }}
+        ShowTipModal={BuyModalState}
         close={() => {
-          setUsernameState(false);
+          setBuyModalState(false);
+        }}
+      />
+      <AddressModal
+        data={{ ...AepPayInfo, id: CurrentId }}
+        getInitData={() => {
+          getInitData();
+        }}
+        showBuyModal={() => {
+          setBuyModalState(true);
+        }}
+        ShowTipModal={AddressModalState}
+        close={() => {
+          setAddressModalState(false);
+        }}
+      />
+      <BuySuccessModal
+        // fun={getInitDate}
+        ShowTipModal={BuySuccessModalState}
+        close={() => {
+          setBuySuccessModalState(false);
         }}
       />
     </div>

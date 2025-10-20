@@ -1,14 +1,13 @@
 @font-face {
-  font-family: "Clash Display";
-  src: url("./assets/font/ClashDisplay-Regular.otf");
+  font-family: "Inter";
+  src: url("./assets/font/Inter-Medium-8.otf");
 }
 
 html body {
   background: #eee !important;
   margin: 0;
-  font-family:
-    "Clash Display", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+  font-family: "Inter", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: auto !important;
@@ -22,7 +21,7 @@ input {
   height: 100%;
   margin: auto;
   opacity: 1;
-  background: linear-gradient(90deg, #05144f 0%, #070f24 100%);
+  background: #eef3fa;
   max-width: 450px;
   position: relative;
   scrollbar-width: none;
@@ -34,10 +33,9 @@ input {
   }
 }
 
-
 code {
-  font-family:
-    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 html,
@@ -274,7 +272,7 @@ textarea:focus {
 }
 
 .NoData {
-  padding: 50px 0;
+  padding:0.67rem  0 3rem;
 }
 
 .NoData img {
@@ -307,8 +305,6 @@ body {
   -ms-overflow-style: none;
   text-align: left !important;
 }
-
-
 
 /* .ant-modal {
   max-height: calc(100vh - 84px);

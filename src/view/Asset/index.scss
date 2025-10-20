@@ -1,0 +1,343 @@
+.asset {
+  position: relative;
+  .star3 {
+    position: absolute;
+    top: 23rem;
+    left: 1.5rem;
+    z-index: -1;
+  }
+  .asset_content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1.17rem 1.5rem 3.5rem;
+
+    .asset_title {
+      width: 100%;
+      padding: 0rem 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      .asset_title1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        div {
+          font-family: "Inter";
+          font-size: 1.66667rem;
+          font-style: normal;
+          font-weight: 900;
+          line-height: normal;
+           
+          background: linear-gradient(
+            90deg,
+            #00ff38 0%,
+            #05fce9 50%,
+            #191aff 100%
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          padding: 0px 0.83rem;
+        }
+        img {
+          width: 1.66667rem;
+          height: 1.54892rem;
+        }
+      }
+      .star1 {
+        position: absolute;
+        bottom: 2.58rem;
+        left: 4.92rem;
+      }
+      .star2 {
+        position: absolute;
+        bottom: 1.42rem;
+        right: 3.92rem;
+      }
+    }
+
+    .account_box {
+      width: 100%;
+      margin: 0rem 0px 1.17rem;
+      border-radius: 1.33333rem;
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 7px 18px 0 rgba(0, 0, 0, 0.05),
+        -8px 0 14.9px 0 rgba(205, 229, 253, 0.7) inset;
+      .title {
+        width: fit-content;
+        padding: 1.33rem 1.17rem 1.17rem;
+        font-family: Inter;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+         
+        background: linear-gradient(
+          90deg,
+          #00ff38 0%,
+          #05fce9 50%,
+          #191aff 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .devider {
+        height: 0.08333rem;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 213, 88, 0) 0%,
+          #05fce9 50%,
+          rgba(1, 64, 231, 0) 100%
+        );
+      }
+      .all_asset {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.58rem 1.17rem;
+        .all_asset_value {
+          color: #000;
+          font-family: Inter;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+           
+          div {
+            color: #000;
+            font-family: Inter;
+            font-size: 1.66667rem;
+            font-style: normal;
+            font-weight: 900;
+            line-height: normal;
+             
+            margin-top: 0.5rem;
+          }
+        }
+        img {
+          width: 7.33333rem;
+          height: 5.25rem;
+        }
+      }
+      .coins {
+        padding: 1.17rem;
+        .coin_item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: #000;
+          font-family: Inter;
+          font-size: 1.33333rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+           
+          margin-bottom: 1.17rem;
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            color: #000;
+            font-family: Inter;
+            font-size: 1.5rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+             
+            img {
+              width: 1.66667rem;
+              height: 1.66667rem;
+              margin-right: 0.33rem;
+            }
+          }
+        }
+        .btns {
+          margin-top: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          .btn {
+            width: 11rem;
+            height: 4.41667rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            text-align: center;
+            font-family: Inter;
+            font-size: 1.16667rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+             
+          }
+          .btn1 {
+            background: url("../../assets/image/Asset/btn1.png") no-repeat
+              center / 100% 100%;
+          }
+          .btn2 {
+            background: url("../../assets/image/Asset/btn2.png") no-repeat
+              center / 100% 100%;
+          }
+        }
+      }
+      .items_devider {
+        margin: auto;
+        width: 12.58333rem;
+        height: 0.08333rem;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 213, 88, 0) 0%,
+          #05fce9 50%,
+          rgba(1, 64, 231, 0) 100%
+        );
+      }
+    }
+    .wallet_asset_box {
+      width: 100%;
+      margin: 0rem 0px 1.17rem;
+      border-radius: 1.33333rem;
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 7px 18px 0 rgba(0, 0, 0, 0.05),
+        -8px 0 14.9px 0 rgba(205, 229, 253, 0.7) inset;
+      .title {
+        width: fit-content;
+        padding: 1.33rem 1.17rem 1.17rem;
+        font-family: Inter;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+         
+        background: linear-gradient(
+          90deg,
+          #00ff38 0%,
+          #05fce9 50%,
+          #191aff 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .devider {
+        height: 0.08333rem;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 213, 88, 0) 0%,
+          #05fce9 50%,
+          rgba(1, 64, 231, 0) 100%
+        );
+      }
+      .items {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1.17rem 0px;
+        .item {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          color: #000;
+          font-family: Inter;
+          font-size: 1.16667rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+           
+          .item_bottom {
+            margin-top: 0.83rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-family: Inter;
+            font-size: 1.33333rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+             
+            img {
+              width: 1.66667rem;
+              height: 1.66667rem;
+              margin-right: 0.33rem;
+            }
+          }
+        }
+        .item_devider {
+          width: 0.08333rem;
+          height: 4.33333rem;
+          background: linear-gradient(
+            0deg,
+            rgba(0, 213, 88, 0) 0%,
+            #05fce9 50%,
+            rgba(1, 64, 231, 0) 100%
+          );
+        }
+      }
+      .items_devider {
+        margin: auto;
+        width: 12.58333rem;
+        height: 0.08333rem;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 213, 88, 0) 0%,
+          #05fce9 50%,
+          rgba(1, 64, 231, 0) 100%
+        );
+      }
+    }
+    .end_items {
+      width: 100%;
+      margin-top: 0.8rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-row-gap: 0.92rem;
+      grid-column-gap: 1.17rem;
+      .item {
+        padding: 0.5rem 0.83rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 1.66667rem;
+        border: 0.3px solid rgba(255, 255, 255, 0.6);
+        background: linear-gradient(
+            122deg,
+            rgba(5, 252, 233, 0) 54.89%,
+            rgba(5, 252, 233, 0.4) 100%
+          ),
+          rgba(5, 252, 233, 0.05);
+        box-shadow: 9px 9px 10px 0 rgba(163, 177, 198, 0.25);
+        .item_left {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          font-family: Inter;
+          font-size: 1.33333rem;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+           
+          background: linear-gradient(
+            90deg,
+            #00d558 0%,
+            #05fce9 50%,
+            #0140e7 100%
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        > img {
+          width: 8.16667rem;
+          height: 8.16667rem;
+        }
+      }
+    }
+  }
+}

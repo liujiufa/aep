@@ -8,7 +8,7 @@ interface LoginData {
 
 export function Login(data: any) {
   return axois.request({
-    url: "/user/login",
+    url: "/user/loginByPass",
     method: "post",
     data: {
       ...data,
@@ -22,130 +22,6 @@ export function getUserInfo() {
     method: "get",
   });
 }
-export function getNodeData() {
-  return axois.request({
-    url: `/user/getNodeData`,
-    method: "get",
-  });
-}
-export function getUserNodeData() {
-  return axois.request({
-    url: `/user/getUserNodeData`,
-    method: "get",
-  });
-}
-export function getMineData() {
-  return axois.request({
-    url: `/home/getMineData`,
-    method: "get",
-  });
-}
-export function getEarnData() {
-  return axois.request({
-    url: `/home/getEarnData`,
-    method: "get",
-  });
-}
-export function getNodeUserList(address: any) {
-  return axois.request({
-    url: `/home/getNodeUserList/${address}`,
-    method: "get",
-  });
-}
-export function getPledgeData() {
-  return axois.request({
-    url: `/pledge/getPledgeData`,
-    method: "get",
-  });
-}
-export function getUserPledgeData() {
-  return axois.request({
-    url: `/user/getUserPledgeData`,
-    method: "get",
-  });
-}
-export function getBoxList() {
-  return axois.request({
-    url: `/box/getBoxList`,
-    method: "get",
-  });
-}
-export function getBoxUserInfo() {
-  return axois.request({
-    url: `/box/getBoxUserInfo`,
-    method: "get",
-  });
-}
-export function updateNickName(data: any) {
-  return axois.request({
-    url: "/user/updateNickName",
-    method: "post",
-    data: {
-      ...data,
-      // Encrypt: true,
-    },
-  });
-}
-export function getPledgeOrder(data: any) {
-  return axois.request({
-    url: "/pledge/getPledgeOrder",
-    method: "post",
-    data: {
-      ...data,
-      // Encrypt: true,
-    },
-  });
-}
-export function mountNode(data: any) {
-  return axois.request({
-    url: "/home/mountNode",
-    method: "post",
-    data: {
-      ...data,
-      // Encrypt: true,
-    },
-  });
-}
-export function cancelMountNode(data: any) {
-  return axois.request({
-    url: "/home/cancelMountNode",
-    method: "post",
-    data: {
-      ...data,
-      // Encrypt: true,
-    },
-  });
-}
-export function getMountRecord(data: any) {
-  return axois.request({
-    url: "/home/getMountRecord",
-    method: "post",
-    data: {
-      ...data,
-      // Encrypt: true,
-    },
-  });
-}
-export function getMountUserList(data: any) {
-  return axois.request({
-    url: "/home/getMountUserList",
-    method: "post",
-    data: {
-      ...data,
-      // Encrypt: true,
-    },
-  });
-}
-export function getFriends(data: any) {
-  return axois.request({
-    url: "/user/getFriends",
-    method: "post",
-    data: {
-      ...data,
-      // Encrypt: true,
-    },
-  });
-}
 export function drawStakeReward(data: any) {
   return axois.request({
     url: "/user/draw",
@@ -156,9 +32,10 @@ export function drawStakeReward(data: any) {
     },
   });
 }
-export function getDrawRecord(data: any) {
+
+export function aepIncomeList(data: any) {
   return axois.request({
-    url: "/user/getDrawRecord",
+    url: "/aepPay/aepIncomeList",
     method: "post",
     data: {
       ...data,
@@ -166,9 +43,10 @@ export function getDrawRecord(data: any) {
     },
   });
 }
-export function getNodeRecord(data: any) {
+// 购买AEP记录
+export function aepPayList(data: any) {
   return axois.request({
-    url: "/user/getNodeRecord",
+    url: "/aepPay/aepPayList",
     method: "post",
     data: {
       ...data,
@@ -176,9 +54,9 @@ export function getNodeRecord(data: any) {
     },
   });
 }
-export function getNodeMountUserOrder(data: any) {
+export function aepList(data: any) {
   return axois.request({
-    url: "/user/getNodeMountUserOrder",
+    url: "/aepPay/aepList",
     method: "post",
     data: {
       ...data,
@@ -186,9 +64,9 @@ export function getNodeMountUserOrder(data: any) {
     },
   });
 }
-export function getUserNodeRecord(data: any) {
+export function aepPay(data: any) {
   return axois.request({
-    url: "/user/getUserNodeRecord",
+    url: "/aepPay/aepPay",
     method: "post",
     data: {
       ...data,
@@ -196,9 +74,9 @@ export function getUserNodeRecord(data: any) {
     },
   });
 }
-export function getBoxOrderList(data: any) {
+export function aepPayInfo(data: any) {
   return axois.request({
-    url: "/box/getBoxOrderList",
+    url: "/aepPay/aepPayInfo",
     method: "post",
     data: {
       ...data,
@@ -206,9 +84,10 @@ export function getBoxOrderList(data: any) {
     },
   });
 }
-export function getBoxUserDetail(data: any) {
+// 设置收货信息
+export function aepSetReceiverInfo(data: any) {
   return axois.request({
-    url: "/box/getBoxUserDetail",
+    url: "/aepPay/aepSetReceiverInfo",
     method: "post",
     data: {
       ...data,
@@ -216,9 +95,159 @@ export function getBoxUserDetail(data: any) {
     },
   });
 }
-export function getBoxUserDrawDetail(data: any) {
+export function userIsBind(data: any) {
   return axois.request({
-    url: "/box/getBoxUserDrawDetail",
+    url: "/user/userIsBind",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepChange24(data: any) {
+  return axois.request({
+    url: "/aepSwapInfo/aepChange24",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepKline(data: any) {
+  return axois.request({
+    url: "/aepSwapInfo/aepKline",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepSwapInfo(data: any) {
+  return axois.request({
+    url: "/aepSwapInfo/aepSwapInfo",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepSwapInfoSwap(data: any) {
+  return axois.request({
+    url: "/aepSwapInfo/aepSwapInfoSwap",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepSwap(data: any) {
+  return axois.request({
+    url: "/aepSwapInfo/aepSwap",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepSwapRecord(data: any) {
+  return axois.request({
+    url: "/aepSwapInfo/aepSwapRecord",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepIncomeInfo(data: any) {
+  return axois.request({
+    url: "/aepIncome/aepIncomeInfo",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepIncomeListReferee(data: any) {
+  return axois.request({
+    url: "/aepIncome/aepIncomeListReferee",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepIncomeListSales(data: any) {
+  return axois.request({
+    url: "/aepIncome/aepIncomeListSales",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepIncomeListTeam(data: any) {
+  return axois.request({
+    url: "/aepIncome/aepIncomeListTeam",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepAssetInfo(data: any) {
+  return axois.request({
+    url: "/aepUser/aepAssetInfo",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepDrawWithdraw(data: any) {
+  return axois.request({
+    url: "/aepUser/aepDrawWithdraw",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepWithdrawRecord(data: any) {
+  return axois.request({
+    url: "/aepUser/aepWithdrawRecord",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepRefereeInfo(data: any) {
+  return axois.request({
+    url: "/aepUser/aepRefereeInfo",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepRefereeList(data: any) {
+  return axois.request({
+    url: "/aepUser/aepRefereeList",
     method: "post",
     data: {
       ...data,

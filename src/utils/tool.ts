@@ -428,8 +428,8 @@ export function percentToDecimal(percentString: any) {
   return decimalValue;
 }
 export const convert1 = (n: any) =>
-  n
-    .toFixed(0) // 将数字 n 转换为字符串，并保留 0 位小数
+  Number(n)
+    ?.toFixed(0) // 将数字 n 转换为字符串，并保留 0 位小数
     .replace(/(\d{1,3})((\d{3})*)$/, (a: any, b: any, c: any) => {
       const t = ["", "K", "M", "B", "T", "Q"][c.length / 3]; // 根据 c 的长度决定单位
       if (t) {
@@ -463,7 +463,7 @@ export function getFullNum(num: any) {
   if (!/e/i.test(str)) {
     return num;
   }
-  return num.toFixed(18).replace(/\.?0+$/, "");
+  return num?.toFixed(18).replace(/\.?0+$/, "");
 }
 
 export function formatDecimal(num: number): string {

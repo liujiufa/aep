@@ -57,21 +57,22 @@ const MessageBox = styled.div`
     background: #fff;
     backdrop-filter: blur(5px);
     width: 28.25rem;
+    margin-bottom: 8px;
+    border: 2px solid #00d558;
     div {
       word-break: break-all;
       flex: 1;
-      color: #000;
-      font-family: "PingFang SC";
+      color: #242d39;
+      font-family: Inter;
       font-size: 1.33333rem;
       font-style: normal;
-      font-weight: 600;
+      font-weight: 500;
       line-height: normal;
     }
     padding: 2rem 1.67rem;
     > svg {
       margin-left: 10px;
     }
-    margin-bottom: 8px;
   }
 `;
 

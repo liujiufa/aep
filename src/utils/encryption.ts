@@ -1,6 +1,6 @@
 import CryptoJS from "crypto-js";
-const key = CryptoJS.enc.Hex.parse("de2024ab3d6ac01ad9dc6a897652f2d2"); //十六位十六进制数作为密钥
-const iv = CryptoJS.enc.Hex.parse("de2024ab3d6ac01ad9dc6a897652f2d2");
+const key = CryptoJS.enc.Hex.parse("de2011d34725bd12175ac7e87111ff2d"); //十六位十六进制数作为密钥
+const iv = CryptoJS.enc.Hex.parse("de2011d34725bd12175ac7e87111ff2d");
 
 //解密方法
 function Decrypt(data: string) {

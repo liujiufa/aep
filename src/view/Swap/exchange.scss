@@ -1,0 +1,220 @@
+.exchange {
+  position: relative;
+  overflow: auto;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 3.67rem;
+
+  .return_box {
+    padding: 1rem 1.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    background: transparent;
+    div {
+      flex: 1;
+      color: #000;
+      text-align: center;
+      font-family: Inter;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+
+    .svgs {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+  .exchange_content {
+    width: 100%;
+    padding: 0.58rem 1.5rem;
+    .box {
+      border-radius: 1.33333rem;
+      border: 0.3px solid rgba(255, 255, 255, 0.2);
+      background: #e7eef5;
+      box-shadow: -9px -9px 16px 0 rgba(255, 255, 255, 0.6),
+        9px 9px 16px 0 rgba(163, 177, 198, 0.6);
+      padding: 1.33rem;
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #000;
+        font-family: Inter;
+        font-size: 1.33333rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        div {
+          color: #73777b;
+          font-family: Inter;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+        }
+      }
+      .mid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1.17rem 0px;
+        input {
+          flex: 1;
+          border: none;
+          outline: none;
+          background: transparent;
+          color: #000;
+          text-align: left;
+          font-family: "PingFang SC";
+          font-size: 1.33333rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          &::placeholder {
+            color: rgba(0, 0, 0, 0.3);
+            text-align: left;
+            font-family: Inter;
+            font-size: 1.33333rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+          }
+        }
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          img {
+            width: 1.66667rem;
+            height: 1.66667rem;
+            margin-right: 0.17rem;
+          }
+          color: #000;
+          text-align: right;
+          font-family: Inter;
+          font-size: 1.16667rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+        }
+      }
+      .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .item {
+          border-radius: 0.83333rem;
+          border: 1px solid rgba(0, 0, 0, 0.3);
+          color: #000;
+          font-family: Inter;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          width: 5.33333rem;
+          height: 2.33333rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .active {
+          color: #000;
+          font-family: Inter;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          border-radius: 0.83333rem;
+          background: linear-gradient(
+            90deg,
+            #00d558 0%,
+            #05fce9 50%,
+            #0140e7 100%
+          );
+          border: 1px solid transparent;
+        }
+      }
+    }
+    .transfer {
+      margin: 1.17rem 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .receive_box {
+      .mid {
+        margin-bottom: 0px;
+      }
+    }
+    .infos {
+      margin: 1.17rem 0px;
+      border-radius: 1.33333rem;
+      border: 0.3px solid rgba(255, 255, 255, 0.2);
+      background: #e7eef5;
+      box-shadow: -9px -9px 16px 0 rgba(255, 255, 255, 0.6),
+        9px 9px 16px 0 rgba(163, 177, 198, 0.6);
+      padding: 1.33rem;
+
+      .info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #73777b;
+        text-align: right;
+        font-family: Inter;
+        font-size: 1.16667rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin-bottom: 0.67rem;
+        &:last-child {
+          margin-bottom: 0px;
+        }
+        div {
+          color: #000;
+          text-align: right;
+          font-family: Inter;
+          font-size: 1.16667rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    .btn {
+      width: 20.66667rem;
+      height: 4.75rem;
+      flex-shrink: 0;
+      margin: 2.67rem auto 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      text-align: center;
+      font-family: Inter;
+      font-size: 1.16667rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+       
+      background: url("../../assets/image/Swap/btn.png") no-repeat center / 100%
+        100%;
+    }
+    .btn_no_work {
+      opacity: 0.5;
+    }
+  }
+}

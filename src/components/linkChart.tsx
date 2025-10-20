@@ -8,7 +8,7 @@ import { notification } from "antd";
 import styled from "styled-components";
 import { useViewport } from "./viewportContext";
 import { FlexBox } from "./FlexBox";
-import { getMineData } from "../API";
+// import { getMineData } from "../API";
 
 interface ChartsLineProps {
   height?: string;
@@ -162,14 +162,14 @@ const ChartsLine: React.FC<ChartsLineProps> = ({ height, chartsData }) => {
   // const value: any = sessionStorage.getItem(address);
   const [list, setList] = useState<any>([]);
   const getDepinEarningsDay = async () => {
-    getMineData()
-      .then((res: any) => {
-        setList(res.data || []);
-        showLoding(false);
-      })
-      .catch((res: any) => {
-        showLoding(false);
-      });
+    // getMineData()
+    //   .then((res: any) => {
+    //     setList(res.data || []);
+    //     showLoding(false);
+    //   })
+    //   .catch((res: any) => {
+    //     showLoding(false);
+    //   });
   };
 
   useEffect(() => {
