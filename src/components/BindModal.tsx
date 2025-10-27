@@ -13,6 +13,7 @@ import { useViewport } from "./viewportContext";
 import { useAppKitAccount } from "@reown/appkit/react";
 import USDT from "../assets/image/USDT.png";
 import { NumSplic1, addMessage } from "../utils/tool";
+import Web3 from "web3";
 
 const AllModal = styled(Modal)`
   z-index: 10000;
@@ -45,7 +46,7 @@ export const ModalContainer_Title = styled(FlexCCBox)`
   width: 100%;
   color: #000;
   text-align: center;
-  font-family: "Clash Display";
+  font-family: "Inter";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
@@ -67,7 +68,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
     width: 100%;
     margin: 2rem 0px 1.5rem;
     color: #000;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.16667rem;
     font-style: normal;
     font-weight: 400;
@@ -79,7 +80,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
       word-break: break-all;
       color: #73777b;
       text-align: center;
-      font-family: Inter;
+      font-family: "Inter";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 400;
@@ -97,7 +98,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
     flex-shrink: 0;
     color: #000;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.16667rem;
     font-style: normal;
     font-weight: 700;
@@ -113,6 +114,58 @@ const ModalContainer_Content = styled.div<{ src: any }>`
   }
 `;
 
+const InputBox = styled(FlexCCBox)`
+  width: 100%;
+  color: var(--primary-card-font-color);
+  text-align: center;
+  font-family: "Inter";
+  font-size: 1.16667rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.16667rem; /* 100% */
+  border-radius: 1.33333rem;
+  background: var(--primary-card-heavy-color);
+`;
+
+const InputBox_Top = styled(FlexBox)`
+  width: 100%;
+  align-items: flex-start;
+  /* padding-bottom: 5.42rem; */
+  textarea {
+    width: 100%;
+    flex: 1;
+    color: var(--primary-card-font-color);
+    font-family: "Inter";
+    font-size: 1.16667rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.16667rem; /* 100% */
+    background: transparent;
+    outline: none;
+    border: none;
+    padding: 0px;
+    &::placeholder {
+      color: var(--primary-card-title-font-color);
+
+      font-family: "Inter";
+      font-size: 1.16667rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.16667rem; /* 100% */
+      /* opacity: 0.6; */
+    }
+  }
+  div {
+    color: #000;
+    text-align: center;
+    font-family: "Inter";
+    font-size: 1.16667rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.16667rem; /* 100% */
+  }
+`;
+
 let NodeInter: any = null;
 export default function ModalContent(props: any) {
   const { t } = useTranslation();
@@ -122,6 +175,7 @@ export default function ModalContent(props: any) {
   const [RecordList3, setRecordList3] = useState<any>({});
   const { address: web3ModalAccount, isConnected } = useAppKitAccount();
   const token = useSelector((state: any) => state?.token);
+  const [InputValue, setInputValue] = useState<any>(null);
 
   const updateFun = () => {
     if (!props?.ShowTipModal) return;
@@ -181,13 +235,43 @@ export default function ModalContent(props: any) {
             {!!props?.refereeUserAddress ? (
               <div>{props?.refereeUserAddress}</div>
             ) : (
-              <input type="text" />
+              <InputBox>
+                <InputBox_Top>
+                  <textarea
+                    rows={3} // 指定文本区域的行数
+                    // cols={50} // 指定文本区域的列数
+                    placeholder={t("Please bind the recommended address")}
+                    value={InputValue}
+                    onChange={(e: any) => {
+                      setInputValue(e.target.value.trim());
+                    }}
+                    style={{ resize: "none" }}
+                  />{" "}
+                  {/* <div
+                  onClick={(e) => {
+                    handlePaste(e);
+                    // handleClick();
+                  }}
+                >
+                  粘贴
+                </div> */}
+                </InputBox_Top>
+              </InputBox>
             )}
           </div>
           <div
             className="confirm"
             onClick={() => {
-              props?.fun();
+              let web3 = new Web3();
+              if (!!props?.refereeUserAddress) {
+                props?.fun();
+              } else {
+                if (!!InputValue && web3.utils.isAddress(InputValue)) {
+                  props?.fun(InputValue);
+                } else {
+                  return addMessage(t("137"));
+                }
+              }
             }}
           >
             {t("Confirm")}

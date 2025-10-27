@@ -46,7 +46,6 @@ const Home = () => {
   const [AllData, setAllData] = useState<any>({});
   const { address: web3ModalAccount, isConnected } = useAppKitAccount();
 
-  
   const getInitDate = () => {
     aepSwapInfo({}).then((res: any) => {
       setAllData(res?.data || {});
@@ -127,7 +126,7 @@ const Home = () => {
               {t("128")}-USDT
               <div className="item_bottom">
                 <img src={USDT} alt="" />
-                {AllData?.tradePoolUSDT ?? 0}
+                {NumSplic1(AllData?.tradePoolUSDT, 4) ?? 0}
               </div>
             </div>
             <div className="item_devider"></div>
@@ -135,7 +134,7 @@ const Home = () => {
               {t("128")}-AEP
               <div className="item_bottom">
                 <img src={SAEP} alt="" />
-                {AllData?.tradePoolAEP ?? 0}
+                {NumSplic1(AllData?.tradePoolAEP, 4) ?? 0}
               </div>
             </div>
           </div>

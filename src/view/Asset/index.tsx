@@ -150,7 +150,7 @@ const Home = () => {
           <div className="all_asset">
             <div className="all_asset_value">
               {t("51")}
-              <div>${AepAssetInfo?.assetPrice ?? 0}</div>
+              <div>${NumSplic1(AepAssetInfo?.assetPrice, 4) ?? 0}</div>
             </div>
             <img src={banner} alt="" />
           </div>
@@ -160,26 +160,26 @@ const Home = () => {
               SAEP
               <div>
                 <img src={SAEP} alt="" />
-                {AepAssetInfo?.amountReceiveSaep ?? 0}
+                {NumSplic1(AepAssetInfo?.amountReceiveSaep, 4) ?? 0}
               </div>
             </div>
             <div className="coin_item">
               USDT
               <div>
                 <img src={USDT} alt="" />
-                {AepAssetInfo?.amountReceiveUsdt ?? 0}
+                {NumSplic1(AepAssetInfo?.amountReceiveUsdt, 4) ?? 0}
               </div>
             </div>
             <div className="coin_item">
               AEP
               <div>
                 <img src={AEP} alt="" />
-                {AepAssetInfo?.amountReceiveAep ?? 0}
+                {NumSplic1(AepAssetInfo?.amountReceiveAep, 4) ?? 0}
               </div>
             </div>
             <div className="btns">
               <div
-                className="btn btn1"
+                className="btn btn1 pointer"
                 onClick={() => {
                   Navigate("/View/exchange");
                 }}
@@ -187,7 +187,7 @@ const Home = () => {
                 {t("52")}
               </div>
               <div
-                className="btn btn2"
+                className="btn btn2 pointer"
                 onClick={() => {
                   Navigate("/View/withdraw");
                 }}
@@ -221,13 +221,44 @@ const Home = () => {
 
         <div className="end_items">
           {[
-            { name: "55", img: item1 },
-            { name: "56", img: item2 },
-            { name: "57", img: item3 },
-            { name: "58", img: item4 },
+            {
+              name: "55",
+              img: item1,
+              color: "#05FCE9",
+              background:
+                "linear-gradient(122deg, rgba(5, 252, 233, 0.00) 54.89%, rgba(5, 252, 233, 0.40) 100%), rgba(5, 252, 233, 0.05)",
+            },
+            {
+              name: "56",
+              img: item2,
+              color: "#52B7FF",
+              background:
+                "linear-gradient(122deg, rgba(82, 183, 255, 0.00) 54.89%, rgba(82, 183, 255, 0.40) 100%), rgba(82, 183, 255, 0.05)",
+            },
+            {
+              name: "57",
+              img: item3,
+              color: "#00D558",
+              background:
+                "linear-gradient(122deg, rgba(0, 255, 56, 0.00) 54.89%, rgba(0, 255, 56, 0.40) 100%), rgba(0, 255, 56, 0.05)",
+            },
+            {
+              name: "58",
+              img: item4,
+              color: "#FFAE00",
+              background:
+                "linear-gradient(122deg, rgba(255, 174, 0, 0.00) 54.89%, rgba(255, 174, 0, 0.40) 100%), rgba(255, 174, 0, 0.05)",
+            },
           ]?.map((item: any, index: any) => (
-            <div className="item" key={index}>
-              <div className="item_left">
+            <div
+              className="item pointer"
+              key={index}
+              onClick={() => {
+                return addMessage(t("Coming soon"));
+              }}
+              style={{ background: item?.background }}
+            >
+              <div className="item_left" style={{ color: item?.color }}>
                 {t(item?.name)}{" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

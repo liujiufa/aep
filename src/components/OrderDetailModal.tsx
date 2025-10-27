@@ -46,7 +46,7 @@ export const ModalContainer_Title = styled(FlexCCBox)`
   width: 100%;
   color: #000;
   text-align: center;
-  font-family: "Clash Display";
+  font-family: "Inter";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
@@ -76,7 +76,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
       justify-content: space-between;
       color: #73777b;
       text-align: center;
-      font-family: Inter;
+      font-family: "Inter";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 500;
@@ -88,7 +88,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
       span {
         color: #000;
         text-align: center;
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 500;
@@ -104,12 +104,12 @@ const ModalContainer_Content = styled.div<{ src: any }>`
     flex-shrink: 0;
     color: #000;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.16667rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-     
+
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
@@ -188,14 +188,15 @@ export default function ModalContent(props: any) {
             <div className="item">
               {t("8")}
               <span>
-                {props?.data?.numOutActual} {props?.data?.numOutCoinName}
+                {NumSplic1(props?.data?.numOutActual, 4)}{" "}
+                {props?.data?.numOutCoinName}
               </span>
             </div>
             <div className="item">
               {t("9")}
               <span>
-                1 {props?.data?.numInCoinName}={props?.data?.price}{" "}
-                {props?.data?.numOutCoinName}
+                1 {props?.data?.numInCoinName}=
+                {NumSplic1(props?.data?.price, 4)} {props?.data?.numOutCoinName}
               </span>
             </div>
             <div className="item">

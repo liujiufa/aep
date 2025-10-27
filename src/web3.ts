@@ -154,7 +154,7 @@ export class Contracts {
   withdrawReward1(addr: string, data: string) {
     this.verification("AEPWithdraw");
     const valued = Web3.utils.toWei(mathRandom + "", "ether");
-    return this.contract.AEPWithdraw?.methods.withdrawReward(data).send(
+    return this.contract.AEPWithdraw?.methods.withdraw(data).send(
       isMain
         ? {
             from: addr,

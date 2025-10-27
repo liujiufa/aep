@@ -8,22 +8,26 @@
     justify-content: space-between;
     .swap_coin {
       color: #000;
-      font-family: Inter;
+      font-family: "Inter";
       font-size: 1.5rem;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
     }
     .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #000;
       text-align: center;
-      font-family: Inter;
+      font-family: "Inter";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
-       
-      padding: 1.5rem 4.33rem;
+      width: 11rem;
+      height: 4.41667rem;
+      // padding: 1.5rem 4.33rem;
       background: url("../../../assets/image/Home/btn_bg.png") no-repeat center /
         100% 100%;
     }
@@ -37,7 +41,7 @@
     .item {
       flex: 1;
       color: #73777b;
-      font-family: Inter;
+      font-family: "Inter";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 400;
@@ -48,7 +52,7 @@
       div {
         margin-top: 0.17rem;
         color: #000;
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 600;

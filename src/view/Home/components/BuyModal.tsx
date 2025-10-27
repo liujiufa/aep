@@ -51,7 +51,7 @@ export const ModalContainer_Title = styled(FlexCCBox)`
   width: 100%;
   color: #000;
   text-align: center;
-  font-family: "Clash Display";
+  font-family: "Inter";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
@@ -84,7 +84,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
         color: #73777b;
         text-align: center;
         text-overflow: ellipsis;
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 500;
@@ -102,7 +102,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
             color: #000;
             text-align: left;
             text-overflow: ellipsis;
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1.16667rem;
             font-style: normal;
             font-weight: 500;
@@ -112,7 +112,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
           .info_bottom {
             margin-top: 0.33rem;
             color: #73777b;
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1rem;
             font-style: normal;
             font-weight: 400;
@@ -129,7 +129,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
         color: #73777b;
         text-align: left;
         text-overflow: ellipsis;
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 500;
@@ -145,17 +145,19 @@ const ModalContainer_Content = styled.div<{ src: any }>`
         color: rgba(0, 0, 0, 0.5);
         text-align: center;
         text-overflow: ellipsis;
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1rem;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
         letter-spacing: -0.04rem;
+        word-break: break-all;
         .select {
           width: 1.33333rem;
           height: 1.33333rem;
           border: 1px solid #73777b;
           border-radius: 50%;
+          min-width:1.33333rem;
         }
         .selected {
           width: 1.33333rem;
@@ -163,21 +165,23 @@ const ModalContainer_Content = styled.div<{ src: any }>`
           border: 1px solid #000;
           background: #00d558;
           border-radius: 50%;
+          min-width:1.33333rem;
         }
         .text {
-          overflow: hidden;
+          /* flex: 1; */
+          /* overflow: hidden; */
           color: #000;
-          text-align: center;
+          /* text-align: center;
           font-variant-numeric: lining-nums proportional-nums;
-          text-overflow: ellipsis;
-          font-family: Inter;
+          text-overflow: ellipsis; */
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 500;
           line-height: normal;
           letter-spacing: -0.02333rem;
-
-          margin: 0px 0.33rem 0px 0.83rem;
+          white-space: nowrap;
+          margin: 0px 0.33rem 0px 0.33rem;
         }
       }
       .devider {
@@ -195,7 +199,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
       color: #73777b;
       text-align: center;
       text-overflow: ellipsis;
-      font-family: Inter;
+      font-family: "Inter";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 500;
@@ -210,7 +214,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
         text-align: center;
         font-variant-numeric: lining-nums proportional-nums;
         text-overflow: ellipsis;
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.33333rem;
         font-style: normal;
         font-weight: 700;
@@ -230,7 +234,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
     color: #e34956;
     text-align: center;
     text-overflow: ellipsis;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1rem;
     font-style: normal;
     font-weight: 500;
@@ -246,7 +250,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
     flex-shrink: 0;
     color: #000;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.16667rem;
     font-style: normal;
     font-weight: 700;
@@ -304,7 +308,7 @@ export default function ModalContent(props: any) {
           props?.showSuccessModal();
           props?.close();
           setTimeout(() => {
-            props?.getInitDate();
+            props?.getInitData();
           }, 3000);
           // await callbackFun();
           // let tag = true;
@@ -353,13 +357,20 @@ export default function ModalContent(props: any) {
 
   useEffect(() => {
     if (
-      !props?.data?.address ||
-      !props?.data?.phone ||
-      !props?.data?.receiver
+      !!props?.data?.address ||
+      !!props?.data?.phone ||
+      !!props?.data?.receiver
     ) {
+      setShowTip(false);
+    } else {
       setShowTip(true);
     }
-  }, [props?.data?.address, props?.data?.phone, props?.data?.receiver]);
+  }, [
+    props?.data?.address,
+    props?.data?.phone,
+    props?.data?.receiver,
+    props?.ShowTipModal,
+  ]);
 
   useEffect(() => {
     if (!!web3ModalAccount) {
@@ -465,7 +476,7 @@ export default function ModalContent(props: any) {
               >
                 <div className={ActiveType === 1 ? "selected" : "select"}></div>{" "}
                 <div className="text">{t("99")}</div> ({t("100")}：
-                {props?.data?.amountReceiveUsdt ?? 0} USDT)
+                {NumSplic1(props?.data?.amountReceiveUsdt, 4) ?? 0} USDT)
               </div>
               <div
                 className="pay_item"
@@ -475,7 +486,7 @@ export default function ModalContent(props: any) {
               >
                 <div className={ActiveType === 2 ? "selected" : "select"}></div>{" "}
                 <div className="text">{t("101")}</div> ({t("100")}：
-                {NumSplic1(USDTBalance, 6) ?? 0} USDT)
+                {NumSplic1(USDTBalance, 4) ?? 0} USDT)
               </div>
               <div className="devider"></div>
             </div>
@@ -487,7 +498,7 @@ export default function ModalContent(props: any) {
               </span>
             </div>
           </div>
-          {!ShowTip && <div className="tip">请先填写收货地址！</div>}
+          {!!ShowTip && <div className="tip">{t("144")}</div>}
           {ActiveType === 1 && (
             <div
               className={

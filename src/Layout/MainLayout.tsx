@@ -72,7 +72,7 @@ export const ModalContainer_Title = styled(FlexSBCBox)`
   width: 100%;
   color: var(--primary-card-font-color);
 
-  font-family: "Clash Display";
+  font-family: "Inter";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
@@ -146,23 +146,27 @@ const MainLayout: any = () => {
     }
     userIsBind({
       userAddress: web3ModalAccount,
-    }).then((res: any) => {
-      if (res?.code === 200 && !!res?.data?.isBind) {
-        LoginFun(refereeUserAddress);
-      } else {
-        setBindModalState(!res?.data?.isBind);
-      }
-    });
+    })
+      .then((res: any) => {
+        if (res?.code === 200 && !!res?.data?.isBind) {
+          LoginFun(refereeUserAddress);
+        } else {
+          setBindModalState(!res?.data?.isBind);
+        }
+      })
+      .catch((e: any) => {
+        disconnect();
+      });
   };
 
-  const bindInviteFun = async () => {
+  const bindInviteFun = async (address: any = null) => {
     let tag = await web3.utils.isAddress(window.location.pathname.slice(1));
     if (tag) {
       refereeUserAddress = window.location.pathname.slice(1);
     } else {
       refereeUserAddress = "";
     }
-    LoginFun(refereeUserAddress);
+    LoginFun(!!refereeUserAddress ? refereeUserAddress : address);
   };
 
   useEffect(() => {

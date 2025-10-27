@@ -17,7 +17,7 @@ import {
 } from "../../utils/tool";
 import { useTranslation } from "react-i18next";
 import { Dropdown, Menu } from "antd";
-import { aepAssetInfo, aepDrawWithdraw } from "../../API";
+import { aepAssetInfo, aepDrawWithdraw, aepWithdrawInfo } from "../../API";
 import Web3 from "web3";
 import { Contracts } from "../../web3";
 import { useAppKitAccount } from "@reown/appkit/react";
@@ -25,8 +25,8 @@ const App: React.FC = () => {
   const { t } = useTranslation();
   const Navigate = useNavigate();
   const [InputAmount, setInputAmount] = useState(0);
-  const [SwapInfo, setSwapInfo] = useState<any>({});
   const [AepAssetInfo, setAepAssetInfo] = useState<any>({});
+  const [AepWithdrawInfo, setAepWithdrawInfo] = useState<any>({});
   const token = useSelector((state: any) => state?.token);
   const [amount, setAmount] = useState("");
   const [ReceiveAddress, setReceiveAddress] = useState("");
@@ -62,6 +62,8 @@ const App: React.FC = () => {
                   : "CoinItem"
               }
               onClick={() => {
+                setInputAmount(0);
+                setReceiveAddress("");
                 setCurrentCoin(item);
               }}
             >
@@ -77,7 +79,10 @@ const App: React.FC = () => {
 
   const inputFun = (num: any) => {
     setInputAmount(
-      NumSplic1(roundTo(num * Number(SwapInfo?.amountReceiveGAMO ?? 0), 6), 0)
+      // NumSplic1(
+      roundTo(num * Number(CoinObj[CurrentCoin?.name]?.balance ?? 0), 6)
+      //   0
+      // )
     );
   };
   const getInitData = () => {
@@ -85,10 +90,19 @@ const App: React.FC = () => {
       setAepAssetInfo(res?.data || {});
     });
   };
+
+  const getInitWithdrawData = () => {
+    aepWithdrawInfo({
+      coinName: CurrentCoin?.name,
+    }).then((res: any) => {
+      setAepWithdrawInfo(res?.data || {});
+    });
+  };
+
   const swapFun = async () => {
     if (!InputAmount || Number(InputAmount) <= 0) return addMessage(t("62"));
-    if (!!InputAmount && Number(InputAmount) < 100)
-      return addMessage(t("132", { num: 100 }));
+    // if (!!InputAmount && Number(InputAmount) < AepWithdrawInfo?.withdrawMin)
+    //   return addMessage(t("132", { num: AepWithdrawInfo?.withdrawMin }));
     let tag: boolean = false;
     try {
       const web3 = new Web3();
@@ -105,13 +119,15 @@ const App: React.FC = () => {
     }).then(async (res: any) => {
       if (res?.code === 200 && !!res?.data?.signStr) {
         let value: any = null;
+
         try {
           // debugger;
-          value = await Contracts.example.withdrawReward1(
+          value = await Contracts.example?.withdrawReward1(
             web3ModalAccount as string,
             res?.data?.signStr
           );
         } catch (error: any) {
+          debugger;
           showLoding(false);
           return addMessage(t("failed"));
         }
@@ -151,6 +167,11 @@ const App: React.FC = () => {
       getInitData();
     }
   }, [token]);
+  useEffect(() => {
+    if (!!token) {
+      getInitWithdrawData();
+    }
+  }, [token, CurrentCoin?.name]);
   return (
     <div className="withdraw">
       <div className="return_box">
@@ -234,14 +255,17 @@ const App: React.FC = () => {
             <div className="mid">
               <input
                 type="text"
-                placeholder={t("62")}
+                placeholder={t("62", {
+                  num: AepWithdrawInfo?.withdrawMin,
+                  name: CurrentCoin?.name,
+                })}
                 value={
                   !!InputAmount && Number(InputAmount) > 0 ? InputAmount : ""
                 }
                 onChange={(e: any) => {
                   let value = e.target.value
                     ?.replace(/[+-]/g, "")
-                    ?.replace(/[^0-9]/g, "");
+                    ?.replace(/[^0-9.]/g, "");
                   setInputAmount(value);
                 }}
               />{" "}
@@ -351,20 +375,40 @@ const App: React.FC = () => {
 
         <div className="infos">
           <div className="info">
-            {t("65")} <div>100 AEP</div>
+            {t("65")}{" "}
+            {String(CurrentCoin?.name) === "AEP" ? (
+              <div>
+                {AepWithdrawInfo?.withdrawMin} {CurrentCoin?.name} (≈
+                {AepWithdrawInfo?.withdrawMinPriceUsdt} USDT)
+              </div>
+            ) : (
+              <div>
+                {AepWithdrawInfo?.withdrawMin} {CurrentCoin?.name}
+              </div>
+            )}
           </div>
           <div className="info">
-            {t("66")} <div>5%</div>
+            {t("66")}{" "}
+            <div>{NumSplic1(roundTo(AepWithdrawInfo?.fee * 100, 4), 2)}%</div>
           </div>
           <div className="info">
-            {t("67")} <div>150.78 AEP</div>
+            {t("67")}{" "}
+            <div>
+              {NumSplic1(
+                roundTo(Number(InputAmount) * (1 - AepWithdrawInfo?.fee), 4),
+                4
+              )}{" "}
+              {CurrentCoin?.name}
+            </div>
           </div>
         </div>
 
         <div
           className={
             Number(CoinObj[CurrentCoin?.name]?.balance ?? 0) >=
-              Number(InputAmount) && !!InputAmount
+              Number(InputAmount) &&
+            !!InputAmount &&
+            Number(InputAmount) >= AepWithdrawInfo?.withdrawMin
               ? "btn"
               : "btn btn_no_work"
           }
@@ -372,15 +416,18 @@ const App: React.FC = () => {
             if (
               Number(CoinObj[CurrentCoin?.name]?.balance ?? 0) >=
                 Number(InputAmount) &&
-              !!InputAmount
+              !!InputAmount &&
+              Number(InputAmount) >= AepWithdrawInfo?.withdrawMin
             ) {
               swapFun();
             }
           }}
         >
-          {Number(CoinObj[CurrentCoin?.name]?.balance ?? 0) >=
-          Number(InputAmount)
-            ? t("68")
+          {Number(InputAmount) >= AepWithdrawInfo?.withdrawMin
+            ? Number(CoinObj[CurrentCoin?.name]?.balance ?? 0) >=
+              Number(InputAmount)
+              ? t("68")
+              : t("Insufficient balance")
             : t("69")}
         </div>
       </div>

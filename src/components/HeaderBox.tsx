@@ -82,8 +82,10 @@ const LogoContainer = styled(FlexCCBox)`
   color: #ffffff;
 
   > img {
-    width: 2.83333rem;
-    height: 3.25rem;
+    width: 3.16667rem;
+    height: 3.16667rem;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
     flex-shrink: 0;
   }
 `;
@@ -151,8 +153,8 @@ const SetBox = styled.div`
     }
   }
   .langDrowDrop {
-    width: 1.66667rem;
-    height: 1.66667rem;
+    width: 24px;
+    height: 24px;
     flex-shrink: 0;
     > img {
       width: 100%;
@@ -169,7 +171,7 @@ const SetBox = styled.div`
     opacity: 1;
     background: var(--primary-card-color);
     color: var(--primary-card-font-color);
-    font-family: "Clash Display";
+    font-family: "Inter";
     font-size: 1rem;
     font-style: normal;
     font-weight: 500;
@@ -186,7 +188,7 @@ const SetBox = styled.div`
     }
     .chainName {
       color: var(--primary-card-font-color);
-      font-family: "Clash Display";
+      font-family: "Inter";
       font-size: 1rem;
       font-style: normal;
       font-weight: 500;
@@ -204,7 +206,7 @@ const SetBox = styled.div`
     background: rgba(255, 255, 255, 0.5);
     padding: 0.45rem 0.667rem;
     color: #5b5d5e;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1rem;
     font-style: normal;
     font-weight: 500;
@@ -218,7 +220,7 @@ const SetBox = styled.div`
   .LangDropDown {
     .ant-dropdown-menu {
       color: var(--primary-card-font-color);
-      font-family: "Clash Display";
+      font-family: "Inter";
       font-size: 1rem;
       font-style: normal;
       font-weight: 600;
@@ -249,7 +251,7 @@ const SetBox = styled.div`
           justify-content: flex-start;
           color: #000;
           text-align: right;
-          font-family: Inter;
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 600;
@@ -264,7 +266,7 @@ const SetBox = styled.div`
         .active {
           color: #00d558;
           text-align: right;
-          font-family: Inter;
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 600;
@@ -385,7 +387,7 @@ const MobileSlider_Menu = styled.div`
       display: flex;
       align-items: center;
       color: var(--primary-card-font-color);
-      font-family: "Clash Display";
+      font-family: "Inter";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 400;
@@ -412,7 +414,7 @@ const MobileSlider_Menu = styled.div`
       align-items: center;
       div {
         color: var(--primary-card-font-color);
-        font-family: "Clash Display";
+        font-family: "Inter";
         font-size: 1rem;
         font-style: normal;
         font-weight: 400;

@@ -41,7 +41,7 @@ export const ModalContainer_Title = styled(FlexCCBox)`
   width: 100%;
   color: #000;
   text-align: center;
-  font-family: Inter;
+  font-family: "Inter";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 500;
@@ -63,7 +63,7 @@ const ModalContainer_Content = styled.div`
   .subtitle {
     color: #73777b;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.16667rem;
     font-style: normal;
     font-weight: 400;
@@ -94,7 +94,7 @@ const ModalContainer_Content = styled.div`
     flex-direction: column;
     align-items: center;
     color: #000;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.16667rem;
     font-style: normal;
     font-weight: 400;
@@ -105,7 +105,7 @@ const ModalContainer_Content = styled.div`
       margin-top: 0.25rem;
       color: #73777b;
       text-align: center;
-      font-family: Inter;
+      font-family: "Inter";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 400;

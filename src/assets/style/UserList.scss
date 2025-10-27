@@ -20,7 +20,7 @@
       flex: 1;
       color: #fff;
       text-align: center;
-      font-family: "Clash Display";
+      font-family: "Inter";
       font-size: 1.5rem;
       font-style: normal;
       font-weight: 600;
@@ -55,14 +55,13 @@
         white-space: nowrap;
         flex: 1;
         color: #fff;
-        font-family: "Clash Display";
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 400;
         opacity: 0.6;
         padding: 1.33rem 0px 0px;
         &:first-child {
-          
           justify-content: flex-start;
         }
         &:last-child {
@@ -82,7 +81,7 @@
         padding: 0rem 0px 1rem;
         color: #fff;
         text-align: center;
-        font-family: "Clash Display";
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 400;
@@ -111,7 +110,7 @@
         margin-right: 0.33rem;
         a {
           color: #fff;
-          font-family: Inter;
+          font-family: "Inter";
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
@@ -143,7 +142,7 @@
         a {
           color: #fff;
           text-align: center;
-          font-family: "Clash Display";
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 400;
@@ -161,7 +160,7 @@
         span {
           color: #020202;
           text-align: center;
-          font-family: "Clash Display";
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 400;
@@ -184,7 +183,6 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-         
       }
 
       .ant-pagination-options-quick-jumper {

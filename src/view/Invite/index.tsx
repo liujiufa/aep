@@ -272,15 +272,19 @@ const Home = () => {
 
         <div className="refer_list">
           <div className="record_title">
-            {t("111")}({RefereeList?.totol ?? 0})
+            {t("111")}({RefereeList?.total ?? 0})
           </div>
           <div className="devider"></div>
-          {RefereeList?.totol > 0 ? (
+          {RefereeList?.total > 0 ? (
             <>
               <div className="record_content">
                 {RefereeList?.list?.map((item: any, index: any) => (
                   <div
-                    className="items content_items content_items_end"
+                    className={
+                      !!item?.isRelease
+                        ? "items content_items"
+                        : "items content_items content_items_end"
+                    }
                     key={index}
                   >
                     <div className="item">

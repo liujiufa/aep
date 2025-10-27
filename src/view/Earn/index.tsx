@@ -141,7 +141,7 @@ const Home = () => {
           <div className="items_devider"></div>
           <div className="items">
             <div className="item">
-              USDT{t("29")}
+              USDT {t("29")}
               <div className="item_bottom">
                 <img src={USDT} alt="" />
                 {AepIncomeInfo?.incomeUSDT ?? 0}
@@ -149,7 +149,7 @@ const Home = () => {
             </div>
             <div className="item_devider"></div>
             <div className="item">
-              AEP{t("29")}
+              AEP {t("29")}
               <div className="item_bottom">
                 <img src={AEP} alt="" />
                 {AepIncomeInfo?.incomeAEP ?? 0}
@@ -280,6 +280,49 @@ const Home = () => {
             </div>
           </div>
         </div>
+        {!!AepIncomeInfo?.isIncomeC16 && (
+          <div className="sigle_box">
+            <div className="title">{t("138")}</div>
+            <div className="devider"></div>
+            <div className="items">
+              <div className="left_item">
+                <img src={SAEP} alt="" />
+                {AepIncomeInfo?.incomeTop ?? 0}
+              </div>
+              <div className="right_item">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="13"
+                  height="13"
+                  viewBox="0 0 13 13"
+                  fill="none"
+                  onClick={() => {
+                    Navigate("/View/earnrecord", { state: { type: 4 } });
+                  }}
+                >
+                  <path
+                    d="M0.132687 0.0933985C0.0123441 0.195967 -0.031417 0.35887 0.0232843 0.505181L2.2676 6.4798L0.0295358 12.4951C-0.0251655 12.6415 0.0185957 12.8044 0.140501 12.9069C0.262407 13.0095 0.435889 13.0291 0.578112 12.9567L12.7906 6.80862C12.9203 6.74376 13 6.61404 13 6.47377C13 6.33349 12.9187 6.20377 12.789 6.13891L0.568735 0.0421142C0.426511 -0.0287788 0.25303 -0.00917004 0.132687 0.0933985Z"
+                    fill="url(#paint0_linear_108_2702)"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_108_2702"
+                      x1="0"
+                      y1="6.88235"
+                      x2="13"
+                      y2="6.88235"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#00FF38" />
+                      <stop offset="0.5" stop-color="#05FCE9" />
+                      <stop offset="1" stop-color="#191AFF" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <FooterBox></FooterBox>
     </div>

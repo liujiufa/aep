@@ -64,11 +64,11 @@ export const customNetwork_BSC_TEST = defineChain({
   id: 97,
   caipNetworkId: "eip155:97",
   chainNamespace: "eip155",
-  name: "BSC",
+  name: "BNB Smart Chain Testnet",
   nativeCurrency: {
     decimals: 18,
-    name: "BNB",
-    symbol: "BNB",
+    name: "tBNB",
+    symbol: "tBNB",
   },
   rpcUrls: {
     default: {

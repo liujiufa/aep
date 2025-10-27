@@ -220,7 +220,7 @@ const Home = () => {
             <div className="record_content">
               <div className=" items title_items">
                 <div className="item">{t("79")}(U)</div>
-                <div className="item">SAEP{t("29")}</div>
+                <div className="item">SAEP {t("29")}</div>
                 <div className="item">{t("80")}</div>
                 <div className="item">{t("81")}</div>
                 <div className="item"></div>
@@ -240,7 +240,11 @@ const Home = () => {
                     className="item"
                     style={{
                       color:
-                        item?.logisticsStatus === 1 ? "#0140E7" : "#00D558",
+                        item?.logisticsStatus === 2 && item?.status === 2
+                          ? "#73777B"
+                          : item?.logisticsStatus === 1
+                          ? "#0140E7"
+                          : "#00D558",
                     }}
                   >
                     {item?.logisticsStatus === 1 ? t("82") : t("83")}
@@ -292,7 +296,6 @@ const Home = () => {
       <FooterBox></FooterBox>
 
       <BuyModal
-        // fun={getInitDate}
         data={{ ...AepPayInfo, id: CurrentId }}
         addaddressfun={() => {
           setBuyModalState(false);

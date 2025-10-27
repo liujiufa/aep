@@ -75,30 +75,31 @@ const App: React.FC = () => {
   };
   const swapFun = async () => {
     if (!InputAmount || Number(InputAmount) <= 0) return addMessage(t("129"));
-    if (!!InputAmount && Number(InputAmount) < 100)
-      return addMessage(t("119", { num: 100 }));
+    // if (!!InputAmount && Number(InputAmount) < 100)
+    //   return addMessage(t("119", { num: 100 }));
     let res: any;
     showLoding(true);
-    setTimeout(async () => {
-      try {
-        res = await aepSwap({
-          swapCoinName: FromCoin,
-          swapNum: InputAmount,
-        });
-      } catch (error: any) {
-        showLoding(false);
-        return addMessage(t("131"));
-      }
+
+    try {
+      res = await aepSwap({
+        swapCoinName: FromCoin,
+        swapNum: InputAmount,
+      });
+    } catch (error: any) {
       showLoding(false);
-      if (res?.code === 200) {
+      return addMessage(t("131"));
+    }
+    if (res?.code === 200) {
+      setTimeout(async () => {
+        showLoding(false);
         getInitData();
         setInputAmount(0);
         setReceiveAmount("");
         return addMessage(t("130"));
-      } else {
-        return addMessage(res?.msg);
-      }
-    }, 2000);
+      }, 2000);
+    } else {
+      return addMessage(res?.msg);
+    }
   };
 
   useEffect(() => {
@@ -349,6 +350,7 @@ const App: React.FC = () => {
         <div
           className={
             !!InputAmount &&
+            Number(InputAmount) >= Number(SwapInfo?.swapMinNum ?? 0) &&
             Number(CoinObj[FromCoin]?.balance ?? 0) >= Number(InputAmount)
               ? "btn"
               : "btn btn_no_work"
@@ -356,14 +358,17 @@ const App: React.FC = () => {
           onClick={() => {
             if (
               !!InputAmount &&
+              Number(InputAmount) >= Number(SwapInfo?.swapMinNum ?? 0) &&
               Number(CoinObj[FromCoin]?.balance ?? 0) >= Number(InputAmount)
             ) {
               swapFun();
             }
           }}
         >
-          {Number(CoinObj[FromCoin]?.balance ?? 0) >= Number(InputAmount)
-            ? t("126")
+          {Number(InputAmount ?? 0) >= Number(SwapInfo?.swapMinNum ?? 0)
+            ? Number(CoinObj[FromCoin]?.balance ?? 0) >= Number(InputAmount)
+              ? t("126")
+              : t("Insufficient balance")
             : t("127")}
         </div>
       </div>

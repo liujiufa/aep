@@ -47,7 +47,7 @@ export const ModalContainer_Title = styled(FlexCCBox)`
   width: 100%;
   color: #000;
   text-align: center;
-  font-family: "Clash Display";
+  font-family: "Inter";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
@@ -74,7 +74,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
       overflow: hidden;
       color: #73777b;
       text-overflow: ellipsis;
-      font-family: Inter;
+      font-family: "Inter";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 500;
@@ -84,7 +84,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
         overflow: hidden;
         color: #000;
         text-overflow: ellipsis;
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 500;
@@ -96,7 +96,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
           overflow: hidden;
           color: #e5e5e5;
           text-overflow: ellipsis;
-          font-family: Inter;
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 500;
@@ -122,7 +122,7 @@ const ModalContainer_Content = styled.div<{ src: any }>`
     flex-shrink: 0;
     color: #000;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.16667rem;
     font-style: normal;
     font-weight: 700;
@@ -160,7 +160,8 @@ export default function ModalContent(props: any) {
 
   const updateFun = () => {
     if (!props?.ShowTipModal) return;
-    if (!UseName?.address || !UseName?.phone || !UseName?.receiver) return;
+    if (!UseName?.address || !UseName?.phone || !UseName?.receiver)
+      return addMessage(t("136"));
     showLoding(true);
     aepSetReceiverInfo({
       ...UseName,
@@ -181,7 +182,12 @@ export default function ModalContent(props: any) {
       phone: props?.data?.phone,
       receiver: props?.data?.receiver,
     });
-  }, [props?.data?.address, props?.data?.phone, props?.data?.receiver]);
+  }, [
+    props?.data?.address,
+    props?.data?.phone,
+    props?.data?.receiver,
+    props?.ShowTipModal,
+  ]);
 
   return (
     <AllModal

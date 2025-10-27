@@ -255,3 +255,23 @@ export function aepRefereeList(data: any) {
     },
   });
 }
+export function aepIncomeListTop(data: any) {
+  return axois.request({
+    url: "/aepIncome/aepIncomeListTop",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}
+export function aepWithdrawInfo(data: any) {
+  return axois.request({
+    url: "/aepUser/aepWithdrawInfo",
+    method: "post",
+    data: {
+      ...data,
+      // Encrypt: true,
+    },
+  });
+}

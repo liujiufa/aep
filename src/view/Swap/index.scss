@@ -30,15 +30,7 @@
           font-weight: 900;
           line-height: normal;
            
-          background: linear-gradient(
-            90deg,
-            #00ff38 0%,
-            #05fce9 50%,
-            #191aff 100%
-          );
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+         color: #0140E7;
           padding: 0px 0.83rem;
         }
         img {
@@ -71,21 +63,13 @@
       .title {
         width: fit-content;
         padding: 1.33rem 1.17rem 1.17rem;
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.5rem;
         font-style: normal;
         font-weight: 900;
         line-height: normal;
          
-        background: linear-gradient(
-          90deg,
-          #00ff38 0%,
-          #05fce9 50%,
-          #191aff 100%
-        );
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+       color: #0140E7;
       }
       .devider {
         height: 0.08333rem;
@@ -107,7 +91,7 @@
           flex-direction: column;
           align-items: center;
           color: #000;
-          font-family: Inter;
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 400;
@@ -119,7 +103,7 @@
             align-items: center;
             justify-content: center;
             color: #000;
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1.33333rem;
             font-style: normal;
             font-weight: 700;
@@ -163,15 +147,7 @@
         line-height: normal;
          
         padding: 0px 1.17rem 1.17rem 1.17rem;
-        background: linear-gradient(
-          90deg,
-          #00ff38 0%,
-          #05fce9 50%,
-          #191aff 100%
-        );
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+       color: #0140E7;
       }
       .devider {
         background: linear-gradient(
@@ -196,7 +172,7 @@
             align-items: center;
             justify-content: center;
             color: rgba(0, 0, 0, 0.5);
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1.16667rem;
             font-style: normal;
             font-weight: 400;
@@ -229,7 +205,7 @@
         margin: 0.58rem auto 0px;
         color: #73777b;
         text-align: center;
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1rem;
         font-style: normal;
         font-weight: 400;

@@ -18,7 +18,7 @@ interface ChartsLineProps {
 const ChartTools = styled.div`
   padding: 0px 1.33rem;
   color: #fff;
-  font-family: "Clash Display";
+  font-family: "Inter";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
@@ -36,7 +36,7 @@ const ChartTools = styled.div`
       background: #9aa8d9;
       padding: 0.67rem 1.17rem;
       color: #000;
-      font-family: "Clash Display";
+      font-family: "Inter";
       font-size: 1.16667rem;
       font-style: normal;
       font-weight: 600;

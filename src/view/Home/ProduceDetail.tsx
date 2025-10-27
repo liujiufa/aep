@@ -51,7 +51,7 @@ const ReturnBox = styled(FlexSBCBox)`
     flex: 1;
     color: var(--primary-card-font-color);
     text-align: center;
-    font-family: "Alibaba PuHuiTi 3.0";
+    font-family: "Inter";
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 600;
@@ -69,7 +69,7 @@ const ReturnBox = styled(FlexSBCBox)`
     flex: 1;
     margin-left: 1.17rem;
     color: #000;
-    font-family: "Alibaba PuHuiTi 3.0";
+    font-family: "Inter";
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -90,14 +90,14 @@ const ReturnBox = styled(FlexSBCBox)`
         background: transparent;
         outline: none;
         color: #000;
-        font-family: "Alibaba PuHuiTi 3.0";
+        font-family: "Inter";
         font-size: 1rem;
         font-style: normal;
         font-weight: 400;
         line-height: 1.33333rem; /* 133.333% */
         &::placeholder {
           color: #000;
-          font-family: "Alibaba PuHuiTi 3.0";
+          font-family: "Inter";
           font-size: 1rem;
           font-style: normal;
           font-weight: 400;
@@ -227,7 +227,9 @@ export default function Rank() {
           setBuyModalState(false);
           setAddressModalState(true);
         }}
-        getInitData={getInitData}
+        getInitData={() => {
+          getInitData();
+        }}
         showSuccessModal={() => {
           setBuySuccessModalState(true);
         }}
@@ -238,7 +240,12 @@ export default function Rank() {
       />
       <AddressModal
         data={{ ...AepPayInfo, id: id }}
-        getInitData={getInitData}
+        getInitData={() => {
+          getInitData();
+        }}
+        showBuyModal={() => {
+          setBuyModalState(true);
+        }}
         ShowTipModal={AddressModalState}
         close={() => {
           setAddressModalState(false);

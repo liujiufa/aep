@@ -53,12 +53,12 @@ const HomeContainer_Content = styled.div`
       div {
         flex: 1;
         color: rgba(0, 0, 0, 0.5);
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-         
+
         display: flex;
         justify-content: center;
         &:first-child {
@@ -117,12 +117,12 @@ const HomeContainer_Content = styled.div`
           margin-bottom: 0.5rem;
           .address {
             color: #000;
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1.16667rem;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
-             
+
             img {
               margin-left: 0.83rem;
             }
@@ -146,12 +146,11 @@ const HomeContainer_Content = styled.div`
           }
           .time {
             color: #000;
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1.16667rem;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
-             
           }
         }
         .item_bottom {
@@ -161,23 +160,22 @@ const HomeContainer_Content = styled.div`
               width: fit-content;
 
               color: #73777b;
-              font-family: Inter;
+              font-family: "Inter";
               font-size: 1.16667rem;
               font-style: normal;
               font-weight: 400;
               line-height: normal;
-               
+
               display: flex;
               align-items: center;
               justify-content: flex-start;
               span {
                 color: #000;
-                font-family: Inter;
+                font-family: "Inter";
                 font-size: 1.16667rem;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
-                 
               }
             }
           }
@@ -220,7 +218,7 @@ const ReturnBox = styled(FlexSBCBox)`
     flex: 1;
     color: #000;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 500;
@@ -350,17 +348,17 @@ export const PaginationContainer = styled(FlexBox)`
     .ant-pagination-item-active {
       border-radius: 2px;
       opacity: 1;
-      background: rgba(128, 117, 80, 1);
+      background: rgba(21, 21, 21, 1);
       a,
       span {
-        font-family: "Inter";
+        font-family: "PingFang SC";
         font-size: 12px;
         font-weight: normal;
         line-height: 16px;
         text-align: center;
         letter-spacing: 0em;
         font-variation-settings: "opsz" auto;
-        color: #000000;
+        color: #fff;
       }
     }
     .ant-pagination-jump-next
@@ -379,7 +377,6 @@ export const PaginationContainer = styled(FlexBox)`
       font-style: normal;
       font-weight: 400;
       line-height: normal;
-       
     }
 
     .ant-pagination-options-quick-jumper {
@@ -448,6 +445,7 @@ export default function Rank() {
   const [InputAddress, setInputAddress] = useState<any>(null);
   const { address: web3ModalAccount, isConnected } = useAppKitAccount();
   const [PageNum, setPageNum] = useState(1);
+  const [OrderType, setOrderType] = useState(2);
   const [RecordList3, setRecordList3] = useState<any>({});
   const { theme, setTheme } = useContext(ThemeContext);
 
@@ -503,7 +501,7 @@ export default function Rank() {
   };
   const getInitData = () => {
     aepRefereeList({
-      orderType: 0,
+      orderType: OrderType,
       userAddress: InputAddress,
       pageNum: PageNum,
       pageSize: 10,
@@ -517,7 +515,7 @@ export default function Rank() {
       getInitData();
     } else {
     }
-  }, [web3ModalAccount, token, InputAddress, PageNum]);
+  }, [web3ModalAccount, token, InputAddress, PageNum, OrderType]);
 
   return (
     <HomeContainer>
@@ -540,6 +538,9 @@ export default function Rank() {
               height="24"
               viewBox="0 0 24 24"
               fill="none"
+              onClick={() => {
+                setOrderType(OrderType === 2 ? 0 : 2);
+              }}
             >
               <path
                 d="M21.302 17.8814H12.3773C11.8606 17.8814 11.4392 18.3473 11.4392 18.9186C11.4392 19.4897 11.8606 19.9557 12.3773 19.9557H21.302C21.8186 19.9557 22.24 19.4897 22.24 18.9186C22.24 18.3473 21.8186 17.8814 21.302 17.8814ZM21.302 10.3953H15.3521C14.8355 10.3953 14.4142 10.8571 14.4142 11.4323C14.4142 12.0035 14.8355 12.4693 15.3521 12.4693H21.302C21.8186 12.4693 22.24 12.0035 22.24 11.4323C22.24 10.8571 21.8186 10.3953 21.302 10.3953ZM12.0841 5.20988H21.302C21.8186 5.20988 22.24 4.74806 22.24 4.17293C22.24 3.59757 21.8186 3.13574 21.302 3.13574H12.0841C11.5675 3.13574 11.1461 3.59757 11.1461 4.17293C11.1461 4.74806 11.5675 5.20988 12.0841 5.20988ZM12.7361 10.1604C13.1062 9.75506 13.1062 9.09473 12.7435 8.68567L8.07221 3.468C7.88919 3.26144 7.64359 3.15599 7.40175 3.15599C7.16354 3.15599 6.92172 3.25734 6.73858 3.45572L6.73481 3.45981C6.73481 3.45981 6.73118 3.45981 6.73118 3.46391L2.03435 8.637C1.66796 9.04627 1.66796 9.70662 2.03798 10.1158H2.03809C2.40437 10.5248 3.01636 10.5248 3.38639 10.1198L6.44927 6.74931V19.1576C6.44927 19.7328 6.86686 20.1987 7.38715 20.1987C7.90722 20.1987 8.32504 19.7328 8.32493 19.1576V6.69253L11.4099 10.1522C11.7762 10.5612 12.3699 10.5653 12.7361 10.1604Z"
@@ -569,6 +570,7 @@ export default function Rank() {
             src={return_icon}
             alt=""
             onClick={() => {
+              setInputAddress(null);
               setIsSearchState(false);
             }}
           />
@@ -604,7 +606,7 @@ export default function Rank() {
                 let tag = await web3.utils.isAddress(InputAddress);
                 // if (tag) {
                 aepRefereeList({
-                  orderType: 0,
+                  orderType: OrderType,
                   address: InputAddress,
                   pageNum: PageNum,
                   pageSize: 10,
@@ -626,17 +628,21 @@ export default function Rank() {
         {RecordList3?.total > 0 ? (
           <div className="record">
             <div className="title">
-              <div>{t("15")}</div>
-
               <div>{t("16")}</div>
+
+              <div>{t("15")}</div>
             </div>
             <div className="devider"></div>
             <div className="friend_list_content">
               {RecordList3?.list?.map((item: any, index: any) => (
-                <div key={index} className="item item_nowork">
+                <div
+                  key={index}
+                  className={!!item?.isRelease ? "item" : "item item_nowork"}
+                >
                   <div className="item_top">
                     <div className="address">
-                      {AddrHandle(item?.userAddress)} <img src={tag} alt="" />{" "}
+                      {AddrHandle(item?.userAddress)}{" "}
+                      {!!item?.isReleaseSpeed && <img src={tag} alt="" />}{" "}
                       {item?.level > 0 && <span>C{item?.level}</span>}
                     </div>
 

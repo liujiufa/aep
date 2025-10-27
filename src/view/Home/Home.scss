@@ -29,15 +29,7 @@
           font-weight: 900;
           line-height: normal;
            
-          background: linear-gradient(
-            90deg,
-            #00ff38 0%,
-            #05fce9 50%,
-            #191aff 100%
-          );
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+         color: #0140E7;
           padding: 0px 0.83rem;
         }
         img {
@@ -82,21 +74,13 @@
         flex-direction: column;
         align-items: center;
         .value {
-          font-family: Inter;
+          font-family: "Inter";
           font-size: 1.5rem;
           font-style: normal;
           font-weight: 800;
           line-height: normal;
            
-          background: linear-gradient(
-            90deg,
-            #00d558 0%,
-            #05fce9 50%,
-            #0140e7 100%
-          );
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+         color: #0140E7;
         }
         .price {
           width: 100%;
@@ -105,7 +89,7 @@
           align-items: center;
           justify-content: space-between;
           color: #000;
-          font-family: Inter;
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 400;
@@ -118,7 +102,7 @@
               margin-right: 0.33rem;
             }
             color: #000;
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1.16667rem;
             font-style: normal;
             font-weight: 600;
@@ -137,7 +121,7 @@
             padding: 1.5rem 4.33rem;
             color: #000;
             text-align: center;
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1.16667rem;
             font-style: normal;
             font-weight: 700;
@@ -149,7 +133,7 @@
           .view {
             color: #000;
             text-align: center;
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1rem;
             font-style: normal;
             font-weight: 700;
@@ -178,15 +162,7 @@
         line-height: normal;
          
         padding: 0px 1.17rem 1.17rem 1.17rem;
-        background: linear-gradient(
-          90deg,
-          #00ff38 0%,
-          #05fce9 50%,
-          #191aff 100%
-        );
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+       color: #0140E7;
       }
       .devider {
         background: linear-gradient(
@@ -211,11 +187,12 @@
             align-items: center;
             justify-content: center;
             color: rgba(0, 0, 0, 0.5);
-            font-family: Inter;
+            font-family: "Inter";
             font-size: 1.16667rem;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
+            white-space: nowrap;
              
             &:first-child {
               // flex: auto;

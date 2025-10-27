@@ -33,6 +33,7 @@ import {
   aepIncomeListReferee,
   aepIncomeListSales,
   aepIncomeListTeam,
+  aepIncomeListTop,
 } from "../../API";
 const HomeContainer = styled(FlexBox)`
   position: relative;
@@ -62,12 +63,12 @@ const HomeContainer_Content = styled.div`
       div {
         flex: 1;
         color: rgba(0, 0, 0, 0.5);
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-         
+
         display: flex;
         justify-content: center;
         &:first-child {
@@ -124,12 +125,12 @@ const HomeContainer_Content = styled.div`
         }
         .item_left {
           color: #000;
-          font-family: Inter;
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 500;
           line-height: normal;
-           
+
           img {
             width: 2.66667rem;
             height: 2.66667rem;
@@ -154,7 +155,7 @@ const ReturnBox = styled(FlexSBCBox)`
     flex: 1;
     color: #000;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 500;
@@ -172,7 +173,7 @@ const ReturnBox = styled(FlexSBCBox)`
     flex: 1;
     margin-left: 1.17rem;
     color: #000;
-    font-family: "Alibaba PuHuiTi 3.0";
+    font-family: "Inter";
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -193,14 +194,14 @@ const ReturnBox = styled(FlexSBCBox)`
         background: transparent;
         outline: none;
         color: #000;
-        font-family: "Alibaba PuHuiTi 3.0";
+        font-family: "Inter";
         font-size: 1rem;
         font-style: normal;
         font-weight: 400;
         line-height: 1.33333rem; /* 133.333% */
         &::placeholder {
           color: #000;
-          font-family: "Alibaba PuHuiTi 3.0";
+          font-family: "Inter";
           font-size: 1rem;
           font-style: normal;
           font-weight: 400;
@@ -274,7 +275,7 @@ export const PaginationContainer = styled(FlexBox)`
     .ant-pagination-item-active {
       border-radius: 2px;
       opacity: 1;
-      background: rgba(128, 117, 80, 1);
+      background: rgba(21, 21, 21, 1);
       a,
       span {
         font-family: "PingFang SC";
@@ -284,7 +285,7 @@ export const PaginationContainer = styled(FlexBox)`
         text-align: center;
         letter-spacing: 0em;
         font-variation-settings: "opsz" auto;
-        color: #000000;
+        color: #fff;
       }
     }
     .ant-pagination-jump-next
@@ -303,7 +304,6 @@ export const PaginationContainer = styled(FlexBox)`
       font-style: normal;
       font-weight: 400;
       line-height: normal;
-       
     }
 
     .ant-pagination-options-quick-jumper {
@@ -382,6 +382,7 @@ export default function Rank() {
     1: "31",
     2: "32",
     3: "33",
+    4: "139",
   };
 
   console.log(type, "type");
@@ -457,6 +458,13 @@ export default function Rank() {
       }).then((res: any) => {
         setRecordList3(res?.data || {});
       });
+    } else if (Number(type) === 4) {
+      aepIncomeListTop({
+        pageNum: PageNum,
+        pageSize: 10,
+      }).then((res: any) => {
+        setRecordList3(res?.data || {});
+      });
     }
   };
 
@@ -488,7 +496,9 @@ export default function Rank() {
           <div className="record">
             <div className="title">
               <div>{t("27")}</div>
-              <div>{type === 2 ? t("47") : t("48")}</div>
+              <div>
+                {type === 4 ? t("145") : type === 2 ? t("47") : t("48")}
+              </div>
               <div>{t(typeObj[type])}</div>
             </div>
             <div className="devider"></div>
@@ -507,14 +517,18 @@ export default function Rank() {
                         ) + "%"
                       : Number(type) === 2
                       ? "c" + item?.level
-                      : NumSplic1(roundTo(item?.incomeRatio * 100, 4), 0) + "%"}
+                      : Number(type) === 3
+                      ? NumSplic1(roundTo(item?.incomeRatio * 100, 4), 0) + "%"
+                      : item?.qualifyNum}
                   </div>
                   <div className="item_left">
                     {Number(type) === 1
-                      ? item?.incomeSaep
+                      ? NumSplic1(item?.incomeSaep, 4)
                       : Number(type) === 2
-                      ? item?.incomeSales
-                      : item?.incomeTeam}{" "}
+                      ? NumSplic1(item?.incomeSales, 4)
+                      : Number(type) === 3
+                      ? NumSplic1(item?.incomeTeam, 4)
+                      : NumSplic1(item?.incomeTop, 4)}{" "}
                     SAEP
                   </div>
                 </div>

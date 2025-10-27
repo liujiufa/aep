@@ -19,7 +19,7 @@ import { contractAddress } from "../config";
 import { Pagination } from "antd";
 import { Modal, PaginationProps } from "antd";
 // import { getNftAwardRecord } from "../API";
-import { AddrHandle, addMessage, dateFormat } from "../utils/tool";
+import { AddrHandle, NumSplic1, addMessage, dateFormat } from "../utils/tool";
 import { useAppKitAccount } from "@reown/appkit/react";
 import NoData from "../components/NoData";
 import ThemeContext from "../components/ThemeContext";
@@ -53,17 +53,17 @@ const HomeContainer_Content = styled.div`
       div {
         flex: 1;
         color: rgba(0, 0, 0, 0.5);
-        font-family: Inter;
+        font-family: "Inter";
         font-size: 1.16667rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-         
+
         display: flex;
         justify-content: center;
         &:first-child {
           flex: auto;
-          max-width: 6.25rem;
+          max-width: 7.25rem;
           justify-content: flex-start;
         }
         &:last-child {
@@ -104,7 +104,7 @@ const HomeContainer_Content = styled.div`
           justify-content: center;
           &:first-child {
             flex: auto;
-            max-width: 6.25rem;
+            max-width: 7.25rem;
             justify-content: flex-start;
           }
           &:last-child {
@@ -115,12 +115,12 @@ const HomeContainer_Content = styled.div`
         }
         .item_left {
           color: #000;
-          font-family: Inter;
+          font-family: "Inter";
           font-size: 1.16667rem;
           font-style: normal;
           font-weight: 500;
           line-height: normal;
-           
+
           img {
             width: 2.66667rem;
             height: 2.66667rem;
@@ -145,7 +145,7 @@ const ReturnBox = styled(FlexSBCBox)`
     flex: 1;
     color: #000;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 500;
@@ -163,7 +163,7 @@ const ReturnBox = styled(FlexSBCBox)`
     flex: 1;
     margin-left: 1.17rem;
     color: #000;
-    font-family: "Alibaba PuHuiTi 3.0";
+    font-family: "Inter";
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -184,14 +184,14 @@ const ReturnBox = styled(FlexSBCBox)`
         background: transparent;
         outline: none;
         color: #000;
-        font-family: "Alibaba PuHuiTi 3.0";
+        font-family: "Inter";
         font-size: 1rem;
         font-style: normal;
         font-weight: 400;
         line-height: 1.33333rem; /* 133.333% */
         &::placeholder {
           color: #000;
-          font-family: "Alibaba PuHuiTi 3.0";
+          font-family: "Inter";
           font-size: 1rem;
           font-style: normal;
           font-weight: 400;
@@ -265,7 +265,7 @@ export const PaginationContainer = styled(FlexBox)`
     .ant-pagination-item-active {
       border-radius: 2px;
       opacity: 1;
-      background: rgba(128, 117, 80, 1);
+      background: rgba(21, 21, 21, 1);
       a,
       span {
         font-family: "PingFang SC";
@@ -275,7 +275,7 @@ export const PaginationContainer = styled(FlexBox)`
         text-align: center;
         letter-spacing: 0em;
         font-variation-settings: "opsz" auto;
-        color: #000000;
+        color: #fff;
       }
     }
     .ant-pagination-jump-next
@@ -294,7 +294,6 @@ export const PaginationContainer = styled(FlexBox)`
       font-style: normal;
       font-weight: 400;
       line-height: normal;
-       
     }
 
     .ant-pagination-options-quick-jumper {
@@ -467,7 +466,7 @@ export default function Rank() {
                     {item?.numInProto} {item?.numInCoinName}
                   </div>
                   <div className="item_left">
-                    {item?.numOutActual} {item?.numOutCoinName}
+                    {NumSplic1(item?.numOutActual, 2)} {item?.numOutCoinName}
                   </div>
                   <div className="item_left">
                     <svg

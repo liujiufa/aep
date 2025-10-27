@@ -63,7 +63,7 @@ const MessageBox = styled.div`
       word-break: break-all;
       flex: 1;
       color: #242d39;
-      font-family: Inter;
+      font-family: "Inter";
       font-size: 1.33333rem;
       font-style: normal;
       font-weight: 500;
