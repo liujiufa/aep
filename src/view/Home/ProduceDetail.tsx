@@ -134,6 +134,7 @@ export default function Rank() {
   const outAmount = location?.state?.outAmount;
   const img = location?.state?.img;
   const banner = location?.state?.banner;
+  const produce_name = location?.state?.produce_name;
   const getContainerClassName = () => {
     if (scrollPosition > 0) {
       return "product_produce scrolled-deep";
@@ -177,11 +178,18 @@ export default function Rank() {
         <img src={img} alt="" />
         {!(scrollPosition > 0) ? (
           <div className="right_box">
-            <div className="value">AKG</div>
-            <div className="price">
-              <img src={USDT} alt="" />
-              {amount} USDT
-            </div>
+            <div className="value">{t(produce_name)}</div>
+            {Number(id) === 2 ? (
+              <div className="price">
+                <img src={USDT} alt="" />
+                {amount}U / 5 {t("163")}
+              </div>
+            ) : (
+              <div className="price">
+                <img src={USDT} alt="" />
+                {amount}U / {t("163")}
+              </div>
+            )}
             <div
               className="btn"
               onClick={() => {
@@ -194,11 +202,18 @@ export default function Rank() {
         ) : (
           <>
             <div className="right_box">
-              <div className="value">AKG</div>
-              <div className="price">
-                <img src={USDT} alt="" />
-                {amount} USDT
-              </div>
+              <div className="value">{t(produce_name)}</div>
+              {Number(id) === 2 ? (
+                <div className="price">
+                  <img src={USDT} alt="" />
+                  {amount}U/5{t("163")}
+                </div>
+              ) : (
+                <div className="price">
+                  <img src={USDT} alt="" />
+                  {amount}U / {t("163")}
+                </div>
+              )}
             </div>
             <div
               className="btn"

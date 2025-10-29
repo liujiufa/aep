@@ -4,7 +4,7 @@ import Market from "./ABI/Market.json";
 import AEPWithdraw from "./ABI/AEPWithdraw.json";
 import { defineChain } from "@reown/appkit/networks";
 // 正式
-export const isMain = false;
+export const isMain = true;
 export const isAllOpen = true;
 export const curentBSCChainId: number = isMain ? 56 : 97;
 export const curentETHChainId: number = isMain ? 1 : 17000;
@@ -14,9 +14,7 @@ export const mathRandom = (
 ).toFixed(8);
 
 export const LOCAL_KEY = "ORA_LANG";
-export let baseUrl: string = isMain ? "" : "http://52.74.247.74:15250/";
-
-// "https://test.datadao.top/api/";
+export let baseUrl: string = isMain ? window.location.origin + "/user/" : "";
 
 export let ContractUrl: string = isMain
   ? "https://bscscan.com/address/"
@@ -113,6 +111,9 @@ export const abiObj: abiObjType = {
 
 export const Main: contractAddressType = {
   USDT: "0x55d398326f99059fF775485246999027B3197955",
+  AEP: "0xA1961aeB27aa4c41Cd13d578F3a3a776F15E3178",
+  Market: "0x4DbBAf563e7460E908FdC67ec9667229314fb4F2",
+  AEPWithdraw: "0xe1c79f0E5f1491722Ae18ba78b676A733C34995f",
 };
 
 const Test = {

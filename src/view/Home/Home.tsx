@@ -63,9 +63,9 @@ const Home = () => {
   const [CurrentId, setCurrentId] = useState<any>();
 
   const goodsObj = [
-    { img: buy_item1, id: 1, banner: banner_item1 },
-    { img: buy_item2, id: 2, banner: banner_item2 },
-    { img: buy_item3, id: 3, banner: banner_item3 },
+    { img: buy_item1, id: 1, banner: banner_item1, produce_name: "AKG" },
+    { img: buy_item2, id: 2, banner: banner_item2, produce_name: "164" },
+    { img: buy_item3, id: 3, banner: banner_item3, produce_name: "165" },
   ];
 
   const getInitDate = () => {
@@ -175,13 +175,20 @@ const Home = () => {
               <img src={item?.img} alt="" />
             </div>
             <div className="buy_item_right">
-              <div className="value">AKG</div>
+              <div className="value">{t(item?.produce_name)}</div>
               <div className="price">
                 {t("75")}：
-                <span>
-                  <img src={USDT} alt="" />
-                  {item?.amount} USDT
-                </span>
+                {index === 1 ? (
+                  <span>
+                    <img src={USDT} alt="" />
+                    {item?.amount}U / 5 {t("163")}
+                  </span>
+                ) : (
+                  <span>
+                    <img src={USDT} alt="" />
+                    {item?.amount}U / {t("163")}
+                  </span>
+                )}
               </div>
               <div className="btns">
                 <div
@@ -203,6 +210,7 @@ const Home = () => {
                         outAmount: item?.outAmount,
                         img: item?.img,
                         banner: item?.banner,
+                        produce_name:item?.produce_name
                       },
                     });
                   }}

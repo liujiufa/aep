@@ -34,7 +34,7 @@ function getLibrary(provider: any): Web3 {
 }
 
 // 1. Get projectId
-const projectId = "1204ba6c7be49f6e59d5b46099b77487";
+const projectId = "186f339155f56029e009e98e4579e480";
 // const projectId = 'YOUR_PROJECT_ID'
 
 // 2. Set chains
@@ -43,9 +43,9 @@ const projectId = "1204ba6c7be49f6e59d5b46099b77487";
 const metadata = {
   name: "Depin",
   description: "Depin",
-  url: "",
+  url: "https://nexusrwa.io/",
   // url: "https://kf-panda.com/",
-  icons: [""],
+  icons: ["https://nexusrwa.io/favicon.ico"],
   // icons: ["http://yhhyn.com/vtb.png"],
 };
 
