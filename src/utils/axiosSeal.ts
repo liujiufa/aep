@@ -4,11 +4,10 @@ import axios, {
   AxiosPromise,
   AxiosResponse,
 } from "axios"; // 引入axios和定义在node_modules/axios/index.ts文件里的类型声明
-// import { Decrypt, Encrypt } from "../utils/encryption.js";
+import { Decrypt, Encrypt } from "./encryption";
 import i18n from "i18next";
 import store from "../store";
 import { json } from "stream/consumers";
-import EncryptInterceptor from "./encryptInterceptor";
 class HttpRequest {
   // 定义一个接口请求类，用于创建一个axios请求实例
   constructor(public baseUrl: string) {
@@ -25,46 +24,39 @@ class HttpRequest {
   private interceptors(instance: AxiosInstance, url?: string) {
     // 定义这个函数用于添加全局请求和响应拦截逻辑
     // 在这里添加请求和响应拦截
-    // instance.interceptors.request.use(
-    //   (config: any) => {
-    //     // config.headers.lang = 'en'
-    //     if (
-    //       (config.method === "POST" || config.method === "post") &&
-    //       config?.data.Encrypt
-    //     ) {
-    //       config.data = Encrypt(JSON.stringify(config.data));
-    //     }
-    //     // config.data=Encrypt(JSON.stringify(config.data))
-    //     // 接口请求的所有配置，都在这个config对象中，他的类型是AxiosRequestConfig，你可以看到他有哪些字段
-    //     // 如果你要修改接口请求配置，需要修改 axios.defaults 上的字段值
-    //     return config;
-    //   },
-    //   (error) => {
-    //     return Promise.reject(error);
-    //   }
-    // );
-    instance.interceptors.response.use(
-      async (response: any) => {
-        // 如果响应数据是加密的，需要解密
-        if (response.config.encrypt !== false && response.data) {
-          // 注意：在实际应用中，您需要从某个地方获取AES密钥
-          // 这通常通过请求头或其他机制传递
-          // 这里简化处理，实际需要根据后端设计调整
-          try {
-            // const aesKey = getAesKeyFromSomewhere();
-            response.data = await EncryptInterceptor.decryptResponse(
-              "jDbPK7c7UBpyxSI0U800QHWH+89rGhMnaGHeExZCGK8S8c/6v8AkHvnitQi3WdW45M4MYWKWl4dYsrniKFcLFTuBIhPE4dsdKwxpw1ZAW8nYml9WfwPfUKkZKzlqpPu9BFKtwsxJTI/AtoyfwmoVssBDsF5Xog8F60eQlaeYsnZH52w+gWGJLTgHSeEhvtaWGXSkUuwDH0nJt/huGMo+mt/vaDetxwZ91ccMGeB0rXt7WmWT5GHi7qTwOJkP3S7BjUEjpCJxjloedxV+gPQzsDu0X/9LqeY+0oRoyBVa5Tm7/7gYT1iBBdUJ0rcwyFzujArnKeShvhtqqh3/ol2YVbuSXZXrAxwdGG8IoEc2mWz883TvIganA9KiyIVVxAjEi1BuYvvUL91nErS/HG/7ZetkRJSc7TPQQLFdxLC2XPXWjb2LKZWBEBCVfCs9d0F1",
-              "MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAmc3CuPiGL/LcIIm7zryCEIbl1SPzBkr75E2VMtxegyZ1lYRD+7TZGAPkvIsBcaMs6Nsy0L78n2qh+lIZMpLH8wIDAQABAkEAk82Mhz0tlv6IVCyIcw/s3f0E+WLmtPFyR9/WtV3Y5aaejUkU60JpX4m5xNR2VaqOLTZAYjW8Wy0aXr3zYIhhQQIhAMfqR9oFdYw1J9SsNc+CrhugAvKTi0+BF6VoL6psWhvbAiEAxPPNTmrkmrXwdm/pQQu3UOQmc2vCZ5tiKpW10CgJi8kCIFGkL6utxw93Ncj4exE/gPLvKcT+1Emnoox+O9kRXss5AiAMtYLJDaLEzPrAWcZeeSgSIzbL+ecokmFKSDDcRske6QIgSMkHedwND1olF8vlKsJUGK3BcdtM8w4Xq7BpSBwsloE="
-            );
-            console.log(response, "response");
-            debugger;
-          } catch (error) {
-            console.error("响应解密失败:", error);
-          }
+    instance.interceptors.request.use(
+      (config: any) => {
+        // config.headers.lang = 'en'
+        if (
+          (config.method === "POST" || config.method === "post") &&
+          config?.data.Encrypt
+        ) {
+          config.data = Encrypt(JSON.stringify(config.data));
         }
-        return response;
+        // config.data=Encrypt(JSON.stringify(config.data))
+        // 接口请求的所有配置，都在这个config对象中，他的类型是AxiosRequestConfig，你可以看到他有哪些字段
+        // 如果你要修改接口请求配置，需要修改 axios.defaults 上的字段值
+        return config;
       },
       (error) => {
+        return Promise.reject(error);
+      }
+    );
+    instance.interceptors.response.use(
+      (res: AxiosResponse) => {
+        // const { data } = res // res的类型是AxiosResponse<any>，包含六个字段，其中data是服务端返回的数据
+        // const { code, msg } = data // 通常服务端会将响应状态码、提示信息、数据等放到返回的数据中
+        // if (code !== 0) { // 这里我们在服务端将正确返回的状态码标为0
+        //   console.error(msg) // 如果不是0，则打印错误信息，我们后面讲到UI组件的时候，这里可以使用消息窗提示
+        // }
+        if (typeof res.data === "string") {
+          return Decrypt(res.data as unknown as string); // 返回数据
+        } else {
+          return res.data;
+        }
+      },
+      (error) => {
+        // 这里是遇到报错的回调
         return Promise.reject(error);
       }
     );

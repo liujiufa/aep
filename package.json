@@ -131,7 +131,7 @@
     "workbox-webpack-plugin": "^6.4.1"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "dotenv -e .env.development react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test"
   },

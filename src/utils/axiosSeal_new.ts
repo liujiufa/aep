@@ -4,10 +4,17 @@ import axios, {
   AxiosPromise,
   AxiosResponse,
 } from "axios"; // 引入axios和定义在node_modules/axios/index.ts文件里的类型声明
-import { Decrypt, Encrypt } from "./encryption1";
+// import { Decrypt, Encrypt } from "../utils/encryption.js";
 import i18n from "i18next";
 import store from "../store";
-import { json } from "stream/consumers";
+import { decrypt, encrypt } from "./encryption_new";
+import {
+  decryptBase64,
+  decryptWithAes,
+  encryptBase64,
+  encryptWithAes,
+  generateAesKey,
+} from "./crypto";
 class HttpRequest {
   // 定义一个接口请求类，用于创建一个axios请求实例
   constructor(public baseUrl: string) {
@@ -31,7 +38,14 @@ class HttpRequest {
           (config.method === "POST" || config.method === "post") &&
           config?.data.Encrypt
         ) {
-          config.data = Encrypt(JSON.stringify(config.data));
+          // config.data = Encrypt(JSON.stringify(config.data));
+          // 生成一个 AES 密钥
+          const aesKey = generateAesKey();
+          config.headers["encrypt-key"] = encrypt(encryptBase64(aesKey));
+          config.data =
+            typeof config.data === "object"
+              ? encryptWithAes(JSON.stringify(config.data), aesKey)
+              : encryptWithAes(config.data, aesKey);
         }
         // config.data=Encrypt(JSON.stringify(config.data))
         // 接口请求的所有配置，都在这个config对象中，他的类型是AxiosRequestConfig，你可以看到他有哪些字段
@@ -43,20 +57,25 @@ class HttpRequest {
       }
     );
     instance.interceptors.response.use(
-      (res: AxiosResponse) => {
-        // const { data } = res // res的类型是AxiosResponse<any>，包含六个字段，其中data是服务端返回的数据
-        // const { code, msg } = data // 通常服务端会将响应状态码、提示信息、数据等放到返回的数据中
-        // if (code !== 0) { // 这里我们在服务端将正确返回的状态码标为0
-        //   console.error(msg) // 如果不是0，则打印错误信息，我们后面讲到UI组件的时候，这里可以使用消息窗提示
-        // }
-        if (typeof res.data === "string") {
-          return Decrypt(res.data as unknown as string); // 返回数据
+      async (res: any) => {
+        // 如果响应数据是加密的，需要解密
+        const keyStr = res.headers["encrypt-key"];
+        // 加密
+        if (typeof res.data === "string" && keyStr != null && keyStr != "") {
+          const data = res.data;
+          // 请求体 AES 解密
+          const base64Str = decrypt(keyStr);
+          // base64 解码 得到请求头的 AES 秘钥
+          const aesKey = decryptBase64(base64Str.toString());
+          // aesKey 解码 data
+          const decryptData = decryptWithAes(data, aesKey);
+          // 将结果 (得到的是 JSON 字符串) 转为 JSON
+          return JSON.parse(decryptData);
         } else {
           return res.data;
         }
       },
       (error) => {
-        // 这里是遇到报错的回调
         return Promise.reject(error);
       }
     );

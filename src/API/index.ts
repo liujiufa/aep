@@ -275,3 +275,13 @@ export function aepWithdrawInfo(data: any) {
     },
   });
 }
+export function list(data: any) {
+  return axois.request({
+    url: "/test/list",
+    method: "post",
+    data: {
+      ...data,
+      Encrypt: true,
+    },
+  });
+}

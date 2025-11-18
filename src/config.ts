@@ -4,7 +4,7 @@ import Market from "./ABI/Market.json";
 import AEPWithdraw from "./ABI/AEPWithdraw.json";
 import { defineChain } from "@reown/appkit/networks";
 // 正式
-export const isMain = false;
+export const isMain = true;
 export const isAllOpen = true;
 export const curentBSCChainId: number = isMain ? 56 : 97;
 export const curentETHChainId: number = isMain ? 1 : 17000;
@@ -17,6 +17,7 @@ export const LOCAL_KEY = "ORA_LANG";
 export let baseUrl: string = isMain
   ? window.location.origin + "/user/"
   : "http://52.74.247.74:15250/";
+// "http://192.168.1.37:8080/";
 
 export let ContractUrl: string = isMain
   ? "https://bscscan.com/address/"
