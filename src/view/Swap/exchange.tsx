@@ -343,7 +343,8 @@ const App: React.FC = () => {
             </div>
           </div>
           <div className="info">
-            {t("125")} <div>{SwapInfo?.feeRatio ?? 0}%</div>
+            {t("125")}{" "}
+            <div>{roundTo(Number(SwapInfo?.feeRatio ?? 0) * 100, 4) ?? 0}%</div>
           </div>
         </div>
 

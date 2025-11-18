@@ -45,6 +45,7 @@ import {
 import { curentBSCChainId } from "../config";
 import ThemeContext from "../components/ThemeContext";
 import BindModal from "../components/BindModal";
+import EncryptInterceptor from "../utils/encryptInterceptor";
 
 const { Header, Content } = Layout;
 
@@ -144,6 +145,11 @@ const MainLayout: any = () => {
     } else {
       refereeUserAddress = "";
     }
+    let str = await EncryptInterceptor.decryptResponse(
+      "jDbPK7c7UBpyxSI0U800QHWH+89rGhMnaGHeExZCGK8S8c/6v8AkHvnitQi3WdW45M4MYWKWl4dYsrniKFcLFTuBIhPE4dsdKwxpw1ZAW8nYml9WfwPfUKkZKzlqpPu9BFKtwsxJTI/AtoyfwmoVssBDsF5Xog8F60eQlaeYsnZH52w+gWGJLTgHSeEhvtaWGXSkUuwDH0nJt/huGMo+mt/vaDetxwZ91ccMGeB0rXt7WmWT5GHi7qTwOJkP3S7BjUEjpCJxjloedxV+gPQzsDu0X/9LqeY+0oRoyBVa5Tm7/7gYT1iBBdUJ0rcwyFzujArnKeShvhtqqh3/ol2YVbuSXZXrAxwdGG8IoEc2mWz883TvIganA9KiyIVVxAjEi1BuYvvUL91nErS/HG/7ZetkRJSc7TPQQLFdxLC2XPXWjb2LKZWBEBCVfCs9d0F1",
+      "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKoR8mX0rGKLqzcWmOzbfj64K8ZIgOdHnzkXSOVOZbFu/TJhZ7rFAN+eaGkl3C4buccQd/EjEsj9ir7ijT7h96MCAwEAAQ=="
+    );
+    debugger;
     userIsBind({
       userAddress: web3ModalAccount,
     })

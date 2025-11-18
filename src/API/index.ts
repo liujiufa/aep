@@ -12,7 +12,7 @@ export function Login(data: any) {
     method: "post",
     data: {
       ...data,
-      // Encrypt: true,
+      Encrypt: true,
     },
   });
 }

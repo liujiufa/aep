@@ -43,9 +43,9 @@ const projectId = "186f339155f56029e009e98e4579e480";
 const metadata = {
   name: "Depin",
   description: "Depin",
-  url: "https://nexusrwa.io/",
+  url: "https://aep.nexusrwa.io/",
   // url: "https://kf-panda.com/",
-  icons: ["https://nexusrwa.io/favicon.ico"],
+  icons: ["https://aep.nexusrwa.io/favicon.ico"],
   // icons: ["http://yhhyn.com/vtb.png"],
 };
 

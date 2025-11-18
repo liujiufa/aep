@@ -37,9 +37,11 @@ import LinkChart from "../../components/linkChart";
 import buy_item1 from "../../assets/image/Home/buy_item1.png";
 import buy_item2 from "../../assets/image/Home/buy_item2.png";
 import buy_item3 from "../../assets/image/Home/buy_item3.png";
+import buy_item4 from "../../assets/image/Home/buy_item4.png";
 import banner_item1 from "../../assets/image/Home/banner_item1.png";
 import banner_item2 from "../../assets/image/Home/banner_item2.png";
 import banner_item3 from "../../assets/image/Home/banner_item3.png";
+import banner_item4 from "../../assets/image/Home/banner_item4.png";
 
 import BuyModal from "./components/BuyModal";
 import copy from "copy-to-clipboard";
@@ -66,6 +68,7 @@ const Home = () => {
     { img: buy_item1, id: 1, banner: banner_item1, produce_name: "AKG" },
     { img: buy_item2, id: 2, banner: banner_item2, produce_name: "164" },
     { img: buy_item3, id: 3, banner: banner_item3, produce_name: "165" },
+    { img: buy_item4, id: 4, banner: banner_item4, produce_name: "166" },
   ];
 
   const getInitDate = () => {
@@ -210,7 +213,7 @@ const Home = () => {
                         outAmount: item?.outAmount,
                         img: item?.img,
                         banner: item?.banner,
-                        produce_name:item?.produce_name
+                        produce_name: item?.produce_name,
                       },
                     });
                   }}
